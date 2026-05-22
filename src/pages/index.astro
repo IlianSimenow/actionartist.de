@@ -1,0 +1,551 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <title>Ilian Simeonow — Stuntman &amp; Artist aus Dresden</title>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav" id="siteNav">
+    <div class="nav-logo">Ilian <span class="nav-logo-accent">Simeonow</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="/biographie/" class="nav-link">Biographie</a>
+      <a href="/skills/"      class="nav-link">Skills</a>
+      <a href="/credits/"     class="nav-link">Credits</a>
+      <a href="/galerie/"     class="nav-link">Galerie</a>
+      <a href="/video/"       class="nav-link">Video</a>
+      <a href="/partner/"     class="nav-link">Partner</a>
+      <a href="/kontakt/"     class="nav-cta">Kontakt</a>
+      <a href="/pdfs/setcard.pdf" download class="nav-sedcard">↓ Sedcard PDF</a>
+      <div class="lang-switcher">
+        <a href="/" class="lang-btn lang-btn--active">DE</a>
+        <a href="/en/" class="lang-btn lang-btn--inactive">EN</a>
+      </div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+  </nav>
+
+  <!-- ══ SEDCARD INFO BAR ══ -->
+  <div class="sedcard-bar">
+    <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
+    <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+
+    <!--
+      Replace src with Ilian's actual showreel loop.
+      Recommended: 10–20s, H.264 + WebM fallback, no audio, < 8 MB.
+    -->
+    <video
+      class="hero-video"
+      id="heroBgVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="/assets/video/hero-loop.webm" type="video/webm" />
+      <source src="/assets/video/hero-loop.mp4"  type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-top-bar"></div>
+    <div class="hero-left-rule"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Stuntman · Artist · Dresden, Deutschland</div>
+
+      <h1 class="hero-name">
+        ILIAN<br />
+        <span class="hero-name-accent">SIMEONOW</span>
+      </h1>
+
+      <p class="hero-role">Kaskadeur · Action Artist · Schauspieler · Zauberer</p>
+
+      <div class="hero-actions">
+        <a href="/video/" class="btn-primary">Showreel ansehen</a>
+        <a href="/credits/" class="btn-ghost">Credits &amp; Referenzen</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">23+</div>
+          <div class="stat-label">Jahre Erfahrung</div>
+        </div>
+        <div>
+          <div class="stat-num">46+</div>
+          <div class="stat-label">Produktionen</div>
+        </div>
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Stunt-Disziplinen</div>
+        </div>
+        <div>
+          <div class="stat-num">6</div>
+          <div class="stat-label">Länder</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-side-text">Stuntman · Kaskadeur · Action Artist · Schauspieler</div>
+  </section>
+
+  <!-- ══ SKILLS STRIP ══ -->
+  <div class="skills-strip">
+    <div class="skill-tag skill-tag--highlight">Body Stunt</div>
+    <div class="skill-tag">Highfall</div>
+    <div class="skill-tag skill-tag--highlight">Fechten &amp; Schwertkampf</div>
+    <div class="skill-tag">Stuntreiter</div>
+    <div class="skill-tag skill-tag--highlight">Trampolin-Kaskadeur</div>
+    <div class="skill-tag">Globe of Speed</div>
+    <div class="skill-tag skill-tag--highlight">Kampfchoreographie</div>
+    <div class="skill-tag">Todesrad</div>
+    <div class="skill-tag skill-tag--highlight">Zauberei &amp; Illusion</div>
+    <div class="skill-tag">Feuerspucken</div>
+    <div class="skill-tag skill-tag--highlight">Akrobatik</div>
+    <div class="skill-tag">Acting &amp; Comedy</div>
+  </div>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about-section">
+    <div>
+      <div class="section-label">// Über mich</div>
+      <h2 class="section-heading">Kaskadeur<br />aus Leidenschaft.</h2>
+      <p class="body-text">
+        Sie sind auf der Suche nach einem Kampfchoreographen, Stuntkoordinator, Action-Darsteller, Stuntman, Komiker, Zauberer oder Artisten? Dann sind Sie hier genau richtig.
+      </p>
+      <p class="body-text" style="margin-top: 18px;">
+        Seit über 23 Jahren steht Ilian Simeonow auf den internationalen Bühnen dieser Welt — von Norwegen bis nach Dubai.
+      </p>
+      <a href="/biographie/" class="link-more">Biographie lesen →</a>
+    </div>
+    <div class="photo-block">
+      <span class="photo-placeholder-label">Portrait / Action-Foto</span>
+      <div class="photo-caption">Stuntman · Dresden</div>
+    </div>
+  </section>
+
+  <!-- ══ LETZTE PRODUKTIONEN ══ -->
+  <section class="productions-section">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <div class="section-label">// Letzte Produktionen</div>
+        <h2 class="section-heading">Aktuelles &amp;<br />Neuigkeiten.</h2>
+      </div>
+      <a href="/credits/" class="link-more" style="margin-top: 0;">Alle Credits ansehen →</a>
+    </div>
+    <div class="productions-list">
+      <div class="production-item">
+        <div class="production-year">2024</div>
+        <div class="production-text">Karl-May Festival Radebeul &amp; Felsenbühne Rathen. Desweiteren wieder mit AWEGO auf der Jakubzburg in Mortka.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2023</div>
+        <div class="production-text">Karl-May Festspiele mit Stuntteam Awego &amp; Jakubzburg in Mortka — "Die Töchter der Burg" (Rolle: Fou).</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2022</div>
+        <div class="production-text">Semperoper Dresden — <em style="color: var(--white);">Der Wildschütz</em> (ab September).</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2019</div>
+        <div class="production-text">Letzte Saison Eldorado Templin. Semperoper Dresden — <em style="color: var(--white);">Die Verkaufte Braut / Der Freischütz / Der Wildschütz</em>.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2017</div>
+        <div class="production-text">Semperoper Dresden — <em style="color: var(--white);">Der Freischütz</em>. Beitritt ELDORADO Stuntteam Templin.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2013</div>
+        <div class="production-text">Kinofilm <em style="color: var(--white);">La belle &amp; la bête</em> — Stuntdouble Nicolas Gob. Motorrad Messe Leipzig mit Globe of Speed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CREDITS PREVIEW ══ -->
+  <section class="credits-section">
+    <div class="credits-section-header">
+      <div>
+        <div class="section-label">// Credits &amp; Referenzen</div>
+        <h2 class="section-heading">Ausgewählte<br />Produktionen.</h2>
+      </div>
+      <a href="/credits/" class="link-more" style="margin-top: 0;">Alle 46+ Credits →</a>
+    </div>
+
+    <div class="credits-tabs">
+      <div class="credits-tab credits-tab--active">Stuntman</div>
+      <div class="credits-tab">Schauspieler</div>
+      <div class="credits-tab">Artist</div>
+      <div class="credits-tab">Weitere Kunden</div>
+    </div>
+
+    <div class="credits-grid">
+      <div class="credit-card">
+        <div class="credit-year">2024</div>
+        <div class="credit-title">Karl-May-Festspiele Radebeul</div>
+        <div class="credit-role">Stunts · Reiten · Fighting · Acting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2024</div>
+        <div class="credit-title">Felsenbühne Rathen — Schatterhand</div>
+        <div class="credit-role">Stunts · Reiten · Fighting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2017–2019</div>
+        <div class="credit-title">Eldorado Templin</div>
+        <div class="credit-role">Stunts · Reiten · Fighting · Acting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2015–2017</div>
+        <div class="credit-title">Semperoper Dresden — Freischütz</div>
+        <div class="credit-role">Stunts · Fighting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2013</div>
+        <div class="credit-title">La belle &amp; la bête</div>
+        <div class="credit-role">Stuntdouble — Nicolas Gob</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2011</div>
+        <div class="credit-title">The Three Musketeers</div>
+        <div class="credit-role">Stunts · Fechten · Cardinal Guard</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2009–2011</div>
+        <div class="credit-title">Piraten Open Air Theater</div>
+        <div class="credit-role">Stunts · Fechten · Acting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2004</div>
+        <div class="credit-title">Silver Lake City</div>
+        <div class="credit-role">Stunts · Reiten · Fighting</div>
+      </div>
+      <div class="credit-card credit-card--more">
+        <div style="text-align: center;">
+          <div class="section-label" style="margin-bottom: 8px;">+38 weitere</div>
+          <a href="/credits/" style="font-family: var(--font-sans); font-size: 13px; color: var(--gray);">Vollständige Credits →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS PREVIEW ══ -->
+  <section class="skills-section">
+    <div class="skills-section-header">
+      <div>
+        <div class="section-label">// Fertigkeiten</div>
+        <h2 class="section-heading">Stunt, Artistik<br />&amp; mehr.</h2>
+        <p class="body-text" style="max-width: 480px;">
+          Nach einer 5½-jährigen Ausbildung an der Staatlichen Ballettschule Berlin spezialisierte sich Ilian auf den Trampolin-Kaskadeur — den Ursprung des modernen Stuntman.
+        </p>
+        <a href="/skills/" class="link-more">Alle Skills ansehen →</a>
+      </div>
+    </div>
+
+    <div class="skills-categories">
+      <div class="skills-cat">
+        <div class="skills-cat-title">Artistik / X-treme Artistik</div>
+        <ul class="skills-cat-list">
+          <li>Trampolin</li>
+          <li>Schleuderbrett</li>
+          <li>Boden-Akrobatik</li>
+          <li>Jonglage</li>
+          <li>Zauberei &amp; Illusion</li>
+          <li>Globe of Speed</li>
+          <li>Todesrad</li>
+          <li>Feuerspucken / -schlucken</li>
+        </ul>
+      </div>
+      <div class="skills-cat">
+        <div class="skills-cat-title">Stunt</div>
+        <ul class="skills-cat-list">
+          <li>Body Stunt</li>
+          <li>Highfall</li>
+          <li>Fechten &amp; Schwertkampf</li>
+          <li>Reiten (Stuntreiter)</li>
+          <li>Kampfchoreographie</li>
+          <li>Kampfsport (Tae Kwon Do · Capoeira · Judo · Boxen)</li>
+          <li>Schusswaffen-Ausbildung</li>
+          <li>Abseilen</li>
+        </ul>
+      </div>
+      <div class="skills-cat">
+        <div class="skills-cat-title">Eigenes Equipment</div>
+        <ul class="skills-cat-list">
+          <li>Matten (Größe individuell)</li>
+          <li>Abseil-Equipment</li>
+          <li>Degen &amp; Schwerter</li>
+          <li>Polizei-Uniform NRW</li>
+          <li>Mittelalter-Kostüm</li>
+          <li>Western-Kostüm</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ GALLERY PREVIEW ══ -->
+  <section class="gallery-section">
+    <div class="gallery-section-header">
+      <div>
+        <div class="section-label">// Galerie</div>
+        <h2 class="section-heading">Fotos aus<br />Produktion &amp; Show.</h2>
+      </div>
+      <a href="/galerie/" class="link-more" style="margin-top: 0;">Alle Fotos ansehen →</a>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-thumb">
+        <div class="gallery-thumb-icon">Action · Stunt</div>
+        <div class="gallery-label">Stunt</div>
+      </div>
+      <div class="gallery-thumb">
+        <div class="gallery-thumb-icon">Portrait</div>
+        <div class="gallery-label">Portrait</div>
+      </div>
+      <div class="gallery-thumb">
+        <div class="gallery-thumb-icon">Bühne</div>
+        <div class="gallery-label">Comedian &amp; Schauspieler</div>
+      </div>
+      <div class="gallery-thumb">
+        <div class="gallery-thumb-icon">Artistik</div>
+        <div class="gallery-label">Artistik</div>
+      </div>
+      <div class="gallery-thumb">
+        <div class="gallery-thumb-icon">Diverse Produktionen</div>
+        <div class="gallery-label">Produktionen</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ VIDEO / SHOWREEL ══ -->
+  <section class="video-section">
+    <div>
+      <div class="section-label">// Showreel &amp; Videos</div>
+      <h2 class="section-heading">Sehen ist<br />Glauben.</h2>
+      <p class="body-text">
+        Demo-Reel, Stunt-Reel und weitere Videos zeigen Ilian Simeonow in Action — aus Film, Fernsehen, Bühne und Show.
+      </p>
+      <a href="/video/" class="link-more">Alle Videos ansehen →</a>
+    </div>
+    <div class="video-thumb">
+      <div class="play-btn">
+        <div class="play-icon"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PARTNERS ══ -->
+  <section class="partners-section">
+    <div class="section-label">// Partner &amp; Kollegen</div>
+    <h2 class="section-heading">Einmal mit<br />Profis.</h2>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-name">Ralf Tilmann</div>
+        <div class="partner-role">Regisseur · Stunt-Koordinator · Stuntman</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Andreas Mintert</div>
+        <div class="partner-role">Schauspieler · Stuntman · Moderator</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Globe of Speed</div>
+        <div class="partner-role">Globe of Speed &amp; Todesrad</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Andreas Feller</div>
+        <div class="partner-role">Regisseur · Schauspieler · Feller Film Produktion</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Mario Eichendorf</div>
+        <div class="partner-role">Schauspieler · Stunt-Koordinator · Stuntman</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Sven Thorsten Gliwe</div>
+        <div class="partner-role">Stunt-Koordinator · Stuntman · Pyrotechniker</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Hendrik Leschke</div>
+        <div class="partner-role">Stuntman · Dancer · Free-Running</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Ole Gäbel</div>
+        <div class="partner-role">Catering · Veranstaltungs-Team</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WISSENSWERTES ══ -->
+  <section class="wissen-section">
+    <div class="section-label">// Wissenswertes</div>
+    <h2 class="section-heading">Mehr erfahren.</h2>
+    <div class="wissen-grid">
+      <div class="wissen-card">
+        <div class="wissen-num">01</div>
+        <div class="wissen-title">Geschichte des Stuntman</div>
+        <div class="wissen-desc">Vom Zirkus zum Kino — wie der Stuntman entstand, von Buster Keaton bis Jackie Chan.</div>
+        <a href="/wissen/geschichte-stuntman/" class="wissen-link">Artikel lesen →</a>
+      </div>
+      <div class="wissen-card">
+        <div class="wissen-num">02</div>
+        <div class="wissen-title">Wie werde ich Stuntman?</div>
+        <div class="wissen-desc">Voraussetzungen, Ausbildungswege und Ilians persönliche Empfehlungen für Einsteiger.</div>
+        <a href="/wissen/wie-werde-ich-stuntman/" class="wissen-link">Artikel lesen →</a>
+      </div>
+      <div class="wissen-card">
+        <div class="wissen-num">03</div>
+        <div class="wissen-title">Geschichte der Artistik</div>
+        <div class="wissen-desc">Akrobatik, Äquilibristik, Jonglage — die Kunstformen, die Ilian ausgebildet hat.</div>
+        <a href="/wissen/geschichte-artistik/" class="wissen-link">Artikel lesen →</a>
+      </div>
+      <div class="wissen-card">
+        <div class="wissen-num">04</div>
+        <div class="wissen-title">Wie werde ich Artist?</div>
+        <div class="wissen-desc">Staatliche und private Artistenschulen, Kinderzirkus und alternative Ausbildungswege.</div>
+        <a href="/wissen/wie-werde-ich-artist/" class="wissen-link">Artikel lesen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section class="contact-section">
+    <div>
+      <div class="section-label">// Buchung &amp; Kontakt</div>
+      <div class="contact-heading">Buchen Sie<br />Ilian.</div>
+      <p class="contact-sub">Stuntkoordinator · Kampfchoreograph<br />Action-Darsteller · Artist · Zauberer</p>
+      <div class="contact-actions">
+        <a href="/kontakt/" class="btn-primary">Anfrage senden</a>
+        <a href="/pdfs/setcard.pdf" download class="btn-ghost">↓ Sedcard PDF</a>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-detail">
+        <strong>Telefon</strong>
+        +49 (0)176 / 303 101 42
+      </div>
+      <div class="contact-detail">
+        <strong>E-Mail</strong>
+        actionartist@web.de
+      </div>
+      <div class="contact-detail">
+        <strong>Adresse</strong>
+        Hülseweg 5 · 42579 Heiligenhaus · Germany
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Ilian <span class="footer-brand-name-accent">Simeonow</span></div>
+        <p class="footer-brand-text">Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show — international.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links-list">
+          <li><a href="/biographie/">Biographie</a></li>
+          <li><a href="/skills/">Skills &amp; Fertigkeiten</a></li>
+          <li><a href="/credits/">Credits &amp; Referenzen</a></li>
+          <li><a href="/galerie/">Galerie</a></li>
+          <li><a href="/video/">Video</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/kontakt/">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Wissenswertes</div>
+        <ul class="footer-links-list">
+          <li><a href="/wissen/geschichte-stuntman/">Geschichte des Stuntman</a></li>
+          <li><a href="/wissen/wie-werde-ich-stuntman/">Wie werde ich Stuntman?</a></li>
+          <li><a href="/wissen/geschichte-artistik/">Geschichte der Artistik</a></li>
+          <li><a href="/wissen/wie-werde-ich-artist/">Wie werde ich Artist?</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Downloads &amp; Rechtliches</div>
+        <ul class="footer-links-list">
+          <li><a href="/pdfs/setcard.pdf" download>↓ Sedcard &amp; Vita PDF</a></li>
+          <li><a href="/impressum/">Impressum</a></li>
+          <li><a href="/impressum/#datenschutz">Datenschutz</a></li>
+          <li><a href="/sitemap-index.xml">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 <span class="footer-copy-accent">Ilian Simeonow</span> · Stuntman &amp; Artist · Heiligenhaus, Germany</div>
+      <div class="footer-legal">
+        <a href="/impressum/">Impressum</a>
+        <a href="/impressum/#datenschutz">Datenschutz</a>
+        <a href="/sitemap-index.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+<script>
+  const vid = document.getElementById('heroBgVideo') as HTMLVideoElement | null;
+  if (vid) {
+    vid.addEventListener('canplaythrough', () => vid.classList.add('hero-video--loaded'));
+    vid.addEventListener('error', () => vid.remove());
+  }
+</script>
+
+<script is:inline>
+  (function () {
+    const nav = document.getElementById('siteNav');
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    const backdrop = document.getElementById('navBackdrop');
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!nav) return;
+      if (window.scrollY > 24) nav.classList.add('nav--scrolled');
+      else nav.classList.remove('nav--scrolled');
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+    onScroll();
+
+    const closeMenu = () => {
+      document.body.classList.remove('nav-open');
+      toggle && toggle.setAttribute('aria-expanded', 'false');
+    };
+    const openMenu = () => {
+      document.body.classList.add('nav-open');
+      toggle && toggle.setAttribute('aria-expanded', 'true');
+    };
+    toggle && toggle.addEventListener('click', () => {
+      document.body.classList.contains('nav-open') ? closeMenu() : openMenu();
+    });
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMenu);
+      backdrop.addEventListener('touchstart', closeMenu, { passive: true });
+    }
+    links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+  })();
+</script>

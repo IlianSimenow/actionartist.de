@@ -1,0 +1,93 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout lang="en" title="Legal Notice — Ilian Simeonow"  description="Legal notice and privacy policy of Ilian Simeonow, stuntman and artist from Heiligenhaus, Germany." heroImage="/images/portrait/Portr%C3%A4tfoto-5.jpg">
+
+  <div class="page-hero">
+    <div class="hero-top-bar"></div>
+    <div class="page-hero-content">
+      <div class="section-label">// Legal</div>
+      <h1 class="page-hero-title">Legal<br /><span style="color: var(--orange);">Notice</span></h1>
+    </div>
+  </div>
+
+  <section class="legal-section">
+    <div class="legal-grid">
+      <div class="legal-content">
+        <div class="legal-block">
+          <h2 class="legal-heading">Information pursuant to § 5 TMG</h2>
+          <p>Ilian Simeonow<br />Hülseweg 5<br />42579 Heiligenhaus<br />Germany</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Contact</h2>
+          <p>Phone: +49 (0)176 / 303 101 42<br />E-Mail: <a href="mailto:actionartist@web.de" style="color: var(--orange);">actionartist@web.de</a></p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Professional Title</h2>
+          <p>Ilian Simeonow is a self-employed stuntman, artist and actor. Certified artist of the State Ballet School Berlin.</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Responsible for Content pursuant to § 55 para. 2 RStV</h2>
+          <p>Ilian Simeonow<br />Hülseweg 5<br />42579 Heiligenhaus</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Dispute Resolution</h2>
+          <p>The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr" style="color: var(--orange);" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>. Our e-mail address can be found in the legal notice above. We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Liability for Content</h2>
+          <p>As a service provider, we are responsible for our own content on these pages in accordance with § 7 para. 1 TMG under the general laws. According to §§ 8 to 10 TMG, however, we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.</p>
+          <p>Obligations to remove or block the use of information under the general laws remain unaffected. However, liability in this regard is only possible from the point in time at which a concrete infringement of the law becomes known.</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Liability for Links</h2>
+          <p>Our offer contains links to external websites of third parties, over whose content we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the contents of the linked pages.</p>
+        </div>
+
+        <div class="legal-block">
+          <h2 class="legal-heading">Copyright</h2>
+          <p>The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution or any form of commercialisation of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator.</p>
+        </div>
+
+        <div class="legal-block" id="datenschutz">
+          <h2 class="legal-heading">Privacy Policy</h2>
+          <p>The use of our website is generally possible without providing personal data. Where personal data (for example name, address or e-mail addresses) is collected on our pages, this is always done on a voluntary basis where possible. This data will not be passed on to third parties without your express consent.</p>
+          <p style="margin-top: 14px;">We point out that data transmission over the Internet (for example, when communicating by e-mail) may have security gaps. Complete protection of data from access by third parties is not possible.</p>
+          <p style="margin-top: 14px;">The use by third parties of contact data published in the context of the legal notice obligation for the purpose of sending unsolicited advertising and information material is hereby expressly prohibited. The operators of the pages expressly reserve the right to take legal action in the event of the unsolicited sending of advertising information, for example through spam e-mails.</p>
+        </div>
+      </div>
+
+      <div class="legal-sidebar">
+        <div class="section-label">// Quick Contact</div>
+        <div class="sidebar-contact">
+          <div class="contact-detail"><strong>Phone</strong>+49 (0)176 / 303 101 42</div>
+          <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
+          <div class="contact-detail"><strong>Address</strong>Hülseweg 5 · 42579 Heiligenhaus</div>
+        </div>
+        <a href="/en/contact/" class="btn-primary" style="display: block; text-align: center; margin-top: 24px;">Contact Form</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.page-hero { min-height: 35vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px var(--page-pad) 56px; position: relative; background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%); border-bottom: 1px solid var(--border); }
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title { font-family: var(--font-serif); font-size: clamp(48px, 7vw, 96px); font-weight: bold; line-height: 0.9; letter-spacing: -2px; color: var(--white); margin-bottom: 20px; }
+.legal-section { padding: var(--section-pad) var(--page-pad); background: var(--black); border-top: 1px solid var(--border); }
+.legal-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; align-items: start; }
+.legal-block { padding: 32px 0; border-bottom: 1px solid var(--border); }
+.legal-block:first-child { padding-top: 0; }
+.legal-heading { font-family: var(--font-sans); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 16px; }
+.legal-block p { font-family: var(--font-sans); font-size: 15px; color: var(--gray); line-height: 1.7; }
+.legal-sidebar { position: sticky; top: 88px; background: var(--card); border: 1px solid var(--border); padding: 32px 24px; }
+.sidebar-contact { margin-top: 16px; }
+</style>

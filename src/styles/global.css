@@ -1,0 +1,1722 @@
+/* ============================================================
+   ACTIONARTIST.DE — Global Stylesheet
+   Dark Cinematic design: black bg, burnt-orange accents,
+   Georgia serif headlines + Helvetica Neue tracked caps.
+   ============================================================ */
+
+
+/* ============================================================
+   1. RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+
+/* ============================================================
+   2. DESIGN TOKENS
+   ============================================================ */
+
+:root {
+  /* Brand colours */
+  --orange:  #E05A1E;   /* primary accent */
+  --black:   #0e0e0e;   /* page background */
+  --dark:    #141414;   /* alternate section background */
+  --deep:    #0a0a0a;   /* footer / darkest surfaces */
+  --card:    #191919;   /* card / thumbnail background */
+  --border:  #2a2a2a;   /* subtle dividers */
+
+  /* Text colours */
+  --white:   #f5f5f5;   /* primary text */
+  --gray:    #aaaaaa;   /* secondary / body text */
+  --dim:     #555555;   /* muted labels, footer text */
+
+  /* Typography */
+  --font-serif:  'Georgia', 'Times New Roman', serif;
+  --font-sans:   'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing */
+  --page-pad:    48px;  /* horizontal page gutter */
+  --section-pad: 96px; /* vertical section padding */
+}
+
+
+/* ============================================================
+   3. BASE TYPOGRAPHY & BODY
+   ============================================================ */
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-serif);
+  line-height: 1;
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   4. SHARED SECTION UTILITIES
+   ============================================================ */
+
+/* Overline label: "// Über mich" style */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+/* Large serif section heading */
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 4.5vw, 56px);
+  font-weight: bold;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+/* Prose body text under section headings */
+.body-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--gray);
+}
+
+/* "Read more →" inline link */
+.link-more {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Section with alternating dark background */
+.section--dark {
+  background: var(--dark);
+}
+
+/* Section with primary (black) background */
+.section--black {
+  background: var(--black);
+}
+
+/* Standard section top border divider */
+.section--bordered {
+  border-top: 1px solid var(--border);
+}
+
+/* Standard section padding */
+.section--padded {
+  padding: var(--section-pad) var(--page-pad);
+}
+
+
+/* ============================================================
+   5. BUTTONS
+   ============================================================ */
+
+/* Filled orange button */
+.btn-primary {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--orange);
+  color: #fff;
+  padding: 15px 36px;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+}
+
+/* Outlined ghost button */
+.btn-ghost {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--gray);
+  padding: 14px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Orange-outline button (sedcard style) */
+.btn-outline-orange {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid var(--orange);
+  padding: 8px 18px;
+  cursor: pointer;
+  background: transparent;
+  display: inline-block;
+}
+
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(14, 14, 14, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-pad);
+  height: 68px;
+  transition: height 0.28s ease, background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* Condensed nav state once page is scrolled */
+.nav--scrolled {
+  height: 54px;
+  background: rgba(10, 10, 10, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  border-bottom-color: rgba(224, 90, 30, 0.18);
+}
+.nav--scrolled .nav-logo { font-size: 16px; }
+.nav--scrolled .nav-link { padding: 8px 12px; }
+.nav--scrolled .nav-cta { padding: 8px 18px; }
+.nav--scrolled .nav-sedcard { padding: 6px 12px; }
+
+/* Wordmark: "Ilian Simeonow" */
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+/* Orange part of the wordmark */
+.nav-logo-accent {
+  color: var(--orange);
+}
+
+/* Nav link row */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Individual page links */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 10px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--white);
+}
+
+/* Filled orange "Kontakt" CTA in nav */
+.nav-cta {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--orange);
+  padding: 11px 22px;
+  margin-left: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* "↓ Sedcard PDF" outlined button in nav */
+.nav-sedcard {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 8px 14px;
+  border: 1px solid var(--orange);
+  margin-left: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* DE | EN language switcher */
+.lang-switcher {
+  display: flex;
+  margin-left: 12px;
+  border: 1px solid var(--border);
+}
+
+.lang-btn {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 6px 11px;
+  cursor: pointer;
+}
+
+.lang-btn--active {
+  background: var(--orange);
+  color: #fff;
+}
+
+.lang-btn--inactive {
+  color: var(--dim);
+  background: transparent;
+}
+
+
+/* ============================================================
+   7. SEDCARD INFO BAR  (below nav)
+   ============================================================ */
+
+.sedcard-bar {
+  background: rgba(224, 90, 30, 0.08);
+  border-bottom: 1px solid rgba(224, 90, 30, 0.2);
+  padding: 10px var(--page-pad);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.sedcard-bar-text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   8. HERO SECTION
+   ============================================================ */
+
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 60px var(--page-pad) 56px;
+  position: relative;
+
+  /* Warm dark fallback visible before video loads */
+  background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%);
+  overflow: hidden;
+}
+
+/* Background video — fades in once ready */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.hero-video--loaded {
+  opacity: 1;
+}
+
+/* Gradient overlay — heavier at bottom to keep text readable */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.50)  0%,
+    rgba(0, 0, 0, 0.62) 40%,
+    rgba(0, 0, 0, 0.84) 75%,
+    rgba(0, 0, 0, 0.96) 100%
+  );
+}
+
+/* Subtle film-grain texture */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* 3px orange accent bar at very top of hero */
+.hero-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--orange);
+  z-index: 3;
+}
+
+/* Thin vertical orange rule on left edge */
+.hero-left-rule {
+  position: absolute;
+  left: var(--page-pad);
+  top: 20%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--orange) 25%,
+    var(--orange) 75%,
+    transparent
+  );
+  opacity: 0.45;
+  z-index: 3;
+}
+
+/* All hero text content container */
+.hero-content {
+  position: relative;
+  z-index: 4;
+}
+
+/* "Stuntman · Artist · Dresden" eyebrow line */
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  margin-left: 28px;
+}
+
+/* Giant name display: "ILIAN / SIMEONOW" */
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: clamp(64px, 10vw, 128px);
+  font-weight: bold;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-left: 28px;
+  margin-bottom: 28px;
+}
+
+/* Second line of the name in orange */
+.hero-name-accent {
+  color: var(--orange);
+  display: block;
+}
+
+/* "Kaskadeur · Action Artist · Schauspieler" role line */
+.hero-role {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-left: 28px;
+  margin-bottom: 40px;
+}
+
+/* Button row below role line */
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-left: 28px;
+  margin-bottom: 56px;
+  align-items: center;
+}
+
+/* Stats row: "23+ Jahre Erfahrung" etc. */
+.hero-stats {
+  display: flex;
+  gap: 56px;
+  margin-left: 28px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  position: relative;
+  z-index: 4;
+}
+
+/* Large stat number */
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  color: var(--white);
+  line-height: 1;
+  font-weight: bold;
+}
+
+/* Small uppercase label under stat number */
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 6px;
+}
+
+/* Vertical rotated text on right edge of hero */
+.hero-side-text {
+  position: absolute;
+  right: var(--page-pad);
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.18);
+  white-space: nowrap;
+  z-index: 4;
+}
+
+
+/* ============================================================
+   9. SKILLS TICKER STRIP
+   ============================================================ */
+
+.skills-strip {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px var(--page-pad);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Each skill item in the strip */
+.skill-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0 24px;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.skill-tag:first-child {
+  padding-left: 0;
+}
+
+/* Highlighted (orange) skill tag */
+.skill-tag--highlight {
+  color: var(--orange);
+}
+
+
+/* ============================================================
+   10. ABOUT SECTION
+   ============================================================ */
+
+.about-section {
+  padding: var(--section-pad) var(--page-pad);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+
+/* Portrait photo block */
+.photo-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Warm gradient over bottom half of photo */
+.photo-block::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(224, 90, 30, 0.12), transparent);
+}
+
+/* "Portrait / Action-Foto" placeholder label */
+.photo-placeholder-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+/* "Stuntman · Dresden" caption in photo corner */
+.photo-caption {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--orange);
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+
+/* ============================================================
+   11. PRODUCTIONS LIST SECTION
+   ============================================================ */
+
+.productions-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+
+.productions-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Single production row */
+.production-item {
+  display: flex;
+  gap: 32px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Year column */
+.production-year {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--orange);
+  font-weight: 600;
+  min-width: 48px;
+  flex-shrink: 0;
+}
+
+/* Description text */
+.production-text {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   12. CREDITS SECTION
+   ============================================================ */
+
+.credits-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+
+.credits-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+/* Tabs: Stuntman | Schauspieler | Artist */
+.credits-tabs {
+  display: flex;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.credits-tab {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 10px 24px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.credits-tab--active {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+/* 3-column grid of credit cards */
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1px;
+  background: var(--border);
+}
+
+/* Single credit card */
+.credit-card {
+  background: var(--black);
+  padding: 28px 24px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.credit-card:hover {
+  border-left-color: var(--orange);
+}
+
+/* "See all" card — centered CTA */
+.credit-card--more {
+  background: var(--black);
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* "2024" year label */
+.credit-year {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Italic title of the production */
+.credit-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Role uppercase label */
+.credit-role {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   13. SKILLS SECTION (full page)
+   ============================================================ */
+
+.skills-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+
+.skills-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+/* 3-column skill category grid */
+.skills-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1px;
+  background: var(--border);
+}
+
+/* Single category column */
+.skills-cat {
+  background: var(--dark);
+  padding: 28px 24px;
+}
+
+/* Category title: "ARTISTIK / X-TREME ARTISTIK" */
+.skills-cat-title {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* List of skills within a category */
+.skills-cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual skill item with orange bullet */
+.skills-cat-list li {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--gray);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.skills-cat-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* Simple 2-column skill icon grid (homepage preview) */
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.skill-item-block {
+  background: var(--black);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Small orange dot before skill name */
+.skill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.skill-name {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   14. GALLERY SECTION
+   ============================================================ */
+
+.gallery-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+
+.gallery-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+/* Asymmetric photo grid: large left, 2×2 right */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 4px;
+}
+
+/* Single gallery thumbnail */
+.gallery-thumb {
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* First thumb spans both rows (tall left image) */
+.gallery-thumb:first-child {
+  grid-row: 1 / 3;
+}
+
+/* "Stunt" label badge in bottom-left corner */
+.gallery-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--orange);
+  text-transform: uppercase;
+  background: rgba(14, 14, 14, 0.85);
+  padding: 4px 8px;
+}
+
+/* Placeholder icon / category text in empty thumb */
+.gallery-thumb-icon {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   15. VIDEO / SHOWREEL SECTION
+   ============================================================ */
+
+.video-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* 16:9 video thumbnail block */
+.video-thumb {
+  aspect-ratio: 16 / 9;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Circular orange play button */
+.play-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* CSS-only triangle play icon */
+.play-icon {
+  width: 0;
+  height: 0;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid #fff;
+  margin-left: 4px;
+}
+
+
+/* ============================================================
+   16. PARTNERS SECTION
+   ============================================================ */
+
+.partners-section {
+  padding: 80px var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+
+/* 4-column partner grid */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 40px;
+}
+
+.partner-card {
+  background: var(--black);
+  padding: 24px 20px;
+}
+
+.partner-name {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.partner-role {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
+
+
+/* ============================================================
+   17. WISSENSWERTES (Knowledge Articles) SECTION
+   ============================================================ */
+
+.wissen-section {
+  padding: 80px var(--page-pad);
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+
+/* 4-column article card grid */
+.wissen-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 40px;
+}
+
+.wissen-card {
+  background: var(--dark);
+  padding: 28px 24px;
+  cursor: pointer;
+}
+
+/* Large dimmed article number: "01" */
+.wissen-num {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  color: var(--border);
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.wissen-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.wissen-desc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* "Artikel lesen →" link within card */
+.wissen-link {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-top: 16px;
+  display: block;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   18. CONTACT SECTION
+   ============================================================ */
+
+.contact-section {
+  padding: 80px var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Large "Buchen Sie / Ilian." heading */
+.contact-heading {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.contact-sub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.contact-actions {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+}
+
+/* Right column: phone, email, address */
+.contact-info {
+  text-align: right;
+}
+
+.contact-detail {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--gray);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.contact-detail strong {
+  color: var(--white);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+}
+
+
+/* ============================================================
+   19. FOOTER
+   ============================================================ */
+
+.footer {
+  padding: 40px var(--page-pad) 28px;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+}
+
+/* 4-column top grid: brand + 3 link columns */
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Brand column */
+.footer-brand-name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.footer-brand-name-accent {
+  color: var(--orange);
+}
+
+.footer-brand-text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+/* Column heading: "NAVIGATION", "WISSENSWERTES" etc. */
+.footer-col-title {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* Footer link list */
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links-list li {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--dim);
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.footer-links-list li:hover {
+  color: var(--white);
+}
+
+/* Bottom bar: copyright + legal links */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--dim);
+}
+
+.footer-copy-accent {
+  color: var(--orange);
+}
+
+/* Impressum · Datenschutz · Sitemap */
+.footer-legal {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal a {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-legal a:hover {
+  color: var(--white);
+}
+
+
+/* ============================================================
+   19b. PAGE HERO — image backdrop layer
+   Applied when a `heroImage` prop is supplied via Layout.
+   Pages already declare `.page-hero { position: relative; ... }`,
+   so we layer the image + tint behind their content.
+   ============================================================ */
+
+.page-hero {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.page-hero::before,
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Image layer: only renders if --hero-bg is set */
+.page-hero::before {
+  background-image: var(--hero-bg, none);
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  filter: grayscale(0.15) contrast(1.05) brightness(0.55);
+  transform: scale(1.04);
+  z-index: -2;
+  transition: transform 12s ease-out;
+}
+
+/* Always-on dark tint so text stays legible whether image loads or not */
+.page-hero::after {
+  background:
+    linear-gradient(180deg,
+      rgba(14, 14, 14, 0.55) 0%,
+      rgba(14, 14, 14, 0.72) 45%,
+      rgba(14, 14, 14, 0.92) 88%,
+      var(--black) 100%),
+    linear-gradient(95deg,
+      rgba(14, 14, 14, 0.45) 0%,
+      rgba(14, 14, 14, 0.15) 50%,
+      rgba(14, 14, 14, 0.0) 100%);
+  z-index: -1;
+}
+
+/* Thin orange accent at the top edge — mirrors the home hero */
+.page-hero {
+  border-top: 2px solid var(--orange);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero:hover::before { transform: scale(1.06); }
+}
+
+
+/* ============================================================
+   20. HAMBURGER + MOBILE DRAWER
+   ============================================================ */
+
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  z-index: 210;
+  position: relative;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.3s ease, opacity 0.2s ease, background 0.2s ease;
+  transform-origin: center;
+}
+
+body.nav-open .nav-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--orange);
+}
+body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+body.nav-open .nav-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--orange);
+}
+
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 190;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ============================================================
+   21. RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ---------- Tablet / small laptop (<= 1100px) ---------- */
+@media (max-width: 1100px) {
+  :root {
+    --page-pad: 32px;
+    --section-pad: 72px;
+  }
+
+  /* Hamburger replaces inline nav */
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(340px, 86vw);
+    background: var(--deep);
+    border-left: 1px solid var(--border);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 96px 28px 32px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    /* slide out → wait for animation → then hide */
+    transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s 0.36s;
+    z-index: 200;
+  }
+  body.nav-open .nav-links {
+    transform: translateX(0);
+    visibility: visible;
+    /* show immediately → then slide in */
+    transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s 0s;
+  }
+  body.nav-open { overflow: hidden; }
+  body.nav-open .nav-backdrop { display: block; opacity: 1; }
+
+  .nav-link,
+  .nav-cta,
+  .nav-sedcard {
+    padding: 16px 4px;
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+  .nav-cta {
+    background: transparent;
+    color: var(--orange);
+  }
+  .nav-sedcard {
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--orange);
+  }
+  .lang-switcher {
+    margin: 24px 0 0;
+    align-self: flex-start;
+  }
+
+  /* Hero */
+  .hero-stats { gap: 32px; flex-wrap: wrap; }
+  .stat-num { font-size: 36px; }
+  .hero-side-text { display: none; }
+
+  /* Grids: collapse 3/4-col → 2-col */
+  .credits-grid,
+  .skills-categories,
+  .skills-full-list,
+  .credits-full-grid,
+  .video-grid,
+  .partners-grid,
+  .wissen-grid,
+  .weitere-grid,
+  .partners-full-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Stats grid (bio) 6 → 3 */
+  .stats-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* Gallery grid 4 → 3 */
+  .gallery-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* 2-col content sections stack-friendly tighter gap */
+  .about-section,
+  .video-section,
+  .bio-grid,
+  .contact-grid,
+  .article-grid,
+  .legal-grid {
+    gap: 48px;
+  }
+}
+
+/* ---------- Stack 2-col content layouts earlier (<= 900px) ---------- */
+@media (max-width: 900px) {
+  /* Two-column content sections — stack vertically */
+  .about-section,
+  .video-section,
+  .bio-grid,
+  .contact-grid,
+  .article-grid,
+  .legal-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 40px !important;
+  }
+
+  /* Multi-col card grids — collapse to single column */
+  .skills-full-list,
+  .credits-full-grid,
+  .video-grid,
+  .partners-full-grid,
+  .partners-grid,
+  .wissen-grid,
+  .credits-grid,
+  .skills-categories {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tighter 2-col grids that read fine */
+  .weitere-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: auto !important; }
+  .gallery-thumb:first-child { grid-row: auto !important; }
+
+  /* Right-aligned sidebar reverts to natural alignment when stacked */
+  .contact-info { text-align: left !important; }
+  .contact-section {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 32px;
+  }
+
+  /* Form row stacks */
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Section header rows stack */
+  .credits-section-header,
+  .skills-section-header,
+  .gallery-section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px;
+  }
+
+  /* Footer 4-col → 2-col */
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* ---------- Mobile (<= 760px) ---------- */
+@media (max-width: 760px) {
+  :root {
+    --page-pad: 20px;
+    --section-pad: 56px;
+  }
+
+  /* Hero */
+  .hero { min-height: 88vh; padding: 40px var(--page-pad) 40px; }
+  .hero-eyebrow,
+  .hero-name,
+  .hero-role,
+  .hero-actions,
+  .hero-stats { margin-left: 0; }
+  .hero-name { font-size: clamp(54px, 14vw, 88px); letter-spacing: -1px; }
+  .hero-role { font-size: 12px; letter-spacing: 3px; margin-bottom: 28px; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 40px; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost { text-align: center; }
+  .hero-stats { gap: 28px 32px; padding-top: 24px; }
+  .stat-num { font-size: 30px; }
+  .hero-left-rule { display: none; }
+
+  /* Sections that were 2-col → stack */
+  .about-section,
+  .video-section,
+  .bio-grid,
+  .contact-grid,
+  .article-grid,
+  .legal-grid {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 40px !important;
+  }
+
+  /* All multi-col grids → 1 col */
+  .credits-grid,
+  .skills-categories,
+  .skills-full-list,
+  .credits-full-grid,
+  .video-grid,
+  .partners-grid,
+  .wissen-grid,
+  .partners-full-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .weitere-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: auto; }
+  .gallery-thumb:first-child { grid-row: auto; }
+
+  /* Contact section */
+  .contact-section {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 32px;
+  }
+  .contact-info { text-align: left; }
+  .contact-heading { font-size: 36px; }
+
+  /* Section header rows */
+  .credits-section-header,
+  .skills-section-header,
+  .gallery-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* Credits tabs scroll horizontally */
+  .credits-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .credits-tab { flex-shrink: 0; }
+
+  /* Form row stacks */
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Skills strip becomes a scrolling marquee-style line */
+  .skills-strip {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 14px var(--page-pad);
+  }
+  .skills-strip::-webkit-scrollbar { display: none; }
+  .skill-tag { padding: 0 16px; font-size: 10px; letter-spacing: 2px; }
+
+  /* Timeline (bio) */
+  .timeline-item {
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 20px 0;
+  }
+  .timeline-year { min-width: 0 !important; padding-top: 0 !important; }
+
+  /* Productions list */
+  .production-item {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  /* Footer */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footer-legal { flex-wrap: wrap; gap: 14px 20px; }
+
+  /* Page hero (sub-pages) */
+  .page-hero { min-height: 38vh !important; padding: 56px var(--page-pad) 40px !important; }
+
+  /* Section headings scale */
+  .section-heading { font-size: clamp(32px, 8vw, 44px); }
+
+  /* Video on mobile */
+  .play-btn { width: 56px; height: 56px; }
+  .play-icon { border-left-width: 16px; border-top-width: 10px; border-bottom-width: 10px; }
+}
+
+/* ---------- Small mobile (<= 480px) ---------- */
+@media (max-width: 480px) {
+  :root {
+    --page-pad: 16px;
+    --section-pad: 44px;
+  }
+
+  .nav { height: 60px; }
+  .nav--scrolled { height: 50px; }
+  .nav-logo { font-size: 16px; }
+
+  .hero-stats { gap: 20px 28px; }
+  .stat-num { font-size: 26px; }
+  .stat-label { font-size: 10px; letter-spacing: 1.5px; }
+
+  .contact-heading { font-size: 30px; }
+  .page-hero-title { font-size: clamp(40px, 12vw, 64px) !important; }
+
+  .weitere-grid,
+  .stats-grid,
+  .gallery-grid { grid-template-columns: 1fr !important; }
+
+  .btn-primary, .btn-ghost { padding: 13px 24px; font-size: 11px; }
+
+  .footer { padding: 32px var(--page-pad) 20px; }
+}
+
+/* ---------- Hover capability tweaks ---------- */
+@media (hover: none) {
+  .nav-link:hover { color: var(--gray); }
+  .gallery-thumb:hover .thumb-overlay { background: rgba(0,0,0,0); }
+  .gallery-thumb:hover img { transform: none; }
+}

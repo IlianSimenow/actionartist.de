@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout lang="de" title="Partner — Ilian Simeonow"  description="Die Partner und Kollegen von Ilian Simeonow — erfahrene Stuntmen, Regisseure und Stunt-Koordinatoren." heroImage="/images/bilder-diverse/Crew-Aktuelle-Schaubude.jpg">
+
+  <div class="page-hero">
+    <div class="hero-top-bar"></div>
+    <div class="page-hero-content">
+      <div class="section-label">// Partner &amp; Kollegen</div>
+      <h1 class="page-hero-title">Einmal mit<br /><span style="color: var(--orange);">Profis.</span></h1>
+      <p class="page-hero-sub">Stuntmen · Regisseure · Koordinatoren · Spezialisten</p>
+    </div>
+  </div>
+
+  <section class="partners-full-section">
+    <div class="section-label">// Das Team</div>
+    <h2 class="section-heading">Partner &amp;<br />Kollegen.</h2>
+    <p class="body-text" style="max-width: 600px; margin-bottom: 48px;">
+      Ilian Simeonow arbeitet mit einem Netzwerk erfahrener Stuntmen, Regisseure und Spezialisten zusammen, die gemeinsam anspruchsvollste Produktionen realisieren.
+    </p>
+
+    <div class="partners-full-grid">
+      <div class="partner-card-full">
+        <div class="partner-num">01</div>
+        <div class="partner-name">Ralf Tilmann</div>
+        <div class="partner-role">Regisseur · Stunt-Koordinator · Stuntman</div>
+        <p class="partner-desc">Erfahrener Stuntprofi mit umfangreicher Film- und TV-Erfahrung. Langjähriger Wegbegleiter und Regisseur in mehreren gemeinsamen Produktionen.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">02</div>
+        <div class="partner-name">Andreas Mintert</div>
+        <div class="partner-role">Schauspieler · Stuntman · Moderator</div>
+        <p class="partner-desc">Vielseitiger Darsteller mit Erfahrung vor und hinter der Kamera. Kombination aus Schauspiel, Stunt und Moderation.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">03</div>
+        <div class="partner-name">Globe of Speed</div>
+        <div class="partner-role">Globe of Speed &amp; Todesrad</div>
+        <p class="partner-desc">Spezialisiertes Team für Globe of Speed und Todesrad — spektakuläre Motorrad-Artistiknummern für Shows, Messen und Events.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">04</div>
+        <div class="partner-name">Andreas Feller</div>
+        <div class="partner-role">Regisseur · Schauspieler · Feller Film Produktion</div>
+        <p class="partner-desc">Inhaber der Feller Film Produktion. Regisseur und Schauspieler mit umfangreicher Erfahrung in Film- und Werbeproduktionen.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">05</div>
+        <div class="partner-name">Mario Eichendorf</div>
+        <div class="partner-role">Schauspieler · Stunt-Koordinator · Stuntman</div>
+        <p class="partner-desc">Stunt-Koordinator und Schauspieler mit internationaler Erfahrung. Spezialisiert auf Fight-Choreographie und Body-Stunts.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">06</div>
+        <div class="partner-name">Sven Thorsten Gliwe</div>
+        <div class="partner-role">Stunt-Koordinator · Stuntman · Pyrotechniker</div>
+        <p class="partner-desc">Stuntprofi und zertifizierter Pyrotechniker. Experte für Feuereffekte, Sprengungen und Spezialeffekte am Set.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">07</div>
+        <div class="partner-name">Hendrik Leschke</div>
+        <div class="partner-role">Stuntman · Dancer · Free-Running</div>
+        <p class="partner-desc">Junger Stuntprofi mit Schwerpunkt auf Free-Running, Parkour und Tanzen. Spezialisiert auf moderne Urban-Stunt-Ästhetik.</p>
+      </div>
+      <div class="partner-card-full">
+        <div class="partner-num">08</div>
+        <div class="partner-name">Ole Gäbel</div>
+        <div class="partner-role">Catering · Veranstaltungs-Team</div>
+        <p class="partner-desc">Professionelles Catering und Veranstaltungsmanagement — sorgt dafür, dass das Team auch bei langen Drehtagen optimal versorgt ist.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div>
+      <div class="section-label">// Buchung</div>
+      <div class="contact-heading">Buchen Sie<br />Ilian.</div>
+      <div class="contact-actions">
+        <a href="/kontakt/" class="btn-primary">Anfrage senden</a>
+        <a href="/pdfs/setcard.pdf" download class="btn-ghost">↓ Sedcard PDF</a>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-detail"><strong>Telefon</strong>+49 (0)176 / 303 101 42</div>
+      <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.page-hero {
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px var(--page-pad) 56px;
+  position: relative;
+  background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%);
+  border-bottom: 1px solid var(--border);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: bold;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.page-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.partners-full-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+.partners-full-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.partner-card-full {
+  background: var(--card);
+  padding: 36px 32px;
+}
+.partner-num {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  color: var(--border);
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.partner-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.partner-role {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.partner-desc {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+</style>

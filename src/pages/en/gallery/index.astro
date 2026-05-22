@@ -1,0 +1,291 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const stuntImages = [
+  { src: '/images/stunt/Fechten-1.jpg', label: 'Stage Fencing' },
+  { src: '/images/stunt/Fechten-2.jpg', label: 'Stage Fencing' },
+  { src: '/images/stunt/Fechten-auf-Pferd-1.jpg', label: 'Fencing on Horseback' },
+  { src: '/images/stunt/Fenstersturz-1.jpg', label: 'Window Fall' },
+  { src: '/images/stunt/Fenstersturz-2.jpg', label: 'Window Fall' },
+  { src: '/images/stunt/Piraten-Sturz-1.jpg', label: 'Pirate Fall' },
+  { src: '/images/stunt/Gehängter-Pirat-1.jpg', label: 'Hanging Pirate' },
+  { src: '/images/stunt/Sturz-vom-Kirchturm-1.jpg', label: 'Tower Fall' },
+  { src: '/images/stunt/Double-Blond-Woman-1.jpg', label: 'Stunt Double' },
+  { src: '/images/stunt/Rigging-1.jpg', label: 'Rigging' },
+  { src: '/images/stunt/Rigging-2.jpg', label: 'Rigging' },
+  { src: '/images/stunt/Diving-1.jpg', label: 'High Diving' },
+  { src: '/images/stunt/Diving-2.jpg', label: 'High Diving' },
+  { src: '/images/stunt/Silver-Lake-City-2.jpg', label: 'Silver Lake City' },
+  { src: '/images/stunt/Trampolin-1.jpg', label: 'Trampoline' },
+  { src: '/images/stunt/Globe-of-Speed-1.jpg', label: 'Globe of Speed' },
+  { src: '/images/stunt/Globe-of-Speed-2.jpg', label: 'Globe of Speed' },
+  { src: '/images/stunt/Todesrad-1.jpg', label: 'Wheel of Death' },
+];
+
+const portraitImages = [
+  { src: '/images/portrait/Porträtfoto-1.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-2.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-3.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-4.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-5.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-7.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-8.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-9.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-10.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-11.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-12.jpg', label: 'Portrait' },
+  { src: '/images/portrait/Porträtfoto-13.jpg', label: 'Portrait' },
+];
+
+const comedyImages = [
+  { src: '/images/comedy-acting/Stuntkoordinator-Ilian-Simeonow.jpg', label: 'Stunt Coordinator' },
+  { src: '/images/comedy-acting/Don-Merdas-1.jpg', label: 'Don Merdas' },
+  { src: '/images/comedy-acting/Don-Merdas-2.jpg', label: 'Don Merdas' },
+  { src: '/images/comedy-acting/Sheriff-1.jpg', label: 'Sheriff' },
+  { src: '/images/comedy-acting/Sheriff-2.jpg', label: 'Sheriff' },
+  { src: '/images/comedy-acting/Deputy-1.jpg', label: 'Deputy' },
+  { src: '/images/comedy-acting/Deputy-2.jpg', label: 'Deputy' },
+  { src: '/images/comedy-acting/Pirat-1.jpg', label: 'Pirate' },
+  { src: '/images/comedy-acting/Pirat-2.jpg', label: 'Pirate' },
+  { src: '/images/comedy-acting/Herr-Schlauch-1.jpg', label: 'Herr Schlauch' },
+  { src: '/images/comedy-acting/Herr-Schlauch-2.jpg', label: 'Herr Schlauch' },
+  { src: '/images/comedy-acting/Herr-Schlauch-3.jpg', label: 'Herr Schlauch' },
+  { src: '/images/comedy-acting/Herr-Schlauch-4.jpg', label: 'Herr Schlauch' },
+  { src: '/images/comedy-acting/Herr-Schlauch-5.jpg', label: 'Herr Schlauch' },
+  { src: '/images/comedy-acting/Herr-Spuck-1.jpg', label: 'Captain Spuck' },
+  { src: '/images/comedy-acting/Herr-Spuck-2.jpg', label: 'Captain Spuck' },
+  { src: '/images/comedy-acting/Inspector-1.jpg', label: 'Le Inspector' },
+  { src: '/images/comedy-acting/Inspector-2.jpg', label: 'Le Inspector' },
+  { src: '/images/comedy-acting/Hausmeister-Bukowski-1.jpg', label: 'Hausmeister Bukowski' },
+  { src: '/images/comedy-acting/Hausmeister-Bukowski-2.jpg', label: 'Hausmeister Bukowski' },
+  { src: '/images/comedy-acting/Lilian-Marat.jpg', label: 'Lilian Marat' },
+  { src: '/images/comedy-acting/Feller-Film-Der-Schwarze-Uchs.jpg', label: 'Der Schwarze Uchs' },
+  { src: '/images/comedy-acting/Jimmy.jpg', label: 'Jimmy' },
+  { src: '/images/comedy-acting/Tommy.jpg', label: 'Tommy' },
+];
+
+const diverseImages = [
+  { src: '/images/bilder-diverse/Salto-Dubai.jpg', label: 'Salto — Dubai' },
+  { src: '/images/bilder-diverse/Stunt-Crew-in-Dubai.jpg', label: 'Stunt Crew Dubai' },
+  { src: '/images/bilder-diverse/Rigging-Norway-1.jpg', label: 'Rigging — Norway' },
+  { src: '/images/bilder-diverse/Ilian-Simeonow-Reiten-1.jpg', label: 'Horse Riding' },
+  { src: '/images/bilder-diverse/Ilian-Simeonow-reiten-2.JPG', label: 'Horse Riding' },
+  { src: '/images/bilder-diverse/Eskil-Ronningsbakken-und-Ilian-Simeonow.jpg', label: 'With Eskil Rønningsbakken' },
+  { src: '/images/bilder-diverse/Gruppen-Foto-Babelsberg-Christian-Wulff.jpg', label: 'Babelsberg' },
+  { src: '/images/bilder-diverse/Crew-Spanier-POA.JPG', label: 'Pirates Open Air' },
+  { src: '/images/bilder-diverse/Stunt-Crew-Piraten-Open-Air.jpg', label: 'Pirates Open Air Crew' },
+  { src: '/images/bilder-diverse/Crew-Silver-Lake-City.jpg', label: 'Silver Lake City Crew' },
+  { src: '/images/bilder-diverse/Crew-Aktuelle-Schaubude.jpg', label: 'Aktuelle Schaubude' },
+  { src: '/images/bilder-diverse/Ilian-und-sein-Traum-Wagen.jpg', label: 'Dream Car' },
+];
+---
+
+<Layout lang="en" title="Gallery — Ilian Simeonow"  description="Photos from stunt, stage, acrobatics and portrait — photo gallery of Ilian Simeonow." heroImage="/images/stunt/Fenstersturz-1.jpg">
+
+  <div class="page-hero">
+    <div class="hero-top-bar"></div>
+    <div class="page-hero-content">
+      <div class="section-label">// Gallery</div>
+      <h1 class="page-hero-title">Photos from<br /><span style="color: var(--orange);">Production &amp; Show</span></h1>
+      <p class="page-hero-sub">Stunt · Portrait · Acrobatics · Comedy</p>
+    </div>
+  </div>
+
+  <section class="gallery-full-section">
+
+    <div class="gallery-cat">
+      <div class="gallery-cat-header">
+        <div class="section-label">// 01</div>
+        <h2 class="section-heading">Stunt &amp; Acrobatics</h2>
+        <p class="cat-count">{stuntImages.length} photos</p>
+      </div>
+      <div class="gallery-grid">
+        {stuntImages.map((img) => (
+          <button class="gallery-thumb" data-src={img.src} data-label={img.label} aria-label={img.label}>
+            <img src={img.src} alt={img.label} loading="lazy" />
+            <div class="thumb-overlay"><span>{img.label}</span></div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="gallery-cat">
+      <div class="gallery-cat-header">
+        <div class="section-label">// 02</div>
+        <h2 class="section-heading">Portrait</h2>
+        <p class="cat-count">{portraitImages.length} photos</p>
+      </div>
+      <div class="gallery-grid">
+        {portraitImages.map((img) => (
+          <button class="gallery-thumb" data-src={img.src} data-label={img.label} aria-label={img.label}>
+            <img src={img.src} alt={img.label} loading="lazy" />
+            <div class="thumb-overlay"><span>{img.label}</span></div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="gallery-cat">
+      <div class="gallery-cat-header">
+        <div class="section-label">// 03</div>
+        <h2 class="section-heading">Comedy &amp; Acting</h2>
+        <p class="cat-count">{comedyImages.length} photos</p>
+      </div>
+      <div class="gallery-grid">
+        {comedyImages.map((img) => (
+          <button class="gallery-thumb" data-src={img.src} data-label={img.label} aria-label={img.label}>
+            <img src={img.src} alt={img.label} loading="lazy" />
+            <div class="thumb-overlay"><span>{img.label}</span></div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="gallery-cat">
+      <div class="gallery-cat-header">
+        <div class="section-label">// 04</div>
+        <h2 class="section-heading">Various Productions</h2>
+        <p class="cat-count">{diverseImages.length} photos</p>
+      </div>
+      <div class="gallery-grid">
+        {diverseImages.map((img) => (
+          <button class="gallery-thumb" data-src={img.src} data-label={img.label} aria-label={img.label}>
+            <img src={img.src} alt={img.label} loading="lazy" />
+            <div class="thumb-overlay"><span>{img.label}</span></div>
+          </button>
+        ))}
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous photo">‹</button>
+    <button class="lb-next" id="lb-next" aria-label="Next photo">›</button>
+    <div class="lb-img-wrap">
+      <img src="" alt="" id="lb-img" />
+    </div>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+
+  <section class="contact-section">
+    <div>
+      <div class="section-label">// Booking</div>
+      <div class="contact-heading">Book<br />Ilian.</div>
+      <div class="contact-actions">
+        <a href="/en/contact/" class="btn-primary">Send Enquiry</a>
+        <a href="/pdfs/setcard.pdf" class="btn-ghost" target="_blank" rel="noopener">↓ Setcard PDF</a>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-detail"><strong>Phone</strong>+49 (0)176 / 303 101 42</div>
+      <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.page-hero { min-height: 45vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px var(--page-pad) 56px; position: relative; background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%); border-bottom: 1px solid var(--border); }
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title { font-family: var(--font-serif); font-size: clamp(48px, 7vw, 96px); font-weight: bold; line-height: 0.9; letter-spacing: -2px; color: var(--white); margin-bottom: 20px; }
+.page-hero-sub { font-family: var(--font-sans); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); }
+.gallery-full-section { background: var(--black); border-top: 1px solid var(--border); }
+.gallery-cat { padding: var(--section-pad) var(--page-pad); border-bottom: 1px solid var(--border); }
+.gallery-cat-header { margin-bottom: 32px; display: flex; align-items: baseline; gap: 20px; }
+.cat-count { font-family: var(--font-sans); font-size: 12px; color: var(--gray); margin-left: auto; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.gallery-thumb { background: var(--card); aspect-ratio: 4/3; position: relative; overflow: hidden; border: 1px solid var(--border); padding: 0; cursor: pointer; width: 100%; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.gallery-thumb:hover img { transform: scale(1.05); }
+.thumb-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: flex-end; padding: 12px; transition: background 0.2s; }
+.gallery-thumb:hover .thumb-overlay { background: rgba(0,0,0,0.5); }
+.thumb-overlay span { font-family: var(--font-sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--white); opacity: 0; transition: opacity 0.2s; }
+.gallery-thumb:hover .thumb-overlay span { opacity: 1; }
+@media (hover: none) {
+  .thumb-overlay { background: rgba(0,0,0,0.35); }
+  .thumb-overlay span { opacity: 1; }
+}
+
+/* Lightbox */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; display: none; align-items: center; justify-content: center; touch-action: none; }
+.lightbox.open { display: flex; }
+.lb-img-wrap { max-width: 90vw; max-height: 85vh; display: flex; align-items: center; justify-content: center; }
+.lb-img-wrap img { max-width: 100%; max-height: 85vh; object-fit: contain; display: block; pointer-events: none; }
+.lb-close { position: fixed; top: 16px; right: 20px; background: rgba(0,0,0,0.5); border: none; color: var(--white); font-size: 24px; cursor: pointer; z-index: 1001; opacity: 0.85; transition: opacity 0.2s; line-height: 1; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; -webkit-tap-highlight-color: transparent; }
+.lb-close:hover { opacity: 1; }
+.lb-prev, .lb-next { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); border: none; color: var(--white); font-size: 28px; cursor: pointer; z-index: 1001; opacity: 0.8; transition: opacity 0.2s; line-height: 1; width: 48px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 4px; -webkit-tap-highlight-color: transparent; }
+.lb-prev { left: 8px; }
+.lb-next { right: 8px; }
+.lb-prev:hover, .lb-next:hover { opacity: 1; }
+.lb-caption { position: fixed; bottom: 16px; left: 0; right: 0; text-align: center; font-family: var(--font-sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); padding: 0 60px; }
+
+/* Gallery responsive breakpoints */
+@media (max-width: 1100px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); } .gallery-cat { padding: 40px var(--page-pad); } }
+@media (max-width: 480px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 3px; } }
+</style>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('lb-caption');
+
+  let allImages: { src: string; label: string }[] = [];
+  let current = 0;
+
+  function openLightbox(index: number) {
+    current = index;
+    lbImg!.src = allImages[current].src;
+    lbImg!.alt = allImages[current].label;
+    lbCaption!.textContent = allImages[current].label;
+    lightbox!.classList.add('open');
+    lightbox!.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox!.classList.remove('open');
+    lightbox!.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir: number) {
+    current = (current + dir + allImages.length) % allImages.length;
+    lbImg!.src = allImages[current].src;
+    lbImg!.alt = allImages[current].label;
+    lbCaption!.textContent = allImages[current].label;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.gallery-thumb').forEach((btn, i) => {
+    allImages.push({ src: btn.dataset.src!, label: btn.dataset.label! });
+    btn.addEventListener('click', () => openLightbox(i));
+  });
+
+  document.getElementById('lb-close')!.addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev')!.addEventListener('click', () => navigate(-1));
+  document.getElementById('lb-next')!.addEventListener('click', () => navigate(1));
+
+  lightbox!.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox!.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+
+  // Touch swipe for lightbox
+  let touchStartX = 0;
+  lightbox!.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  lightbox!.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+</script>

@@ -1,0 +1,121 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout lang="en" title="Contact — Ilian Simeonow"  description="Contact Ilian Simeonow — booking enquiries for stunt, acrobatics and acting. Phone, email and sedcard download." heroImage="/images/portrait/Portr%C3%A4tfoto-3.jpg">
+
+  <div class="page-hero">
+    <div class="hero-top-bar"></div>
+    <div class="page-hero-content">
+      <div class="section-label">// Booking &amp; Contact</div>
+      <h1 class="page-hero-title">Get in<br /><span style="color: var(--orange);">Touch.</span></h1>
+      <p class="page-hero-sub">Booking Enquiries · Production Enquiries · Sedcard</p>
+    </div>
+  </div>
+
+  <section class="contact-main-section">
+    <div class="contact-grid">
+      <div class="contact-form-col">
+        <div class="section-label">// Enquiry</div>
+        <h2 class="section-heading">Send an<br />Enquiry.</h2>
+        <p class="body-text" style="margin-bottom: 40px;">
+          For booking enquiries, information or questions about productions, please fill in the form below. Ilian typically responds within 24 hours.
+        </p>
+
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name *</label>
+              <input type="text" name="name" class="form-input" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">E-Mail *</label>
+              <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" name="phone" class="form-input" placeholder="+49 ..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type of Enquiry</label>
+            <select name="type" class="form-input">
+              <option value="">Please select …</option>
+              <option>Film / TV</option>
+              <option>Theatre / Opera</option>
+              <option>Open Air / Festival</option>
+              <option>Trade Show / Event</option>
+              <option>Show / Variety</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea name="message" class="form-input form-textarea" placeholder="Please describe your project, the desired timeframe and any special requirements …" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Send Enquiry</button>
+        </form>
+      </div>
+
+      <div class="contact-info-col">
+        <div class="section-label">// Direct Contact</div>
+        <h2 class="section-heading">Contact<br />Details.</h2>
+
+        <div class="contact-detail-block">
+          <div class="contact-detail-icon">☎</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <a href="tel:+4917630310142" class="contact-detail-value">+49 (0)176 / 303 101 42</a>
+          </div>
+        </div>
+        <div class="contact-detail-block">
+          <div class="contact-detail-icon">✉</div>
+          <div>
+            <div class="contact-detail-label">E-Mail</div>
+            <a href="mailto:actionartist@web.de" class="contact-detail-value">actionartist@web.de</a>
+          </div>
+        </div>
+        <div class="contact-detail-block">
+          <div class="contact-detail-icon">⌖</div>
+          <div>
+            <div class="contact-detail-label">Address</div>
+            <div class="contact-detail-value">Hülseweg 5<br />42579 Heiligenhaus<br />Germany</div>
+          </div>
+        </div>
+
+        <div class="sedcard-download-block">
+          <div class="section-label" style="margin-bottom: 16px;">// Sedcard &amp; CV</div>
+          <p class="body-text" style="font-size: 14px; margin-bottom: 20px;">
+            Download Ilian's sedcard and CV as PDF — with photos, physical data, skills and full production history.
+          </p>
+          <a href="/pdfs/setcard-en.pdf" download class="btn-outline-orange" style="display: block; text-align: center; padding: 14px 24px;">↓ Download Sedcard &amp; CV PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.page-hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px var(--page-pad) 56px; position: relative; background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%); border-bottom: 1px solid var(--border); }
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title { font-family: var(--font-serif); font-size: clamp(48px, 7vw, 96px); font-weight: bold; line-height: 0.9; letter-spacing: -2px; color: var(--white); margin-bottom: 20px; }
+.page-hero-sub { font-family: var(--font-sans); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); }
+.contact-main-section { padding: var(--section-pad) var(--page-pad); background: var(--black); border-top: 1px solid var(--border); }
+.contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: start; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label { font-family: var(--font-sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); font-weight: 600; }
+.form-input { background: var(--card); border: 1px solid var(--border); color: var(--white); font-family: var(--font-sans); font-size: 15px; padding: 14px 16px; width: 100%; outline: none; transition: border-color 0.2s; }
+.form-input:focus { border-color: var(--orange); }
+.form-input option { background: var(--card); }
+.form-textarea { min-height: 140px; resize: vertical; }
+.contact-info-col { display: flex; flex-direction: column; }
+.contact-detail-block { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.contact-detail-icon { font-size: 20px; color: var(--orange); flex-shrink: 0; width: 24px; text-align: center; margin-top: 2px; }
+.contact-detail-label { font-family: var(--font-sans); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+.contact-detail-value { font-family: var(--font-sans); font-size: 16px; color: var(--white); line-height: 1.5; }
+a.contact-detail-value:hover { color: var(--orange); }
+.sedcard-download-block { margin-top: 40px; padding: 28px; background: var(--card); border: 1px solid var(--border); }
+</style>

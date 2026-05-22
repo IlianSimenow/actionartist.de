@@ -1,0 +1,176 @@
+---
+import '../styles/global.css';
+import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  heroImage?: string;
+}
+
+const { lang, title, description = '', heroImage } = Astro.props;
+const t = useTranslations(lang);
+const alternateLang: Lang = lang === 'de' ? 'en' : 'de';
+const alternateUrl = getAlternateLangUrl(Astro.url, alternateLang);
+
+const base = lang === 'de' ? '' : `/${lang}`;
+const bioHref    = lang === 'de' ? `${base}/biographie/`  : `${base}/biography/`;
+const galleryHref = lang === 'de' ? `${base}/galerie/`    : `${base}/gallery/`;
+const partnerHref = lang === 'de' ? `${base}/partner/`    : `${base}/partners/`;
+const contactHref = lang === 'de' ? `${base}/kontakt/`    : `${base}/contact/`;
+const impHref     = lang === 'de' ? `${base}/impressum/`  : `${base}/legal-notice/`;
+
+const wissenBase  = lang === 'de' ? `${base}/wissen/` : `${base}/knowledge/`;
+const w1 = lang === 'de' ? `${wissenBase}geschichte-stuntman/` : `${wissenBase}history-stuntman/`;
+const w2 = lang === 'de' ? `${wissenBase}wie-werde-ich-stuntman/` : `${wissenBase}how-to-stuntman/`;
+const w3 = lang === 'de' ? `${wissenBase}geschichte-artistik/` : `${wissenBase}history-circus-arts/`;
+const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}how-to-artist/`;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="alternate" hreflang={lang} href={Astro.url.href} />
+  <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+  {heroImage && (
+    <style set:html={`.page-hero { --hero-bg: url('${heroImage}'); }`}></style>
+  )}
+</head>
+<body>
+
+  <nav class="nav" id="siteNav">
+    <a href={lang === 'de' ? '/' : '/en/'} class="nav-logo">Ilian <span class="nav-logo-accent">Simeonow</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href={bioHref}           class="nav-link">{t('nav.bio')}</a>
+      <a href={`${base}/skills/`} class="nav-link">{t('nav.skills')}</a>
+      <a href={`${base}/credits/`}class="nav-link">{t('nav.credits')}</a>
+      <a href={galleryHref}       class="nav-link">{t('nav.galerie')}</a>
+      <a href={`${base}/video/`}  class="nav-link">{t('nav.video')}</a>
+      <a href={partnerHref}       class="nav-link">{t('nav.partner')}</a>
+      <a href={contactHref}       class="nav-cta">{t('nav.kontakt')}</a>
+      <a href={lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf'} download class="nav-sedcard">{t('nav.sedcard')}</a>
+      <div class="lang-switcher">
+        <a href={lang === 'de' ? '/' : alternateUrl} class={`lang-btn ${lang === 'de' ? 'lang-btn--active' : 'lang-btn--inactive'}`}>DE</a>
+        <a href={lang === 'en' ? '/en/' : alternateUrl} class={`lang-btn ${lang === 'en' ? 'lang-btn--active' : 'lang-btn--inactive'}`}>EN</a>
+      </div>
+    </div>
+    <div class="nav-backdrop" id="navBackdrop"></div>
+  </nav>
+
+  <slot />
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Ilian <span class="footer-brand-name-accent">Simeonow</span></div>
+        <p class="footer-brand-text">{t('footer.brand.text')}</p>
+      </div>
+      <div>
+        <div class="footer-col-title">{t('footer.col.nav')}</div>
+        <ul class="footer-links-list">
+          <li><a href={bioHref}>{t('nav.bio')}</a></li>
+          <li><a href={`${base}/skills/`}>{lang === 'de' ? 'Skills & Fertigkeiten' : 'Skills'}</a></li>
+          <li><a href={`${base}/credits/`}>{lang === 'de' ? 'Credits & Referenzen' : 'Credits & References'}</a></li>
+          <li><a href={galleryHref}>{t('nav.galerie')}</a></li>
+          <li><a href={`${base}/video/`}>{t('nav.video')}</a></li>
+          <li><a href={partnerHref}>{t('nav.partner')}</a></li>
+          <li><a href={contactHref}>{t('nav.kontakt')}</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">{t('footer.col.wissen')}</div>
+        <ul class="footer-links-list">
+          <li><a href={w1}>{lang === 'de' ? 'Geschichte des Stuntman' : 'History of Stunts'}</a></li>
+          <li><a href={w2}>{lang === 'de' ? 'Wie werde ich Stuntman?' : 'How to Become a Stuntman?'}</a></li>
+          <li><a href={w3}>{lang === 'de' ? 'Geschichte der Artistik' : 'History of Circus Arts'}</a></li>
+          <li><a href={w4}>{lang === 'de' ? 'Wie werde ich Artist?' : 'How to Become an Artist?'}</a></li>
+        </ul>
+        <div class="footer-col-title" style="margin-top: 24px;">{lang === 'de' ? 'Workshops' : 'Workshops'}</div>
+        <ul class="footer-links-list">
+          <li><a href={lang === 'de' ? `${base}/workshops/fechten/` : `${base}/workshops/fencing/`}>{lang === 'de' ? 'Workshop Fechten' : 'Stage Fencing'}</a></li>
+          <li><a href={`${base}/workshops/stunt/`}>{lang === 'de' ? 'Workshop Stunt' : 'Stunt Workshop'}</a></li>
+          <li><a href={lang === 'de' ? `${base}/workshops/kinderzirkus/` : `${base}/workshops/youth-circus/`}>{lang === 'de' ? 'Workshop Kinderzirkus' : 'Youth Circus'}</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">{t('footer.col.legal')}</div>
+        <ul class="footer-links-list">
+          <li><a href={lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf'} download>{t('sedcard.btn')}</a></li>
+          <li><a href={impHref}>{t('footer.impressum')}</a></li>
+          <li><a href={`${impHref}#datenschutz`}>{t('footer.datenschutz')}</a></li>
+          <li><a href="/sitemap-index.xml">{t('footer.sitemap')}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">{t('footer.copy')}</div>
+      <div class="footer-legal">
+        <a href={impHref}>{t('footer.impressum')}</a>
+        <a href={`${impHref}#datenschutz`}>{t('footer.datenschutz')}</a>
+        <a href="/sitemap-index.xml">{t('footer.sitemap')}</a>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline>
+    (function () {
+      const nav = document.getElementById('siteNav');
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      const backdrop = document.getElementById('navBackdrop');
+
+      // Scroll-shrink nav
+      let ticking = false;
+      const onScroll = () => {
+        if (!nav) return;
+        if (window.scrollY > 24) nav.classList.add('nav--scrolled');
+        else nav.classList.remove('nav--scrolled');
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+      onScroll();
+
+      // Hamburger
+      const closeMenu = () => {
+        document.body.classList.remove('nav-open');
+        toggle && toggle.setAttribute('aria-expanded', 'false');
+      };
+      const openMenu = () => {
+        document.body.classList.add('nav-open');
+        toggle && toggle.setAttribute('aria-expanded', 'true');
+      };
+      toggle && toggle.addEventListener('click', () => {
+        document.body.classList.contains('nav-open') ? closeMenu() : openMenu();
+      });
+      if (backdrop) {
+        backdrop.addEventListener('click', closeMenu);
+        backdrop.addEventListener('touchstart', closeMenu, { passive: true });
+      }
+      links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+    })();
+  </script>
+
+</body>
+</html>

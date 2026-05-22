@@ -1,0 +1,229 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout lang="de" title="Showreel & Videos — Ilian Simeonow"  description="Demo-Reel, Stunt-Reel und weitere Videos von Ilian Simeonow — Stuntman, Artist und Schauspieler aus Dresden." heroImage="/images/stunt/Diving-1.jpg">
+
+  <div class="page-hero">
+    <div class="hero-top-bar"></div>
+    <div class="page-hero-content">
+      <div class="section-label">// Showreel &amp; Videos</div>
+      <h1 class="page-hero-title">Sehen ist<br /><span style="color: var(--orange);">Glauben.</span></h1>
+      <p class="page-hero-sub">Demo-Reel · Stunt-Reel · Weitere Videos</p>
+    </div>
+  </div>
+
+  <section class="video-main-section">
+    <div class="section-label">// Demo-Reel</div>
+    <h2 class="section-heading">Showreel<br />2024.</h2>
+    <p class="body-text" style="max-width: 600px; margin-bottom: 40px;">
+      Ilians aktueller Demo-Reel zeigt die Bandbreite seiner Arbeit — von Filmstunts über Bühnenproduktionen bis hin zu Artistiknummern.
+    </p>
+    <div class="video-embed-block">
+      <div class="play-btn"><div class="play-icon"></div></div>
+      <div class="video-label-badge">Demo-Reel 2024</div>
+    </div>
+  </section>
+
+  <section class="video-list-section">
+    <div class="section-label">// Weitere Videos</div>
+    <h2 class="section-heading">Mehr ansehen.</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2022–2024</div>
+          <div class="video-card-title">Stunt-Reel</div>
+          <div class="video-card-desc">Stuntsequenzen aus Film, Theater und Open-Air-Produktionen</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2013</div>
+          <div class="video-card-title">Globe of Speed — Motorrad Messe Leipzig</div>
+          <div class="video-card-desc">Live-Aufführung Globe of Speed auf der Motorrad Messe Leipzig</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2011</div>
+          <div class="video-card-title">The Three Musketeers — Making Of</div>
+          <div class="video-card-desc">Behind-the-scenes-Material aus dem Hollywood-Film</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2017–2019</div>
+          <div class="video-card-title">Eldorado Templin — Highlights</div>
+          <div class="video-card-desc">Showreels und Highlights aus den Saisonen 2017 bis 2019</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2006</div>
+          <div class="video-card-title">Sat.1 Sport Bild — Globe of Speed</div>
+          <div class="video-card-desc">TV-Bericht über den Globe of Speed</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb-sm">
+          <div class="play-btn-sm"><div class="play-icon-sm"></div></div>
+        </div>
+        <div class="video-card-info">
+          <div class="video-card-year">2008</div>
+          <div class="video-card-title">RTL Explosiv Special</div>
+          <div class="video-card-desc">Stunt-Dokumentation und TV-Beitrag</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div>
+      <div class="section-label">// Buchung</div>
+      <div class="contact-heading">Buchen Sie<br />Ilian.</div>
+      <div class="contact-actions">
+        <a href="/kontakt/" class="btn-primary">Anfrage senden</a>
+        <a href="/credits/" class="btn-ghost">Credits ansehen</a>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="contact-detail"><strong>Telefon</strong>+49 (0)176 / 303 101 42</div>
+      <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+.page-hero {
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px var(--page-pad) 56px;
+  position: relative;
+  background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%);
+  border-bottom: 1px solid var(--border);
+}
+.page-hero-content { position: relative; z-index: 2; }
+.page-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: bold;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.page-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+.video-main-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--black);
+  border-top: 1px solid var(--border);
+}
+.video-embed-block {
+  aspect-ratio: 16/9;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 900px;
+}
+.video-label-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  background: rgba(14,14,14,0.85);
+  padding: 4px 10px;
+}
+.video-list-section {
+  padding: var(--section-pad) var(--page-pad);
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 40px;
+}
+.video-card {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+}
+.video-thumb-sm {
+  aspect-ratio: 16/9;
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-btn-sm {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-icon-sm {
+  width: 0; height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 14px solid #fff;
+  margin-left: 3px;
+}
+.video-card-info { padding: 20px; }
+.video-card-year {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.video-card-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.video-card-desc {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+</style>
