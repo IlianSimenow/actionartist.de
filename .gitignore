@@ -2,7 +2,8 @@
 dist/
 # generated types
 .astro/
-
+.tasks
+.tasks/
 # dependencies
 node_modules/
 
