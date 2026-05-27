@@ -40,6 +40,9 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
   <title>{title}</title>
   {description && <meta name="description" content={description} />}
   <link rel="alternate" hreflang={lang} href={Astro.url.href} />
@@ -62,6 +65,7 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       <a href={galleryHref}       class="nav-link">{t('nav.galerie')}</a>
       <a href={`${base}/video/`}  class="nav-link">{t('nav.video')}</a>
       <a href={partnerHref}       class="nav-link">{t('nav.partner')}</a>
+      <a href={`${base}/workshops/`} class="nav-link">{t('nav.workshops')}</a>
       <a href={contactHref}       class="nav-cta">{t('nav.kontakt')}</a>
       <a href={lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf'} download class="nav-sedcard">{t('nav.sedcard')}</a>
       <div class="lang-switcher">
@@ -119,6 +123,17 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">{t('footer.copy')}</div>
+      <div class="footer-profiles">
+        <a href="https://www.imdb.com/name/nm4125422/" target="_blank" rel="noopener" title="Ilian Simeonow on IMDb" class="footer-profile-link">
+          <img src="/images/imdb.png" alt="IMDb" class="footer-profile-img" />
+        </a>
+        <a href="https://www.crew-united.com/?bio=96713" target="_blank" rel="noopener" title="Ilian Simeonow on Crew United" class="footer-profile-link">
+          <img src="/images/crew-united.svg" alt="Crew United" class="footer-profile-img footer-profile-img--crew" />
+        </a>
+        <a href="https://de.wikipedia.org/wiki/Ilian_Simeonow" target="_blank" rel="noopener" title="Ilian Simeonow — Wikipedia" class="footer-profile-link footer-profile-link--wiki">
+          Wikipedia
+        </a>
+      </div>
       <div class="footer-legal">
         <a href={impHref}>{t('footer.impressum')}</a>
         <a href={`${impHref}#datenschutz`}>{t('footer.datenschutz')}</a>
@@ -169,6 +184,46 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+
+      // Inject skills strip after any .page-hero that doesn't already have one following it
+      (function() {
+        var hero = document.querySelector('.page-hero');
+        if (!hero) return;
+        var next = hero.nextElementSibling;
+        if (next && next.classList.contains('skills-strip')) return;
+        var lang = document.documentElement.lang;
+        var tags = lang === 'en'
+          ? [['Body Stunt',true],['High Fall',false],['Fencing & Sword Fighting',true],['Stunt Riding',false],['Trampoline Stunt',true],['Globe of Speed',false],['Fight Choreography',true],['Wheel of Death',false],['Magic & Illusion',true],['Fire Breathing',false],['Acrobatics',true],['Acting & Comedy',false]]
+          : [['Body Stunt',true],['Highfall',false],['Fechten & Schwertkampf',true],['Stuntreiter',false],['Trampolin-Kaskadeur',true],['Globe of Speed',false],['Kampfchoreographie',true],['Todesrad',false],['Zauberei & Illusion',true],['Feuerspucken',false],['Akrobatik',true],['Acting & Comedy',false]];
+        var strip = document.createElement('div');
+        strip.className = 'skills-strip';
+        tags.forEach(function(t) {
+          var el = document.createElement('div');
+          el.className = 'skill-tag' + (t[1] ? ' skill-tag--highlight' : '');
+          el.textContent = t[0];
+          strip.appendChild(el);
+        });
+        hero.parentNode.insertBefore(strip, hero.nextSibling);
+      })();
+
+      // Drag-to-scroll for skills strip
+      document.querySelectorAll('.skills-strip').forEach(function(strip) {
+        var isDown = false, startX = 0, scrollLeft = 0;
+        strip.addEventListener('mousedown', function(e) {
+          isDown = true;
+          strip.classList.add('is-dragging');
+          startX = e.pageX - strip.offsetLeft;
+          scrollLeft = strip.scrollLeft;
+        });
+        strip.addEventListener('mouseleave', function() { isDown = false; strip.classList.remove('is-dragging'); });
+        strip.addEventListener('mouseup', function() { isDown = false; strip.classList.remove('is-dragging'); });
+        strip.addEventListener('mousemove', function(e) {
+          if (!isDown) return;
+          e.preventDefault();
+          var x = e.pageX - strip.offsetLeft;
+          strip.scrollLeft = scrollLeft - (x - startX);
+        });
+      });
     })();
   </script>
 

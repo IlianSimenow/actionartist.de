@@ -21,53 +21,52 @@ import Layout from '../../../layouts/Layout.astro';
     </p>
 
     <div class="partners-full-grid">
-      <div class="partner-card-full">
+      <a class="partner-card-full partner-card-full--link" href="https://www.freidreher.net//index.php" target="_blank" rel="noopener">
         <div class="partner-num">01</div>
         <div class="partner-name">Ralf Tilmann</div>
         <div class="partner-role">Director · Stunt Coordinator · Stuntman</div>
-        <p class="partner-desc">Experienced stunt professional with extensive film and TV experience. Long-time companion and director on several joint productions.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-link-hint">freidreher.net ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="https://www.instagram.com/andreasmintert/" target="_blank" rel="noopener">
         <div class="partner-num">02</div>
         <div class="partner-name">Andreas Mintert</div>
         <div class="partner-role">Actor · Stuntman · Host</div>
-        <p class="partner-desc">Versatile performer with experience both in front of and behind the camera. A combination of acting, stunt and presenting.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-link-hint">@andreasmintert ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="https://www.instagram.com/globeofspeed/" target="_blank" rel="noopener">
         <div class="partner-num">03</div>
         <div class="partner-name">Globe of Speed</div>
         <div class="partner-role">Globe of Speed &amp; Wheel of Death</div>
-        <p class="partner-desc">Specialised team for Globe of Speed and Wheel of Death — spectacular motorcycle acrobatic acts for shows, fairs and events.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-link-hint">@globeofspeed ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="http://www.filmemacher.org/" target="_blank" rel="noopener">
         <div class="partner-num">04</div>
-        <div class="partner-name">Andreas Feller</div>
-        <div class="partner-role">Director · Actor · Feller Film Production</div>
-        <p class="partner-desc">Owner of Feller Film Production. Director and actor with extensive experience in film and commercial productions.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-name">Andreas Feiler</div>
+        <div class="partner-role">Director · Actor · Cameraman · Feller Film Production</div>
+        <div class="partner-link-hint">filmemacher.org ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="https://www.instagram.com/mario.eichendorf/" target="_blank" rel="noopener">
         <div class="partner-num">05</div>
         <div class="partner-name">Mario Eichendorf</div>
         <div class="partner-role">Actor · Stunt Coordinator · Stuntman</div>
-        <p class="partner-desc">Stunt coordinator and actor with international experience. Specialised in fight choreography and body stunts.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-link-hint">@mario.eichendorf ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="https://www.crew-united.com/de/Sven-Torsten-Gliewe_308039.html" target="_blank" rel="noopener">
         <div class="partner-num">06</div>
-        <div class="partner-name">Sven Thorsten Gliwe</div>
+        <div class="partner-name">Sven Torsten Gliwe</div>
         <div class="partner-role">Stunt Coordinator · Stuntman · Pyrotechnician</div>
-        <p class="partner-desc">Stunt professional and certified pyrotechnician. Expert in fire effects, explosions and special effects on set.</p>
-      </div>
-      <div class="partner-card-full">
+        <div class="partner-link-hint">crew-united.com ↗</div>
+      </a>
+      <a class="partner-card-full partner-card-full--link" href="https://www.instagram.com/stuntman_hendrik_leschke/" target="_blank" rel="noopener">
         <div class="partner-num">07</div>
         <div class="partner-name">Hendrik Leschke</div>
         <div class="partner-role">Stuntman · Dancer · Free Running</div>
-        <p class="partner-desc">Young stunt professional specialising in free running, parkour and dance. Expert in modern urban stunt aesthetics.</p>
-      </div>
+        <div class="partner-link-hint">@stuntman_hendrik_leschke ↗</div>
+      </a>
       <div class="partner-card-full">
         <div class="partner-num">08</div>
         <div class="partner-name">Ole Gäbel</div>
         <div class="partner-role">Catering · Event Team</div>
-        <p class="partner-desc">Professional catering and event management — ensuring the team stays fully fuelled even during the longest shooting days.</p>
       </div>
     </div>
   </section>
@@ -101,4 +100,8 @@ import Layout from '../../../layouts/Layout.astro';
 .partner-name { font-family: var(--font-serif); font-size: 22px; color: var(--white); margin-bottom: 6px; font-weight: bold; }
 .partner-role { font-family: var(--font-sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
 .partner-desc { font-family: var(--font-sans); font-size: 14px; color: var(--gray); line-height: 1.6; }
+.partner-card-full--link { display: block; text-decoration: none; color: inherit; transition: background 0.2s; }
+.partner-card-full--link:hover { background: #1f1f1f; }
+.partner-link-hint { font-family: var(--font-sans); font-size: 11px; letter-spacing: 1px; color: var(--orange); margin-top: 10px; opacity: 0.7; transition: opacity 0.2s; }
+.partner-card-full--link:hover .partner-link-hint { opacity: 1; }
 </style>

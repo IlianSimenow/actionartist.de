@@ -46,7 +46,7 @@ ul {
 
 :root {
   /* Brand colours */
-  --orange:  #E05A1E;   /* primary accent */
+  --orange:  #C05218;   /* primary accent */
   --black:   #0e0e0e;   /* page background */
   --dark:    #141414;   /* alternate section background */
   --deep:    #0a0a0a;   /* footer / darkest surfaces */
@@ -251,10 +251,10 @@ body {
 
 /* Wordmark: "Ilian Simeonow" */
 .nav-logo {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-family: 'Cinzel', var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
   color: var(--white);
   white-space: nowrap;
 }
@@ -347,17 +347,26 @@ body {
 
 
 /* ============================================================
-   7. SEDCARD INFO BAR  (below nav)
+   7. SEDCARD INFO BAR  (inside hero, pinned to bottom)
    ============================================================ */
 
 .sedcard-bar {
-  background: rgba(224, 90, 30, 0.08);
-  border-bottom: 1px solid rgba(224, 90, 30, 0.2);
+  background: rgba(192, 82, 24, 0.08);
+  border-top: 1px solid rgba(192, 82, 24, 0.2);
   padding: 10px var(--page-pad);
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
+}
+
+/* When inside the hero: position absolute at bottom */
+.sedcard-bar--hero {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
 }
 
 .sedcard-bar-text {
@@ -373,11 +382,11 @@ body {
    ============================================================ */
 
 .hero {
-  min-height: 92vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 60px var(--page-pad) 56px;
+  padding: 0 var(--page-pad) 80px;
   position: relative;
 
   /* Warm dark fallback visible before video loads */
@@ -567,8 +576,15 @@ body {
   padding: 18px var(--page-pad);
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
 }
+.skills-strip::-webkit-scrollbar { display: none; }
+.skills-strip.is-dragging { cursor: grabbing; }
 
 /* Each skill item in the strip */
 .skill-tag {
@@ -1198,9 +1214,10 @@ body {
 
 /* Brand column */
 .footer-brand-name {
-  font-family: var(--font-serif);
+  font-family: 'Cinzel', var(--font-serif);
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   color: var(--white);
   margin-bottom: 12px;
 }
@@ -1237,8 +1254,9 @@ body {
 
 .footer-links-list li {
   font-family: var(--font-sans);
-  font-size: 13px;
-  color: var(--dim);
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
   cursor: pointer;
   letter-spacing: 0.3px;
   transition: color 0.2s;
@@ -1259,7 +1277,7 @@ body {
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.5px;
-  color: var(--dim);
+  color: #888888;
 }
 
 .footer-copy-accent {
@@ -1267,6 +1285,46 @@ body {
 }
 
 /* Impressum · Datenschutz · Sitemap */
+.footer-profiles {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-profile-link {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.footer-profile-link:hover {
+  opacity: 1;
+}
+
+.footer-profile-img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.footer-profile-img--crew {
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-profile-link--wiki {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
 .footer-legal {
   display: flex;
   gap: 24px;
@@ -1275,9 +1333,10 @@ body {
 .footer-legal a {
   font-family: var(--font-sans);
   font-size: 11px;
+  font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--dim);
+  color: #999999;
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -1311,7 +1370,7 @@ body {
 .page-hero::before {
   background-image: var(--hero-bg, none);
   background-size: cover;
-  background-position: top center;
+  background-position: center center;
   background-repeat: no-repeat;
   filter: grayscale(0.15) contrast(1.05) brightness(0.55);
   transform: scale(1.04);

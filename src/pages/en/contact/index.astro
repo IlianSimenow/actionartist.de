@@ -22,24 +22,24 @@ import Layout from '../../../layouts/Layout.astro';
           For booking enquiries, information or questions about productions, please fill in the form below. Ilian typically responds within 24 hours.
         </p>
 
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" id="contact-form">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Name *</label>
-              <input type="text" name="name" class="form-input" placeholder="Your name" required />
+              <label class="form-label" for="name">Name *</label>
+              <input type="text" id="name" class="form-input" placeholder="Your name" required />
             </div>
             <div class="form-group">
-              <label class="form-label">E-Mail *</label>
-              <input type="email" name="email" class="form-input" placeholder="your@email.com" required />
+              <label class="form-label" for="email">E-Mail *</label>
+              <input type="email" id="email" class="form-input" placeholder="your@email.com" required />
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Phone</label>
-            <input type="tel" name="phone" class="form-input" placeholder="+49 ..." />
+            <label class="form-label" for="phone">Phone</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+49 ..." />
           </div>
           <div class="form-group">
-            <label class="form-label">Type of Enquiry</label>
-            <select name="type" class="form-input">
+            <label class="form-label" for="type">Type of Enquiry</label>
+            <select id="type" class="form-input">
               <option value="">Please select …</option>
               <option>Film / TV</option>
               <option>Theatre / Opera</option>
@@ -50,11 +50,51 @@ import Layout from '../../../layouts/Layout.astro';
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Message *</label>
-            <textarea name="message" class="form-input form-textarea" placeholder="Please describe your project, the desired timeframe and any special requirements …" required></textarea>
+            <label class="form-label" for="message">Message *</label>
+            <textarea id="message" class="form-input form-textarea" placeholder="Please describe your project, the desired timeframe and any special requirements …" required></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Send Enquiry</button>
+          <div id="form-status" class="form-status" aria-live="polite"></div>
+          <button type="submit" id="form-submit" class="btn-primary" style="width: 100%; text-align: center;">Send Enquiry</button>
         </form>
+
+        <script>
+          const form = document.getElementById('contact-form') as HTMLFormElement;
+          const status = document.getElementById('form-status')!;
+          const submit = document.getElementById('form-submit') as HTMLButtonElement;
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submit.disabled = true;
+            submit.textContent = 'Sending …';
+            status.className = 'form-status';
+            status.textContent = '';
+
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: (document.getElementById('name') as HTMLInputElement).value,
+                email: (document.getElementById('email') as HTMLInputElement).value,
+                phone: (document.getElementById('phone') as HTMLInputElement).value,
+                type: (document.getElementById('type') as HTMLSelectElement).value,
+                message: (document.getElementById('message') as HTMLTextAreaElement).value,
+                lang: 'en',
+              }),
+            });
+
+            if (res.ok) {
+              status.className = 'form-status form-status--success';
+              status.textContent = 'Thank you! Your enquiry has been sent. Ilian will be in touch shortly.';
+              form.reset();
+              submit.textContent = 'Enquiry sent ✓';
+            } else {
+              status.className = 'form-status form-status--error';
+              status.textContent = 'Something went wrong. Please try again or contact us directly by email.';
+              submit.disabled = false;
+              submit.textContent = 'Send Enquiry';
+            }
+          });
+        </script>
       </div>
 
       <div class="contact-info-col">
@@ -62,24 +102,30 @@ import Layout from '../../../layouts/Layout.astro';
         <h2 class="section-heading">Contact<br />Details.</h2>
 
         <div class="contact-detail-block">
-          <div class="contact-detail-icon">☎</div>
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.06 6.06l1.14-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.01z"/></svg>
+          </div>
           <div>
             <div class="contact-detail-label">Phone</div>
             <a href="tel:+4917630310142" class="contact-detail-value">+49 (0)176 / 303 101 42</a>
           </div>
         </div>
         <div class="contact-detail-block">
-          <div class="contact-detail-icon">✉</div>
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
           <div>
             <div class="contact-detail-label">E-Mail</div>
             <a href="mailto:actionartist@web.de" class="contact-detail-value">actionartist@web.de</a>
           </div>
         </div>
         <div class="contact-detail-block">
-          <div class="contact-detail-icon">⌖</div>
+          <div class="contact-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
           <div>
             <div class="contact-detail-label">Address</div>
-            <div class="contact-detail-value">Hülseweg 5<br />42579 Heiligenhaus<br />Germany</div>
+            <div class="contact-detail-value">Deubner Str 40c<br />01159 Dresden<br />Germany</div>
           </div>
         </div>
 
@@ -112,10 +158,13 @@ import Layout from '../../../layouts/Layout.astro';
 .form-input option { background: var(--card); }
 .form-textarea { min-height: 140px; resize: vertical; }
 .contact-info-col { display: flex; flex-direction: column; }
-.contact-detail-block { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
-.contact-detail-icon { font-size: 20px; color: var(--orange); flex-shrink: 0; width: 24px; text-align: center; margin-top: 2px; }
+.contact-detail-block { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.contact-detail-icon { color: var(--orange); flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
 .contact-detail-label { font-family: var(--font-sans); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
 .contact-detail-value { font-family: var(--font-sans); font-size: 16px; color: var(--white); line-height: 1.5; }
 a.contact-detail-value:hover { color: var(--orange); }
 .sedcard-download-block { margin-top: 40px; padding: 28px; background: var(--card); border: 1px solid var(--border); }
+.form-status { display: none; padding: 14px 16px; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; }
+.form-status--success { display: block; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; }
+.form-status--error { display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
 </style>

@@ -1,58 +1,11 @@
 ---
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="generator" content={Astro.generator} />
-  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-  <link rel="manifest" href="/favicon/site.webmanifest" />
-  <title>Ilian Simeonow — Stuntman &amp; Artist aus Dresden</title>
-</head>
-<body>
-
-  <!-- ══ NAV ══ -->
-  <nav class="nav" id="siteNav">
-    <div class="nav-logo">Ilian <span class="nav-logo-accent">Simeonow</span></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="/biographie/" class="nav-link">Biographie</a>
-      <a href="/skills/"      class="nav-link">Skills</a>
-      <a href="/credits/"     class="nav-link">Credits</a>
-      <a href="/galerie/"     class="nav-link">Galerie</a>
-      <a href="/video/"       class="nav-link">Video</a>
-      <a href="/partner/"     class="nav-link">Partner</a>
-      <a href="/kontakt/"     class="nav-cta">Kontakt</a>
-      <a href="/pdfs/setcard.pdf" download class="nav-sedcard">↓ Sedcard PDF</a>
-      <div class="lang-switcher">
-        <a href="/" class="lang-btn lang-btn--active">DE</a>
-        <a href="/en/" class="lang-btn lang-btn--inactive">EN</a>
-      </div>
-    </div>
-    <div class="nav-backdrop" id="navBackdrop"></div>
-  </nav>
-
-  <!-- ══ SEDCARD INFO BAR ══ -->
-  <div class="sedcard-bar">
-    <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
-    <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
-  </div>
+<Layout lang="de" title="Ilian Simeonow — Stuntman & Artist aus Dresden" description="Ilian Simeonow — Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show.">
 
   <!-- ══ HERO ══ -->
   <section class="hero">
-
-    <!--
-      Replace src with Ilian's actual showreel loop.
-      Recommended: 10–20s, H.264 + WebM fallback, no audio, < 8 MB.
-    -->
     <video
       class="hero-video"
       id="heroBgVideo"
@@ -86,24 +39,12 @@ import '../styles/global.css';
         <a href="/credits/" class="btn-ghost">Credits &amp; Referenzen</a>
       </div>
 
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num">23+</div>
-          <div class="stat-label">Jahre Erfahrung</div>
-        </div>
-        <div>
-          <div class="stat-num">46+</div>
-          <div class="stat-label">Produktionen</div>
-        </div>
-        <div>
-          <div class="stat-num">12+</div>
-          <div class="stat-label">Stunt-Disziplinen</div>
-        </div>
-        <div>
-          <div class="stat-num">6</div>
-          <div class="stat-label">Länder</div>
-        </div>
-      </div>
+    </div>
+
+    <!-- Sedcard bar moved inside hero, pinned to bottom -->
+    <div class="sedcard-bar sedcard-bar--hero">
+      <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
+      <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
     </div>
 
     <div class="hero-side-text">Stuntman · Kaskadeur · Action Artist · Schauspieler</div>
@@ -138,8 +79,8 @@ import '../styles/global.css';
       </p>
       <a href="/biographie/" class="link-more">Biographie lesen →</a>
     </div>
-    <div class="photo-block">
-      <span class="photo-placeholder-label">Portrait / Action-Foto</span>
+    <div class="photo-block" style="max-width: 50%; margin-left: auto; margin-right: auto;">
+      <img src="/images/portrait/Portr%C3%A4tfoto-3.jpg" alt="Ilian Simeonow — Stuntman & Artist" loading="lazy" />
       <div class="photo-caption">Stuntman · Dresden</div>
     </div>
   </section>
@@ -167,16 +108,40 @@ import '../styles/global.css';
         <div class="production-text">Semperoper Dresden — <em style="color: var(--white);">Der Wildschütz</em> (ab September).</div>
       </div>
       <div class="production-item">
+        <div class="production-year">2020</div>
+        <div class="production-text">Moderation Monstershow auf der Motorradmesse Dortmund. Globe of Speed-Auftritte. Ab März 2020 bis September 2022 Corona-bedingte Pause.</div>
+      </div>
+      <div class="production-item">
         <div class="production-year">2019</div>
         <div class="production-text">Letzte Saison Eldorado Templin. Semperoper Dresden — <em style="color: var(--white);">Die Verkaufte Braut / Der Freischütz / Der Wildschütz</em>.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2018</div>
+        <div class="production-text">Berufscowboy in Templin. Semperoper Dresden — <em style="color: var(--white);">Der Freischütz / Der Wildschütz</em>.</div>
       </div>
       <div class="production-item">
         <div class="production-year">2017</div>
         <div class="production-text">Semperoper Dresden — <em style="color: var(--white);">Der Freischütz</em>. Beitritt ELDORADO Stuntteam Templin.</div>
       </div>
       <div class="production-item">
+        <div class="production-year">2016</div>
+        <div class="production-text">Stuntkoordinator &amp; Kampfchoreograph — <em style="color: var(--white);">Das Vermächtnis (Müritz Saga)</em>, Waren a. d. Müritz. Semperoper Dresden — <em style="color: var(--white);">Der Wildschütz / Der Freischütz</em>.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2015</div>
+        <div class="production-text"><em style="color: var(--white);">Müritz Saga</em>, Waren a. d. Müritz — Rolle: Loddar. Semperoper Dresden — <em style="color: var(--white);">Der Freischütz</em>.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2014</div>
+        <div class="production-text">Open-Air-Theater <em style="color: var(--white);">1000 Jahre Brandenburg — Theatro Spectacula</em> — Rolle: Dietrich.</div>
+      </div>
+      <div class="production-item">
         <div class="production-year">2013</div>
         <div class="production-text">Kinofilm <em style="color: var(--white);">La belle &amp; la bête</em> — Stuntdouble Nicolas Gob. Motorrad Messe Leipzig mit Globe of Speed.</div>
+      </div>
+      <div class="production-item">
+        <div class="production-year">2011</div>
+        <div class="production-text">Letzter Auftritt im Piraten Open Air Theater Grevesmühlen — Rolle: Don Merdas. Globe of Speed u. a. Tuning World Bodensee. Kinofilm <em style="color: var(--white);">The Three Musketeers</em>.</div>
       </div>
     </div>
   </section>
@@ -192,13 +157,13 @@ import '../styles/global.css';
     </div>
 
     <div class="credits-tabs">
-      <div class="credits-tab credits-tab--active">Stuntman</div>
-      <div class="credits-tab">Schauspieler</div>
-      <div class="credits-tab">Artist</div>
-      <div class="credits-tab">Weitere Kunden</div>
+      <div class="credits-tab credits-tab--active" data-tab="stuntman">Stuntman</div>
+      <div class="credits-tab" data-tab="schauspieler">Schauspieler</div>
+      <div class="credits-tab" data-tab="artist">Artist</div>
+      <div class="credits-tab" data-tab="weitere">Weitere Kunden</div>
     </div>
 
-    <div class="credits-grid">
+    <div class="credits-grid" id="tab-stuntman">
       <div class="credit-card">
         <div class="credit-year">2024</div>
         <div class="credit-title">Karl-May-Festspiele Radebeul</div>
@@ -241,7 +206,126 @@ import '../styles/global.css';
       </div>
       <div class="credit-card credit-card--more">
         <div style="text-align: center;">
-          <div class="section-label" style="margin-bottom: 8px;">+38 weitere</div>
+          <div class="section-label" style="margin-bottom: 8px;">+11 weitere</div>
+          <a href="/credits/" style="font-family: var(--font-sans); font-size: 13px; color: var(--gray);">Vollständige Credits →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits-grid" id="tab-schauspieler" style="display:none;">
+      <div class="credit-card">
+        <div class="credit-year">2024</div>
+        <div class="credit-title">Jakubzburg</div>
+        <div class="credit-role">Schauspieler</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2023</div>
+        <div class="credit-title">Jakubzburg — Die Töchter der Burg</div>
+        <div class="credit-role">Rolle: Fou (HR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2016</div>
+        <div class="credit-title">Müritz Saga</div>
+        <div class="credit-role">Rolle: Dassel, Loddar (NR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2015</div>
+        <div class="credit-title">Müritz Saga</div>
+        <div class="credit-role">Rolle: Loddar (NR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">—</div>
+        <div class="credit-title">Helden Wie Wir</div>
+        <div class="credit-role">Rolle: Schlauch (HR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">—</div>
+        <div class="credit-title">Der Schwarze Luchs</div>
+        <div class="credit-role">Rolle: Le Inspektor (HR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">—</div>
+        <div class="credit-title">Piraten Open Air Theater</div>
+        <div class="credit-role">Rolle: Don Merdas (NR)</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">—</div>
+        <div class="credit-title">GZSZ (RTL)</div>
+        <div class="credit-role">Rolle: Polnischer Widersacher (TR)</div>
+      </div>
+      <div class="credit-card credit-card--more">
+        <div style="text-align: center;">
+          <div class="section-label" style="margin-bottom: 8px;">+5 weitere</div>
+          <a href="/credits/" style="font-family: var(--font-sans); font-size: 13px; color: var(--gray);">Vollständige Credits →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits-grid" id="tab-artist" style="display:none;">
+      <div class="credit-card">
+        <div class="credit-year">2015–2023</div>
+        <div class="credit-title">Semperoper Dresden — Der Freischütz</div>
+        <div class="credit-role">Stunts · Akrobatik</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2015–2022</div>
+        <div class="credit-title">Semperoper Dresden — Der Wildschütz</div>
+        <div class="credit-role">Akrobatik</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2019/2022</div>
+        <div class="credit-title">Semperoper Dresden — Die Verkaufte Braut</div>
+        <div class="credit-role">Akrobatik</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2009</div>
+        <div class="credit-title">Global Village Dubai</div>
+        <div class="credit-role">Skywheel · Artist</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2006–2008</div>
+        <div class="credit-title">Legoland Deutschland</div>
+        <div class="credit-role">Trampolin-Akrobatik · Acting · Stunts</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2005</div>
+        <div class="credit-title">Moskauer Staatscircus (Holland)</div>
+        <div class="credit-role">Globe of Speed</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2003</div>
+        <div class="credit-title">Dyreparken (Norwegen)</div>
+        <div class="credit-role">High-Diving · Stunts · Acting</div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-year">2000–2003</div>
+        <div class="credit-title">Varieté Uranja</div>
+        <div class="credit-role">Schleuderbrett · Trampolin-Akrobatik</div>
+      </div>
+      <div class="credit-card credit-card--more">
+        <div style="text-align: center;">
+          <div class="section-label" style="margin-bottom: 8px;">+6 weitere</div>
+          <a href="/credits/" style="font-family: var(--font-sans); font-size: 13px; color: var(--gray);">Vollständige Credits →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits-grid credits-grid--weitere" id="tab-weitere" style="display:none;">
+      <div class="credit-card credit-card--tag">Pro7</div>
+      <div class="credit-card credit-card--tag">Sat.1</div>
+      <div class="credit-card credit-card--tag">RTL</div>
+      <div class="credit-card credit-card--tag">MDR</div>
+      <div class="credit-card credit-card--tag">NDR</div>
+      <div class="credit-card credit-card--tag">RBB</div>
+      <div class="credit-card credit-card--tag">Konica Minolta</div>
+      <div class="credit-card credit-card--tag">Hypo Vereinsbank</div>
+      <div class="credit-card credit-card--tag">Lancôme</div>
+      <div class="credit-card credit-card--tag">Super Bowl</div>
+      <div class="credit-card credit-card--tag">Kaufland</div>
+      <div class="credit-card credit-card--tag">Bitburger</div>
+      <div class="credit-card credit-card--more">
+        <div style="text-align: center;">
+          <div class="section-label" style="margin-bottom: 8px;">+11 weitere</div>
           <a href="/credits/" style="font-family: var(--font-sans); font-size: 13px; color: var(--gray);">Vollständige Credits →</a>
         </div>
       </div>
@@ -312,26 +396,26 @@ import '../styles/global.css';
       <a href="/galerie/" class="link-more" style="margin-top: 0;">Alle Fotos ansehen →</a>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-thumb">
-        <div class="gallery-thumb-icon">Action · Stunt</div>
+      <a href="/galerie/" class="gallery-thumb">
+        <img src="/images/stunt/Globe-of-Speed-1.jpg" alt="Globe of Speed — Stunt" loading="lazy" />
         <div class="gallery-label">Stunt</div>
-      </div>
-      <div class="gallery-thumb">
-        <div class="gallery-thumb-icon">Portrait</div>
+      </a>
+      <a href="/galerie/" class="gallery-thumb">
+        <img src="/images/portrait/Portr%C3%A4tfoto-1.jpg" alt="Ilian Simeonow Portrait" loading="lazy" />
         <div class="gallery-label">Portrait</div>
-      </div>
-      <div class="gallery-thumb">
-        <div class="gallery-thumb-icon">Bühne</div>
+      </a>
+      <a href="/galerie/" class="gallery-thumb">
+        <img src="/images/comedy-acting/Don-Merdas-1.jpg" alt="Don Merdas — Comedian & Schauspieler" loading="lazy" />
         <div class="gallery-label">Comedian &amp; Schauspieler</div>
-      </div>
-      <div class="gallery-thumb">
-        <div class="gallery-thumb-icon">Artistik</div>
+      </a>
+      <a href="/galerie/" class="gallery-thumb">
+        <img src="/images/stunt/Trampolin-1.jpg" alt="Trampolin-Kaskadeur — Artistik" loading="lazy" />
         <div class="gallery-label">Artistik</div>
-      </div>
-      <div class="gallery-thumb">
-        <div class="gallery-thumb-icon">Diverse Produktionen</div>
+      </a>
+      <a href="/galerie/" class="gallery-thumb">
+        <img src="/images/bilder-diverse/Salto-Dubai.jpg" alt="Stunt in Dubai — Produktion" loading="lazy" />
         <div class="gallery-label">Produktionen</div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -345,11 +429,12 @@ import '../styles/global.css';
       </p>
       <a href="/video/" class="link-more">Alle Videos ansehen →</a>
     </div>
-    <div class="video-thumb">
+    <a href="/video/" class="video-thumb">
+      <img src="https://img.youtube.com/vi/JPweVnDgEUI/hqdefault.jpg" alt="Ilian Simeonow Showreel — Video ansehen" loading="lazy" />
       <div class="play-btn">
         <div class="play-icon"></div>
       </div>
-    </div>
+    </a>
   </section>
 
   <!-- ══ PARTNERS ══ -->
@@ -446,61 +531,71 @@ import '../styles/global.css';
       </div>
       <div class="contact-detail">
         <strong>Adresse</strong>
-        Hülseweg 5 · 42579 Heiligenhaus · Germany
+        Deubner Str 40c · 01159 Dresden
       </div>
     </div>
   </section>
 
-  <!-- ══ FOOTER ══ -->
-  <footer class="footer">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand-name">Ilian <span class="footer-brand-name-accent">Simeonow</span></div>
-        <p class="footer-brand-text">Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show — international.</p>
-      </div>
-      <div>
-        <div class="footer-col-title">Navigation</div>
-        <ul class="footer-links-list">
-          <li><a href="/biographie/">Biographie</a></li>
-          <li><a href="/skills/">Skills &amp; Fertigkeiten</a></li>
-          <li><a href="/credits/">Credits &amp; Referenzen</a></li>
-          <li><a href="/galerie/">Galerie</a></li>
-          <li><a href="/video/">Video</a></li>
-          <li><a href="/partner/">Partner</a></li>
-          <li><a href="/kontakt/">Kontakt</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Wissenswertes</div>
-        <ul class="footer-links-list">
-          <li><a href="/wissen/geschichte-stuntman/">Geschichte des Stuntman</a></li>
-          <li><a href="/wissen/wie-werde-ich-stuntman/">Wie werde ich Stuntman?</a></li>
-          <li><a href="/wissen/geschichte-artistik/">Geschichte der Artistik</a></li>
-          <li><a href="/wissen/wie-werde-ich-artist/">Wie werde ich Artist?</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Downloads &amp; Rechtliches</div>
-        <ul class="footer-links-list">
-          <li><a href="/pdfs/setcard.pdf" download>↓ Sedcard &amp; Vita PDF</a></li>
-          <li><a href="/impressum/">Impressum</a></li>
-          <li><a href="/impressum/#datenschutz">Datenschutz</a></li>
-          <li><a href="/sitemap-index.xml">Sitemap</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2024 <span class="footer-copy-accent">Ilian Simeonow</span> · Stuntman &amp; Artist · Heiligenhaus, Germany</div>
-      <div class="footer-legal">
-        <a href="/impressum/">Impressum</a>
-        <a href="/impressum/#datenschutz">Datenschutz</a>
-        <a href="/sitemap-index.xml">Sitemap</a>
-      </div>
-    </div>
-  </footer>
+</Layout>
 
-</body>
-</html>
+<style>
+  .photo-block img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-section .gallery-thumb {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .gallery-section .gallery-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .gallery-section .gallery-thumb:hover img {
+    transform: scale(1.05);
+  }
+  .video-thumb {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .video-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .video-thumb:hover img {
+    transform: scale(1.03);
+  }
+  .credits-grid--weitere {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .credit-card--tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-align: center;
+    min-height: 72px;
+  }
+</style>
 
 <script>
   const vid = document.getElementById('heroBgVideo') as HTMLVideoElement | null;
@@ -508,44 +603,16 @@ import '../styles/global.css';
     vid.addEventListener('canplaythrough', () => vid.classList.add('hero-video--loaded'));
     vid.addEventListener('error', () => vid.remove());
   }
-</script>
 
-<script is:inline>
-  (function () {
-    const nav = document.getElementById('siteNav');
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    const backdrop = document.getElementById('navBackdrop');
-
-    let ticking = false;
-    const onScroll = () => {
-      if (!nav) return;
-      if (window.scrollY > 24) nav.classList.add('nav--scrolled');
-      else nav.classList.remove('nav--scrolled');
-      ticking = false;
-    };
-    window.addEventListener('scroll', () => {
-      if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
-    }, { passive: true });
-    onScroll();
-
-    const closeMenu = () => {
-      document.body.classList.remove('nav-open');
-      toggle && toggle.setAttribute('aria-expanded', 'false');
-    };
-    const openMenu = () => {
-      document.body.classList.add('nav-open');
-      toggle && toggle.setAttribute('aria-expanded', 'true');
-    };
-    toggle && toggle.addEventListener('click', () => {
-      document.body.classList.contains('nav-open') ? closeMenu() : openMenu();
+  const tabs = document.querySelectorAll<HTMLElement>('.credits-tab[data-tab]');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab!;
+      tabs.forEach(t => t.classList.remove('credits-tab--active'));
+      tab.classList.add('credits-tab--active');
+      document.querySelectorAll<HTMLElement>('[id^="tab-"]').forEach(panel => {
+        panel.style.display = panel.id === `tab-${target}` ? '' : 'none';
+      });
     });
-    if (backdrop) {
-      backdrop.addEventListener('click', closeMenu);
-      backdrop.addEventListener('touchstart', closeMenu, { passive: true });
-    }
-    links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
-  })();
+  });
 </script>
