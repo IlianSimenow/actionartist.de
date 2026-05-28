@@ -628,6 +628,7 @@ body {
   background: var(--card);
   border: 1px solid var(--border);
   aspect-ratio: 4 / 5;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
