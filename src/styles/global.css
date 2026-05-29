@@ -382,7 +382,7 @@ body {
    ============================================================ */
 
 .hero {
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1056,6 +1056,13 @@ body {
 .partner-card {
   background: var(--black);
   padding: 24px 20px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: background 0.2s;
+}
+a.partner-card:hover {
+  background: var(--card);
 }
 
 .partner-name {
@@ -1371,7 +1378,7 @@ body {
 .page-hero::before {
   background-image: var(--hero-bg, none);
   background-size: cover;
-  background-position: center center;
+  background-position: top center;
   background-repeat: no-repeat;
   filter: grayscale(0.15) contrast(1.05) brightness(0.55);
   transform: scale(1.04);

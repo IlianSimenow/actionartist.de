@@ -41,14 +41,14 @@ import Layout from '../layouts/Layout.astro';
 
     </div>
 
-    <!-- Sedcard bar moved inside hero, pinned to bottom -->
-    <div class="sedcard-bar sedcard-bar--hero">
-      <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
-      <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
-    </div>
-
     <div class="hero-side-text">Stuntman · Kaskadeur · Action Artist · Schauspieler</div>
   </section>
+
+  <!-- Sedcard bar below hero -->
+  <div class="sedcard-bar">
+    <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
+    <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
+  </div>
 
   <!-- ══ SKILLS STRIP ══ -->
   <div class="skills-strip">
@@ -79,7 +79,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <a href="/biographie/" class="link-more">Biographie lesen →</a>
     </div>
-    <div class="photo-block">
+    <div class="photo-block" style="max-width: 50%; margin: 0 auto;">
       <img src="/images/portrait/Portr%C3%A4tfoto-3.jpg" alt="Ilian Simeonow — Stuntman & Artist" loading="lazy" />
       <div class="photo-caption">Stuntman · Dresden</div>
     </div>
@@ -442,30 +442,30 @@ import Layout from '../layouts/Layout.astro';
     <div class="section-label">// Partner &amp; Kollegen</div>
     <h2 class="section-heading">Einmal mit<br />Profis.</h2>
     <div class="partners-grid">
-      <div class="partner-card">
+      <a class="partner-card" href="https://www.freidreher.net//index.php" target="_blank" rel="noopener">
         <div class="partner-name">Ralf Tilmann</div>
         <div class="partner-role">Regisseur · Stunt-Koordinator · Stuntman</div>
-      </div>
-      <div class="partner-card">
+      </a>
+      <a class="partner-card" href="https://www.instagram.com/andreasmintert/" target="_blank" rel="noopener">
         <div class="partner-name">Andreas Mintert</div>
         <div class="partner-role">Schauspieler · Stuntman · Moderator</div>
-      </div>
-      <div class="partner-card">
+      </a>
+      <a class="partner-card" href="https://www.instagram.com/globeofspeed/" target="_blank" rel="noopener">
         <div class="partner-name">Globe of Speed</div>
         <div class="partner-role">Globe of Speed &amp; Todesrad</div>
-      </div>
-      <div class="partner-card">
+      </a>
+      <a class="partner-card" href="http://www.filmemacher.org/" target="_blank" rel="noopener">
         <div class="partner-name">Andreas Feller</div>
         <div class="partner-role">Regisseur · Schauspieler · Feller Film Produktion</div>
-      </div>
-      <div class="partner-card">
+      </a>
+      <a class="partner-card" href="https://www.instagram.com/mario.eichendorf/" target="_blank" rel="noopener">
         <div class="partner-name">Mario Eichendorf</div>
         <div class="partner-role">Schauspieler · Stunt-Koordinator · Stuntman</div>
-      </div>
-      <div class="partner-card">
+      </a>
+      <a class="partner-card" href="https://www.crew-united.com/de/Sven-Torsten-Gliewe_308039.html" target="_blank" rel="noopener">
         <div class="partner-name">Sven Thorsten Gliwe</div>
         <div class="partner-role">Stunt-Koordinator · Stuntman · Pyrotechniker</div>
-      </div>
+      </a>
       <div class="partner-card">
         <div class="partner-name">Hendrik Leschke</div>
         <div class="partner-role">Stuntman · Dancer · Free-Running</div>

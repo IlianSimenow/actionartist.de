@@ -206,13 +206,13 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
         hero.parentNode.insertBefore(strip, hero.nextSibling);
       })();
 
-      // Drag-to-scroll for skills strip
+      // Drag-to-scroll and wheel scroll for skills strip
       document.querySelectorAll('.skills-strip').forEach(function(strip) {
         var isDown = false, startX = 0, scrollLeft = 0;
         strip.addEventListener('mousedown', function(e) {
           isDown = true;
           strip.classList.add('is-dragging');
-          startX = e.pageX - strip.offsetLeft;
+          startX = e.clientX - strip.getBoundingClientRect().left;
           scrollLeft = strip.scrollLeft;
         });
         strip.addEventListener('mouseleave', function() { isDown = false; strip.classList.remove('is-dragging'); });
@@ -220,9 +220,13 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
         strip.addEventListener('mousemove', function(e) {
           if (!isDown) return;
           e.preventDefault();
-          var x = e.pageX - strip.offsetLeft;
+          var x = e.clientX - strip.getBoundingClientRect().left;
           strip.scrollLeft = scrollLeft - (x - startX);
         });
+        strip.addEventListener('wheel', function(e) {
+          e.preventDefault();
+          strip.scrollLeft += e.deltaY || e.deltaX;
+        }, { passive: false });
       });
     })();
   </script>
