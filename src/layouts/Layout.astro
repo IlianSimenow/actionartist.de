@@ -1,13 +1,12 @@
 ---
 /**
- * prompt: sedcard above header on mobile; full nav below hero; sedcard above hero on desktop
+ * prompt: place download vita section on top on all routes; full nav below hero
  */
 import '../styles/global.css';
 import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 import NavMenu from '../components/NavMenu.astro';
 import SedcardBar from '../components/SedcardBar.astro';
-import { skillsStripTags } from '../data/skillsStripTags';
 import { getContactNameParts } from '../data/siteContact';
 
 interface Props {
@@ -17,10 +16,9 @@ interface Props {
   heroImage?: string;
   /** @deprecated Use page-hero--* modifier classes in global.css instead */
   heroImagePosition?: string;
-  showSedcardBar?: boolean;
 }
 
-const { lang, title, description = '', heroImage, heroImagePosition, showSedcardBar = false } = Astro.props;
+const { lang, title, description = '', heroImage, heroImagePosition } = Astro.props;
 const t = useTranslations(lang);
 const { given: contactGiven, family: contactFamily } = getContactNameParts();
 const alternateLang: Lang = lang === 'de' ? 'en' : 'de';
@@ -38,9 +36,6 @@ const w1 = lang === 'de' ? `${wissenBase}geschichte-stuntman/` : `${wissenBase}h
 const w2 = lang === 'de' ? `${wissenBase}wie-werde-ich-stuntman/` : `${wissenBase}how-to-stuntman/`;
 const w3 = lang === 'de' ? `${wissenBase}geschichte-artistik/` : `${wissenBase}history-circus-arts/`;
 const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}how-to-artist/`;
-
-// JSON for inline script — skills carousel tags per locale
-const stripTagsJson = JSON.stringify(skillsStripTags);
 ---
 
 <!DOCTYPE html>
@@ -67,8 +62,8 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
 </head>
 <body>
 
-  {/* Sedcard bar first — above mobile header and above hero on home */}
-  {showSedcardBar && <SedcardBar lang={lang} />}
+  {/* Sedcard bar — download vita, top of every route */}
+  <SedcardBar lang={lang} />
 
   <!-- Mobile only: logo + hamburger; hidden on desktop web view -->
   <nav class="nav nav--top" id="siteNav">
@@ -81,7 +76,7 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
 
   <slot />
 
-  <!-- Full nav — placed after sedcard, before skills strip (inline script on every route) -->
+  <!-- Full nav — placed after hero via inline script -->
   <div class="nav-sub" id="navSub" hidden>
     <NavMenu lang={lang} />
   </div>
@@ -150,55 +145,30 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
     </div>
   </footer>
 
-  <script is:inline define:vars={{ stripTagsJson }}>
+  <script is:inline>
     (function () {
       const nav = document.getElementById('siteNav');
       const toggle = document.getElementById('navToggle');
       const links = document.getElementById('navLinks');
       const backdrop = document.getElementById('navBackdrop');
       const navSub = document.getElementById('navSub');
-      const stripTagsByLang = JSON.parse(stripTagsJson);
 
-      // Anchor after hero — nav sits below hero, above Body Stunt strip
+      // Place full nav directly below hero / page-hero
       function getNavAnchor() {
         return document.querySelector('.hero') || document.querySelector('.page-hero');
       }
 
-      // Build skills carousel element
-      function createSkillsStrip() {
-        var lang = document.documentElement.lang || 'de';
-        var tags = stripTagsByLang[lang] || stripTagsByLang.de;
-        var strip = document.createElement('div');
-        strip.className = 'skills-strip';
-        tags.forEach(function (t) {
-          var el = document.createElement('div');
-          el.className = 'skill-tag' + (t[1] ? ' skill-tag--highlight' : '');
-          el.textContent = t[0];
-          strip.appendChild(el);
-        });
-        return strip;
-      }
-
-      // hero → full nav → Body Stunt strip — on every route
-      function placeNavAndStrip() {
+      function placeNav() {
         var anchor = getNavAnchor();
-        if (!anchor) return;
+        if (!anchor || !navSub) return;
 
-        if (navSub) {
-          if (navSub.previousElementSibling !== anchor) {
-            anchor.parentNode.insertBefore(navSub, anchor.nextSibling);
-          }
-          navSub.hidden = false;
+        if (navSub.previousElementSibling !== anchor) {
+          anchor.parentNode.insertBefore(navSub, anchor.nextSibling);
         }
-
-        var stripAfter = navSub || anchor;
-        var next = stripAfter.nextElementSibling;
-        if (next && next.classList.contains('skills-strip')) return;
-
-        stripAfter.parentNode.insertBefore(createSkillsStrip(), stripAfter.nextSibling);
+        navSub.hidden = false;
       }
 
-      placeNavAndStrip();
+      placeNav();
 
       // Scroll-shrink mobile top bar only (desktop web view hides it)
       let ticking = false;
@@ -246,29 +216,6 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
       links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
-
-      // Drag-to-scroll and wheel scroll for skills strip
-      document.querySelectorAll('.skills-strip').forEach(function (strip) {
-        var isDown = false, startX = 0, scrollLeft = 0;
-        strip.addEventListener('mousedown', function (e) {
-          isDown = true;
-          strip.classList.add('is-dragging');
-          startX = e.clientX - strip.getBoundingClientRect().left;
-          scrollLeft = strip.scrollLeft;
-        });
-        strip.addEventListener('mouseleave', function () { isDown = false; strip.classList.remove('is-dragging'); });
-        strip.addEventListener('mouseup', function () { isDown = false; strip.classList.remove('is-dragging'); });
-        strip.addEventListener('mousemove', function (e) {
-          if (!isDown) return;
-          e.preventDefault();
-          var x = e.clientX - strip.getBoundingClientRect().left;
-          strip.scrollLeft = scrollLeft - (x - startX);
-        });
-        strip.addEventListener('wheel', function (e) {
-          e.preventDefault();
-          strip.scrollLeft += e.deltaY || e.deltaX;
-        }, { passive: false });
-      });
     })();
   </script>
 

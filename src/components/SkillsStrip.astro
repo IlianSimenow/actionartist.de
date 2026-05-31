@@ -1,6 +1,6 @@
 ---
 /**
- * prompt: on web view, render skills carousel (Body Stunt etc.) under hero on all routes
+ * prompt: place body stunt section carousel between Kaskadeur aus Leidenschaft and Aktuelles & Neuigkeiten on home; auto rotate
  */
 import type { Lang } from '../i18n/ui';
 import { skillsStripTags } from '../data/skillsStripTags';
@@ -11,10 +11,76 @@ interface Props {
 
 const { lang } = Astro.props;
 const tags = skillsStripTags[lang];
+// Duplicate tags for seamless auto-scroll loop
+const loopTags = [...tags, ...tags];
 ---
-
-<div class="skills-strip">
-  {tags.map(([label, highlight]) => (
+<div class="skills-strip" data-skills-strip>
+  {loopTags.map(([label, highlight]) => (
     <div class={`skill-tag${highlight ? ' skill-tag--highlight' : ''}`}>{label}</div>
   ))}
 </div>
+
+<script>
+  /** Auto-rotate + drag/wheel — home Body Stunt carousel only */
+  function initSkillsStrip(strip: HTMLElement) {
+    if (strip.dataset.ready === 'true') return;
+    strip.dataset.ready = 'true';
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let paused = false;
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let rafId = 0;
+    const speed = 0.6;
+
+    const halfWidth = () => strip.scrollWidth / 2;
+
+    const tick = () => {
+      if (!paused && !isDown && !reducedMotion) {
+        strip.scrollLeft += speed;
+        if (strip.scrollLeft >= halfWidth()) strip.scrollLeft -= halfWidth();
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    if (!reducedMotion) rafId = requestAnimationFrame(tick);
+
+    strip.addEventListener('mouseenter', () => { paused = true; });
+    strip.addEventListener('mouseleave', () => { if (!isDown) paused = false; });
+
+    strip.addEventListener('mousedown', (e) => {
+      isDown = true;
+      strip.classList.add('is-dragging');
+      startX = e.clientX - strip.getBoundingClientRect().left;
+      scrollLeft = strip.scrollLeft;
+    });
+    strip.addEventListener('mouseleave', () => {
+      isDown = false;
+      strip.classList.remove('is-dragging');
+    });
+    strip.addEventListener('mouseup', () => {
+      isDown = false;
+      strip.classList.remove('is-dragging');
+      paused = false;
+    });
+    strip.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.clientX - strip.getBoundingClientRect().left;
+      strip.scrollLeft = scrollLeft - (x - startX);
+      if (strip.scrollLeft >= halfWidth()) strip.scrollLeft -= halfWidth();
+      if (strip.scrollLeft < 0) strip.scrollLeft += halfWidth();
+    });
+    strip.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      strip.scrollLeft += e.deltaY || e.deltaX;
+      if (strip.scrollLeft >= halfWidth()) strip.scrollLeft -= halfWidth();
+    }, { passive: false });
+
+    strip.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    strip.addEventListener('touchend', () => { paused = false; }, { passive: true });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-skills-strip]').forEach(initSkillsStrip);
+</script>

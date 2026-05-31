@@ -326,7 +326,7 @@ body {
   border: 1px solid var(--border);
 }
 
-/* Full nav bar: below sedcard, above Body Stunt strip — spans entire screen width */
+/* Full nav bar: below hero — spans entire screen width */
 .nav-sub {
   background: rgba(14, 14, 14, 0.98);
   border-bottom: 1px solid var(--border);
@@ -429,7 +429,7 @@ body {
 
 
 /* ============================================================
-   7. SEDCARD INFO BAR  (above header on mobile, above hero on desktop)
+   7. SEDCARD INFO BAR  (top of every route — above header / hero)
    ============================================================ */
 
 .sedcard-bar {
@@ -438,11 +438,36 @@ body {
   padding: 10px var(--page-pad);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 16px;
   width: 100%;
   box-sizing: border-box;
   flex-wrap: wrap;
+}
+
+/* Home wordmark — left side of sedcard bar */
+.sedcard-bar-home {
+  font-family: 'Cinzel', var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--white);
+  white-space: nowrap;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.sedcard-bar-home:hover { color: var(--orange); }
+.sedcard-bar-home-accent { color: var(--orange); }
+.sedcard-bar-home:hover .sedcard-bar-home-accent { color: var(--white); }
+
+.sedcard-bar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: auto;
 }
 
 .sedcard-bar-text {
@@ -653,7 +678,7 @@ body {
   display: flex;
   align-items: center;
   overflow-x: auto;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   cursor: grab;

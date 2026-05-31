@@ -1,6 +1,5 @@
 /**
- * prompt: on web view, render skills carousel (Body Stunt etc.) under hero on all routes
- * Shared skill-tag labels for the horizontal carousel strip — DE / EN
+ * Shared skill-tag labels for the home Body Stunt carousel — DE / EN
  */
 export const skillsStripTags = {
   de: [

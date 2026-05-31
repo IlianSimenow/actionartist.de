@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactInfo from '../components/ContactInfo.astro';
+import SkillsStrip from '../components/SkillsStrip.astro';
 ---
 
-<Layout lang="de" title="Ilian Simeonow — Stuntman & Artist aus Dresden" description="Ilian Simeonow — Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show." showSedcardBar>
+<Layout lang="de" title="Ilian Simeonow — Stuntman & Artist aus Dresden" description="Ilian Simeonow — Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show.">
 
   <!-- ══ HERO ══ -->
   <section class="hero">
@@ -45,9 +46,6 @@ import ContactInfo from '../components/ContactInfo.astro';
     <div class="hero-side-text">Stuntman · Kaskadeur · Action Artist · Schauspieler</div>
   </section>
 
-  <!-- ══ SKILLS STRIP ══ -->
-  <!-- skills carousel rendered via Layout on all routes -->
-
   <!-- ══ ABOUT ══ -->
   <section class="about-section">
     <div>
@@ -66,6 +64,8 @@ import ContactInfo from '../components/ContactInfo.astro';
       <div class="photo-caption">Stuntman · Dresden</div>
     </div>
   </section>
+
+  <SkillsStrip lang="de" />
 
   <!-- ══ LETZTE PRODUKTIONEN ══ -->
   <section class="productions-section">
