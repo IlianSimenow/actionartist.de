@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactInfo from '../../components/ContactInfo.astro';
 ---
 
 <Layout lang="en" title="Ilian Simeonow — Stuntman & Artist from Dresden" description="Ilian Simeonow — stuntman, stunt performer, artist and actor from Dresden. 23+ years in film, TV and theatre. Available for bookings." showSedcardBar>
@@ -319,11 +320,7 @@ import Layout from '../../layouts/Layout.astro';
         <a href="/pdfs/setcard-en.pdf" download class="btn-ghost">↓ Sedcard PDF</a>
       </div>
     </div>
-    <div class="contact-info">
-      <div class="contact-detail"><strong>Phone</strong>+49 (0)176 / 303 101 42</div>
-      <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
-      <div class="contact-detail"><strong>Address</strong>Deubner Str 40c · 01159 Dresden</div>
-    </div>
+    <ContactInfo lang="en" showAddress />
   </section>
 
 </Layout>

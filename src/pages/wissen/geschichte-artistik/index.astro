@@ -4,7 +4,7 @@ import Layout from '../../../layouts/Layout.astro';
 
 <Layout lang="de" title="Geschichte der Artistik — Ilian Simeonow"  description="Akrobatik, Äquilibristik, Jonglage — die Kunstformen, die Ilian Simeonow ausgebildet hat. Geschichte der Artistik." heroImage="/images/comedy-acting/Pirat-1.jpg">
 
-  <div class="page-hero">
+  <div class="page-hero page-hero--wissen">
     <div class="hero-top-bar"></div>
     <div class="page-hero-content">
       <div class="section-label">// Wissenswertes · 03</div>
@@ -94,33 +94,6 @@ import Layout from '../../../layouts/Layout.astro';
 </Layout>
 
 <style>
-.page-hero {
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 80px var(--page-pad) 56px;
-  position: relative;
-  background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%);
-  border-bottom: 1px solid var(--border);
-}
-.page-hero-content { position: relative; z-index: 2; }
-.page-hero-title {
-  font-family: var(--font-serif);
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: bold;
-  line-height: 0.95;
-  letter-spacing: -2px;
-  color: var(--white);
-  margin-bottom: 20px;
-}
-.page-hero-sub {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gray);
-}
 .article-section {
   padding: var(--section-pad) var(--page-pad);
   background: var(--black);

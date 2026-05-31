@@ -8,17 +8,21 @@ import type { Lang } from '../i18n/ui';
 import NavMenu from '../components/NavMenu.astro';
 import SedcardBar from '../components/SedcardBar.astro';
 import { skillsStripTags } from '../data/skillsStripTags';
+import { getContactNameParts } from '../data/siteContact';
 
 interface Props {
   lang: Lang;
   title: string;
   description?: string;
   heroImage?: string;
+  /** @deprecated Use page-hero--* modifier classes in global.css instead */
+  heroImagePosition?: string;
   showSedcardBar?: boolean;
 }
 
-const { lang, title, description = '', heroImage, showSedcardBar = false } = Astro.props;
+const { lang, title, description = '', heroImage, heroImagePosition, showSedcardBar = false } = Astro.props;
 const t = useTranslations(lang);
+const { given: contactGiven, family: contactFamily } = getContactNameParts();
 const alternateLang: Lang = lang === 'de' ? 'en' : 'de';
 const alternateUrl = getAlternateLangUrl(Astro.url, alternateLang);
 
@@ -68,7 +72,7 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
 
   <!-- Mobile only: logo + hamburger; hidden on desktop web view -->
   <nav class="nav nav--top" id="siteNav">
-    <a href={lang === 'de' ? '/' : '/en/'} class="nav-logo">Ilian <span class="nav-logo-accent">Simeonow</span></a>
+    <a href={lang === 'de' ? '/' : '/en/'} class="nav-logo">{contactGiven} <span class="nav-logo-accent">{contactFamily}</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
@@ -85,7 +89,7 @@ const stripTagsJson = JSON.stringify(skillsStripTags);
   <footer class="footer">
     <div class="footer-top">
       <div>
-        <div class="footer-brand-name">Ilian <span class="footer-brand-name-accent">Simeonow</span></div>
+        <div class="footer-brand-name">{contactGiven} <span class="footer-brand-name-accent">{contactFamily}</span></div>
         <p class="footer-brand-text">{t('footer.brand.text')}</p>
       </div>
       <div>

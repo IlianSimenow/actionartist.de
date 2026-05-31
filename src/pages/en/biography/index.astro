@@ -1,10 +1,11 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import ContactInfo from '../../../components/ContactInfo.astro';
 ---
 
 <Layout lang="en" title="Biography — Ilian Simeonow"  description="Biography of Ilian Simeonow: graduate of the State Ballet School Berlin, trampoline stunt performer and international stuntman." heroImage="/images/portrait/Portr%C3%A4tfoto-9.jpg">
 
-  <div class="page-hero">
+  <div class="page-hero page-hero--standard">
     <div class="hero-top-bar"></div>
     <div class="page-hero-content">
       <div class="section-label">// Biography</div>
@@ -109,20 +110,12 @@ import Layout from '../../../layouts/Layout.astro';
         <a href="/pdfs/setcard-en.pdf" download class="btn-ghost">↓ Sedcard PDF</a>
       </div>
     </div>
-    <div class="contact-info">
-      <div class="contact-detail"><strong>Phone</strong>+49 (0)176 / 303 101 42</div>
-      <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
-      <div class="contact-detail"><strong>Address</strong>Deubner Str 40c · 01159 Dresden</div>
-    </div>
+    <ContactInfo lang="en" showAddress />
   </section>
 
 </Layout>
 
 <style>
-.page-hero { min-height: 45vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px var(--page-pad) 56px; position: relative; background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%); border-bottom: 1px solid var(--border); }
-.page-hero-content { position: relative; z-index: 2; }
-.page-hero-title { font-family: var(--font-serif); font-size: clamp(48px, 7vw, 96px); font-weight: bold; line-height: 0.9; letter-spacing: -2px; color: var(--white); margin-bottom: 20px; }
-.page-hero-sub { font-family: var(--font-sans); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); }
 .bio-section { padding: var(--section-pad) var(--page-pad); background: var(--black); border-top: 1px solid var(--border); }
 .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .stats-section { padding: var(--section-pad) var(--page-pad); background: var(--dark); border-top: 1px solid var(--border); }

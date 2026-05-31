@@ -1454,7 +1454,8 @@ a.partner-card:hover {
 .page-hero::before {
   background-image: var(--hero-bg, none);
   background-size: cover;
-  background-position: top center;
+  /* Center crop by default; pages may override via --hero-bg-position */
+  background-position: var(--hero-bg-position, center center);
   background-repeat: no-repeat;
   filter: grayscale(0.15) contrast(1.05) brightness(0.55);
   transform: scale(1.04);
@@ -1490,6 +1491,97 @@ a.partner-card:hover {
 
 @media (prefers-reduced-motion: no-preference) {
   .page-hero:hover::before { transform: scale(1.06); }
+}
+
+
+/* ============================================================
+   19c. PAGE HERO — layout + per-route data
+   prompt: define css data in global.css for each specific hero section
+   Pages add modifier class: page-hero page-hero--contact etc.
+   ============================================================ */
+
+.page-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px var(--page-pad) 56px;
+  position: relative;
+  min-height: var(--hero-min-height, 45vh);
+  background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.page-hero-content { position: relative; z-index: 2; }
+
+.page-hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--hero-title-size, clamp(48px, 7vw, 96px));
+  font-weight: bold;
+  line-height: var(--hero-title-line-height, 0.9);
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.page-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+/* Kontakt / Contact */
+.page-hero--contact {
+  --hero-min-height: 29.16vh;
+  --hero-bg-position: center 10%;
+}
+
+/* Partner / Partners */
+.page-hero--partner {
+  --hero-min-height: 38.25vh;
+}
+
+/* Workshops overview */
+.page-hero--workshops {
+  --hero-min-height: 50vh;
+  --hero-bg-position: center 33%;
+}
+
+/* Single workshop pages */
+.page-hero--workshop {
+  --hero-min-height: 40vh;
+  --hero-title-size: clamp(40px, 6vw, 80px);
+  --hero-title-line-height: 0.95;
+}
+
+/* Skills */
+.page-hero--skills {
+  --hero-min-height: 45vh;
+  --hero-bg-position: center 25%;
+}
+
+/* Galerie / Gallery */
+.page-hero--gallery {
+  --hero-min-height: 45vh;
+  --hero-bg-position: center 70%;
+}
+
+/* Credits, Video, Biography */
+.page-hero--standard {
+  --hero-min-height: 45vh;
+}
+
+/* Impressum / Legal notice */
+.page-hero--legal {
+  --hero-min-height: 35vh;
+}
+
+/* Wissen / Knowledge articles */
+.page-hero--wissen {
+  --hero-min-height: 40vh;
+  --hero-title-size: clamp(40px, 6vw, 80px);
+  --hero-title-line-height: 0.95;
 }
 
 
@@ -1868,8 +1960,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
   }
   .footer-legal { flex-wrap: wrap; gap: 14px 20px; }
 
-  /* Page hero (sub-pages) */
-  .page-hero { min-height: 38vh !important; padding: 56px var(--page-pad) 10px !important; }
+  /* Page hero (sub-pages) — respects per-route --hero-min-height */
+  .page-hero { min-height: var(--hero-min-height, 38vh) !important; padding: 56px var(--page-pad) 10px !important; }
 
   /* Section headings scale */
   .section-heading { font-size: clamp(32px, 8vw, 44px); }

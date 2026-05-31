@@ -1,0 +1,25 @@
+---
+/**
+ * prompt: load contact data from ilian and addresses (personalized data) from .env
+ */
+import { getSiteContact } from '../data/siteContact';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  showAddress?: boolean;
+}
+
+const { lang, showAddress = false } = Astro.props;
+const c = getSiteContact();
+const phoneLabel = lang === 'de' ? 'Telefon' : 'Phone';
+const emailLabel = 'E-Mail';
+const addressLabel = lang === 'de' ? 'Adresse' : 'Address';
+---
+<div class="contact-info">
+  <div class="contact-detail"><strong>{phoneLabel}</strong>{c.phone}</div>
+  <div class="contact-detail"><strong>{emailLabel}</strong>{c.email}</div>
+  {showAddress && (
+    <div class="contact-detail"><strong>{addressLabel}</strong>{c.addressInline}</div>
+  )}
+</div>

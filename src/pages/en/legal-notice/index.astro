@@ -1,10 +1,15 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { getSiteContact, getAddressLines } from '../../../data/siteContact';
+import ContactInfo from '../../../components/ContactInfo.astro';
+
+const c = getSiteContact();
+const addr = getAddressLines('en');
 ---
 
 <Layout lang="en" title="Legal Notice — Ilian Simeonow"  description="Legal notice and privacy policy of Ilian Simeonow, stuntman and artist from Heiligenhaus, Germany." heroImage="/images/portrait/Portr%C3%A4tfoto-5.jpg">
 
-  <div class="page-hero">
+  <div class="page-hero page-hero--legal">
     <div class="hero-top-bar"></div>
     <div class="page-hero-content">
       <div class="section-label">// Legal</div>
@@ -17,17 +22,17 @@ import Layout from '../../../layouts/Layout.astro';
       <div class="legal-content">
         <div class="legal-block">
           <h2 class="legal-heading">Information pursuant to § 5 TMG</h2>
-          <p>Ilian Simeonow<br />Deubner Str 40c<br />01159 Dresden<br />Germany</p>
+          <p>{c.name}<br />{addr.line1}<br />{addr.line2}<br />{addr.line3}</p>
         </div>
 
         <div class="legal-block">
           <h2 class="legal-heading">Contact</h2>
-          <p>Phone: +49 (0)176 / 303 101 42<br />E-Mail: <a href="mailto:actionartist@web.de" style="color: var(--orange);">actionartist@web.de</a></p>
+          <p>Phone: {c.phone}<br />E-Mail: <a href={`mailto:${c.email}`} style="color: var(--orange);">{c.email}</a></p>
         </div>
 
         <div class="legal-block">
           <h2 class="legal-heading">Responsible for Content pursuant to § 55 para. 2 RStV</h2>
-          <p>Ilian Simeonow<br />Deubner Str 40c<br />01159 Dresden</p>
+          <p>{c.name}<br />{addr.line1}<br />{addr.line2}</p>
         </div>
 
         <div class="legal-block">
@@ -67,9 +72,7 @@ import Layout from '../../../layouts/Layout.astro';
       <div class="legal-sidebar">
         <div class="section-label">// Quick Contact</div>
         <div class="sidebar-contact">
-          <div class="contact-detail"><strong>Phone</strong>+49 (0)176 / 303 101 42</div>
-          <div class="contact-detail"><strong>E-Mail</strong>actionartist@web.de</div>
-          <div class="contact-detail"><strong>Address</strong>Deubner Str 40c · 01159 Dresden</div>
+          <ContactInfo lang="en" showAddress />
         </div>
         <a href="/en/contact/" class="btn-primary" style="display: block; text-align: center; margin-top: 24px;">Contact Form</a>
       </div>
@@ -79,9 +82,6 @@ import Layout from '../../../layouts/Layout.astro';
 </Layout>
 
 <style>
-.page-hero { min-height: 35vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px var(--page-pad) 56px; position: relative; background: linear-gradient(175deg, #0e0e0e 0%, #1c0c04 55%, #0e0e0e 100%); border-bottom: 1px solid var(--border); }
-.page-hero-content { position: relative; z-index: 2; }
-.page-hero-title { font-family: var(--font-serif); font-size: clamp(48px, 7vw, 96px); font-weight: bold; line-height: 0.9; letter-spacing: -2px; color: var(--white); margin-bottom: 20px; }
 .legal-section { padding: var(--section-pad) var(--page-pad); background: var(--black); border-top: 1px solid var(--border); }
 .legal-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; align-items: start; }
 .legal-block { padding: 32px 0; border-bottom: 1px solid var(--border); }
