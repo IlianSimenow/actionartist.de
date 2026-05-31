@@ -46,7 +46,7 @@ ul {
 
 :root {
   /* Brand colours */
-  --orange:  #C05218;   /* primary accent */
+  --orange:  #887b2a;   /* primary accent */
   --black:   #0e0e0e;   /* page background */
   --dark:    #141414;   /* alternate section background */
   --deep:    #0a0a0a;   /* footer / darkest surfaces */
@@ -326,6 +326,88 @@ body {
   border: 1px solid var(--border);
 }
 
+/* Full nav bar: below sedcard, above Body Stunt strip — spans entire screen width */
+.nav-sub {
+  background: rgba(14, 14, 14, 0.98);
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+/* Desktop web view: hide top logo bar; full-width nav between sedcard and skills strip */
+@media (min-width: 1101px) {
+  .nav--top {
+    display: none;
+  }
+
+  .nav-sub {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    padding: 12px 0;
+  }
+
+  /* Distribute all nav items evenly across the full viewport width */
+  .nav-sub .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 clamp(12px, 1.5vw, 32px);
+    box-sizing: border-box;
+  }
+
+  .nav-sub .nav-link,
+  .nav-sub .nav-cta,
+  .nav-sub .nav-sedcard {
+    border-bottom: none;
+    text-align: center;
+    width: auto;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 4px;
+    margin-left: 0;
+    white-space: nowrap;
+  }
+
+  .nav-sub .nav-cta,
+  .nav-sub .nav-sedcard {
+    margin-left: 0;
+  }
+
+  .nav-sub .lang-switcher {
+    flex: 0 0 auto;
+    margin-left: 24px;
+  }
+
+  /* Slightly tighter type on narrower desktop so all items fit one full-width row */
+  @media (max-width: 1400px) {
+    .nav-sub .nav-link,
+    .nav-sub .nav-cta,
+    .nav-sub .nav-sedcard {
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 10px 2px;
+    }
+  }
+
+  /* Hero: top room for eyebrow; minimal bottom gap before nav strip */
+  .hero {
+    min-height: 78vh;
+    padding: 120px var(--page-pad) 10px;
+    justify-content: flex-end;
+  }
+
+  .hero-content {
+    padding-top: 8px;
+  }
+}
+
 .lang-btn {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -347,26 +429,20 @@ body {
 
 
 /* ============================================================
-   7. SEDCARD INFO BAR  (inside hero, pinned to bottom)
+   7. SEDCARD INFO BAR  (above header on mobile, above hero on desktop)
    ============================================================ */
 
 .sedcard-bar {
   background: rgba(192, 82, 24, 0.08);
-  border-top: 1px solid rgba(192, 82, 24, 0.2);
+  border-bottom: 1px solid rgba(192, 82, 24, 0.2);
   padding: 10px var(--page-pad);
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 16px;
-}
-
-/* When inside the hero: position absolute at bottom */
-.sedcard-bar--hero {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 5;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .sedcard-bar-text {
@@ -386,7 +462,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 var(--page-pad) 80px;
+  padding: 0 var(--page-pad) 10px;
   position: relative;
 
   /* Warm dark fallback visible before video loads */
@@ -1406,6 +1482,12 @@ a.partner-card:hover {
   border-top: 2px solid var(--orange);
 }
 
+/* Minimal bottom gap on all hero types (overrides per-page shorthand padding) */
+.hero,
+.page-hero {
+  padding-bottom: 10px !important;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .page-hero:hover::before { transform: scale(1.06); }
 }
@@ -1475,7 +1557,16 @@ body.nav-open .nav-toggle span:nth-child(3) {
   /* Hamburger replaces inline nav */
   .nav-toggle { display: flex; }
 
-  .nav-links {
+  /* Mobile drawer — nav lives below carousel but opens as fixed panel */
+  .nav-sub {
+    height: 0;
+    padding: 0;
+    border: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .nav-sub .nav-links {
     position: fixed;
     top: 0;
     right: 0;
@@ -1496,7 +1587,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
                 visibility 0s 0.36s;
     z-index: 200;
   }
-  body.nav-open .nav-links {
+  body.nav-open .nav-sub .nav-links {
     transform: translateX(0);
     visibility: visible;
     /* show immediately → then slide in */
@@ -1506,9 +1597,9 @@ body.nav-open .nav-toggle span:nth-child(3) {
   body.nav-open { overflow: hidden; }
   body.nav-open .nav-backdrop { display: block; opacity: 1; }
 
-  .nav-link,
-  .nav-cta,
-  .nav-sedcard {
+  .nav-sub .nav-link,
+  .nav-sub .nav-cta,
+  .nav-sub .nav-sedcard {
     padding: 16px 4px;
     margin: 0;
     font-size: 13px;
@@ -1536,6 +1627,20 @@ body.nav-open .nav-toggle span:nth-child(3) {
   .hero-stats { gap: 32px; flex-wrap: wrap; }
   .stat-num { font-size: 36px; }
   .hero-side-text { display: none; }
+
+  .hero {
+    justify-content: flex-start;
+    padding-top: 32px;
+  }
+
+  .hero-eyebrow {
+    letter-spacing: 2px;
+    font-size: 10px;
+    line-height: 1.6;
+    white-space: normal;
+    max-width: 100%;
+    margin-left: 0;
+  }
 
   /* Grids: collapse 3/4-col → 2-col */
   .credits-grid,
@@ -1633,13 +1738,33 @@ body.nav-open .nav-toggle span:nth-child(3) {
     --section-pad: 56px;
   }
 
-  /* Hero */
-  .hero { min-height: 88vh; padding: 40px var(--page-pad) 40px; }
+  /* Hero — content from top so eyebrow is never clipped by overflow:hidden */
+  .hero {
+    min-height: 88dvh;
+    justify-content: flex-start;
+    padding: 28px var(--page-pad) 10px;
+  }
+
+  .hero-content {
+    padding-top: 4px;
+    width: 100%;
+  }
+
   .hero-eyebrow,
   .hero-name,
   .hero-role,
   .hero-actions,
   .hero-stats { margin-left: 0; }
+
+  .hero-eyebrow {
+    letter-spacing: 1.5px;
+    font-size: 10px;
+    line-height: 1.65;
+    white-space: normal;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
   .hero-name { font-size: clamp(54px, 14vw, 88px); letter-spacing: -1px; }
   .hero-role { font-size: 12px; letter-spacing: 3px; margin-bottom: 28px; }
   .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 40px; }
@@ -1744,7 +1869,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
   .footer-legal { flex-wrap: wrap; gap: 14px 20px; }
 
   /* Page hero (sub-pages) */
-  .page-hero { min-height: 38vh !important; padding: 56px var(--page-pad) 40px !important; }
+  .page-hero { min-height: 38vh !important; padding: 56px var(--page-pad) 10px !important; }
 
   /* Section headings scale */
   .section-heading { font-size: clamp(32px, 8vw, 44px); }

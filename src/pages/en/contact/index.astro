@@ -69,27 +69,34 @@ import Layout from '../../../layouts/Layout.astro';
             status.className = 'form-status';
             status.textContent = '';
 
-            const res = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                name: (document.getElementById('name') as HTMLInputElement).value,
-                email: (document.getElementById('email') as HTMLInputElement).value,
-                phone: (document.getElementById('phone') as HTMLInputElement).value,
-                type: (document.getElementById('type') as HTMLSelectElement).value,
-                message: (document.getElementById('message') as HTMLTextAreaElement).value,
-                lang: 'en',
-              }),
-            });
+            try {
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: (document.getElementById('name') as HTMLInputElement).value,
+                  email: (document.getElementById('email') as HTMLInputElement).value,
+                  phone: (document.getElementById('phone') as HTMLInputElement).value,
+                  type: (document.getElementById('type') as HTMLSelectElement).value,
+                  message: (document.getElementById('message') as HTMLTextAreaElement).value,
+                  lang: 'en',
+                }),
+              });
 
-            if (res.ok) {
-              status.className = 'form-status form-status--success';
-              status.textContent = 'Thank you! Your enquiry has been sent. Ilian will be in touch shortly.';
-              form.reset();
-              submit.textContent = 'Enquiry sent ✓';
-            } else {
+              if (res.ok) {
+                status.className = 'form-status form-status--success';
+                status.textContent = 'Thank you! Your enquiry has been sent. Ilian will be in touch shortly.';
+                form.reset();
+                submit.textContent = 'Enquiry sent ✓';
+              } else {
+                status.className = 'form-status form-status--error';
+                status.textContent = 'Something went wrong. Please try again or contact us directly by email.';
+                submit.disabled = false;
+                submit.textContent = 'Send Enquiry';
+              }
+            } catch {
               status.className = 'form-status form-status--error';
-              status.textContent = 'Something went wrong. Please try again or contact us directly by email.';
+              status.textContent = 'Connection error. Please check your internet connection or email us directly.';
               submit.disabled = false;
               submit.textContent = 'Send Enquiry';
             }

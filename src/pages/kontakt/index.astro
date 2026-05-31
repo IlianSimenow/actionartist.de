@@ -69,27 +69,34 @@ import Layout from '../../layouts/Layout.astro';
             status.className = 'form-status';
             status.textContent = '';
 
-            const res = await fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                name: (document.getElementById('name') as HTMLInputElement).value,
-                email: (document.getElementById('email') as HTMLInputElement).value,
-                phone: (document.getElementById('phone') as HTMLInputElement).value,
-                type: (document.getElementById('type') as HTMLSelectElement).value,
-                message: (document.getElementById('message') as HTMLTextAreaElement).value,
-                lang: 'de',
-              }),
-            });
+            try {
+              const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name: (document.getElementById('name') as HTMLInputElement).value,
+                  email: (document.getElementById('email') as HTMLInputElement).value,
+                  phone: (document.getElementById('phone') as HTMLInputElement).value,
+                  type: (document.getElementById('type') as HTMLSelectElement).value,
+                  message: (document.getElementById('message') as HTMLTextAreaElement).value,
+                  lang: 'de',
+                }),
+              });
 
-            if (res.ok) {
-              status.className = 'form-status form-status--success';
-              status.textContent = 'Vielen Dank! Ihre Anfrage wurde gesendet. Ilian meldet sich in Kürze.';
-              form.reset();
-              submit.textContent = 'Anfrage gesendet ✓';
-            } else {
+              if (res.ok) {
+                status.className = 'form-status form-status--success';
+                status.textContent = 'Vielen Dank! Ihre Anfrage wurde gesendet. Ilian meldet sich in Kürze.';
+                form.reset();
+                submit.textContent = 'Anfrage gesendet ✓';
+              } else {
+                status.className = 'form-status form-status--error';
+                status.textContent = 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail.';
+                submit.disabled = false;
+                submit.textContent = 'Anfrage senden';
+              }
+            } catch {
               status.className = 'form-status form-status--error';
-              status.textContent = 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns per E-Mail.';
+              status.textContent = 'Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung oder schreiben Sie uns direkt per E-Mail.';
               submit.disabled = false;
               submit.textContent = 'Anfrage senden';
             }

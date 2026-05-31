@@ -1,0 +1,20 @@
+---
+/**
+ * prompt: render Sedcard & Vita als PDF herunterladen / ↓ Sedcard above mobile header and above hero
+ */
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const pdfHref = lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf';
+---
+
+<div class="sedcard-bar">
+  <span class="sedcard-bar-text">{t('sedcard.text')}</span>
+  <a href={pdfHref} download class="btn-outline-orange">{t('sedcard.btn')}</a>
+</div>

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout lang="de" title="Ilian Simeonow — Stuntman & Artist aus Dresden" description="Ilian Simeonow — Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show.">
+<Layout lang="de" title="Ilian Simeonow — Stuntman & Artist aus Dresden" description="Ilian Simeonow — Stuntman, Kaskadeur, Artist und Schauspieler aus Dresden. Über 23 Jahre Erfahrung in Film, Fernsehen, Theater und Show." showSedcardBar>
 
   <!-- ══ HERO ══ -->
   <section class="hero">
@@ -44,27 +44,8 @@ import Layout from '../layouts/Layout.astro';
     <div class="hero-side-text">Stuntman · Kaskadeur · Action Artist · Schauspieler</div>
   </section>
 
-  <!-- Sedcard bar below hero -->
-  <div class="sedcard-bar">
-    <span class="sedcard-bar-text">Sedcard &amp; Vita als PDF herunterladen</span>
-    <a href="/pdfs/setcard.pdf" download class="btn-outline-orange">↓ Sedcard &amp; Vita PDF</a>
-  </div>
-
   <!-- ══ SKILLS STRIP ══ -->
-  <div class="skills-strip">
-    <div class="skill-tag skill-tag--highlight">Body Stunt</div>
-    <div class="skill-tag">Highfall</div>
-    <div class="skill-tag skill-tag--highlight">Fechten &amp; Schwertkampf</div>
-    <div class="skill-tag">Stuntreiter</div>
-    <div class="skill-tag skill-tag--highlight">Trampolin-Kaskadeur</div>
-    <div class="skill-tag">Globe of Speed</div>
-    <div class="skill-tag skill-tag--highlight">Kampfchoreographie</div>
-    <div class="skill-tag">Todesrad</div>
-    <div class="skill-tag skill-tag--highlight">Zauberei &amp; Illusion</div>
-    <div class="skill-tag">Feuerspucken</div>
-    <div class="skill-tag skill-tag--highlight">Akrobatik</div>
-    <div class="skill-tag">Acting &amp; Comedy</div>
-  </div>
+  <!-- skills carousel rendered via Layout on all routes -->
 
   <!-- ══ ABOUT ══ -->
   <section class="about-section">

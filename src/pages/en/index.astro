@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout lang="en" title="Ilian Simeonow — Stuntman & Artist from Dresden" description="Ilian Simeonow — stuntman, stunt performer, artist and actor from Dresden. 23+ years in film, TV and theatre. Available for bookings.">
+<Layout lang="en" title="Ilian Simeonow — Stuntman & Artist from Dresden" description="Ilian Simeonow — stuntman, stunt performer, artist and actor from Dresden. 23+ years in film, TV and theatre. Available for bookings." showSedcardBar>
 
   <section class="hero">
     <video class="hero-video" id="heroBgVideo" autoplay muted loop playsinline preload="auto">
@@ -27,28 +27,10 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="sedcard-bar sedcard-bar--hero">
-      <span class="sedcard-bar-text">Download Sedcard &amp; CV as PDF</span>
-      <a href="/pdfs/setcard-en.pdf" download class="btn-outline-orange">↓ Sedcard &amp; CV PDF</a>
-    </div>
-
     <div class="hero-side-text">Stuntman · Stunt Performer · Action Artist · Actor</div>
   </section>
 
-  <div class="skills-strip">
-    <div class="skill-tag skill-tag--highlight">Body Stunt</div>
-    <div class="skill-tag">High Fall</div>
-    <div class="skill-tag skill-tag--highlight">Fencing &amp; Sword Fighting</div>
-    <div class="skill-tag">Stunt Riding</div>
-    <div class="skill-tag skill-tag--highlight">Trampoline Stunt Performer</div>
-    <div class="skill-tag">Globe of Speed</div>
-    <div class="skill-tag skill-tag--highlight">Fight Choreography</div>
-    <div class="skill-tag">Wheel of Death</div>
-    <div class="skill-tag skill-tag--highlight">Magic &amp; Illusion</div>
-    <div class="skill-tag">Fire Breathing</div>
-    <div class="skill-tag skill-tag--highlight">Acrobatics</div>
-    <div class="skill-tag">Acting &amp; Comedy</div>
-  </div>
+  <!-- skills carousel rendered via Layout on all routes -->
 
   <section class="about-section">
     <div>

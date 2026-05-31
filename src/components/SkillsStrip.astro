@@ -1,0 +1,20 @@
+---
+/**
+ * prompt: on web view, render skills carousel (Body Stunt etc.) under hero on all routes
+ */
+import type { Lang } from '../i18n/ui';
+import { skillsStripTags } from '../data/skillsStripTags';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tags = skillsStripTags[lang];
+---
+
+<div class="skills-strip">
+  {tags.map(([label, highlight]) => (
+    <div class={`skill-tag${highlight ? ' skill-tag--highlight' : ''}`}>{label}</div>
+  ))}
+</div>

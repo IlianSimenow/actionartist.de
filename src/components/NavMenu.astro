@@ -1,0 +1,38 @@
+---
+/**
+ * prompt: on web view, render header with all nav options (Biographie, Skills, Credits, … DE/EN)
+ *         above Body Stunt strip and below sedcard section on all routes
+ */
+import type { Lang } from '../i18n/ui';
+import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const alternateLang: Lang = lang === 'de' ? 'en' : 'de';
+const alternateUrl = getAlternateLangUrl(Astro.url, alternateLang);
+
+const base = lang === 'de' ? '' : `/${lang}`;
+const bioHref     = lang === 'de' ? `${base}/biographie/` : `${base}/biography/`;
+const galleryHref = lang === 'de' ? `${base}/galerie/`    : `${base}/gallery/`;
+const partnerHref = lang === 'de' ? `${base}/partner/`   : `${base}/partners/`;
+const contactHref = lang === 'de' ? `${base}/kontakt/`    : `${base}/contact/`;
+---
+
+<div class="nav-links" id="navLinks">
+  <a href={bioHref} class="nav-link">{t('nav.bio')}</a>
+  <a href={`${base}/skills/`} class="nav-link">{t('nav.skills')}</a>
+  <a href={`${base}/credits/`} class="nav-link">{t('nav.credits')}</a>
+  <a href={galleryHref} class="nav-link">{t('nav.galerie')}</a>
+  <a href={`${base}/video/`} class="nav-link">{t('nav.video')}</a>
+  <a href={partnerHref} class="nav-link">{t('nav.partner')}</a>
+  <a href={`${base}/workshops/`} class="nav-link">{t('nav.workshops')}</a>
+  <a href={contactHref} class="nav-cta">{t('nav.kontakt')}</a>
+  <div class="lang-switcher">
+    <a href={lang === 'de' ? '/' : alternateUrl} class={`lang-btn ${lang === 'de' ? 'lang-btn--active' : 'lang-btn--inactive'}`}>DE</a>
+    <a href={lang === 'en' ? '/en/' : alternateUrl} class={`lang-btn ${lang === 'en' ? 'lang-btn--active' : 'lang-btn--inactive'}`}>EN</a>
+  </div>
+</div>
