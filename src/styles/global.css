@@ -1562,9 +1562,9 @@ a.partner-card:hover {
   --hero-bg-position: center 10%;
 }
 
-/* Partner / Partners */
+/* Partner / Partners — align with standard/skills/gallery heroes (45vh) */
 .page-hero--partner {
-  --hero-min-height: 38.25vh;
+  --hero-min-height: 45vh;
 }
 
 /* Workshops overview */
@@ -1673,6 +1673,13 @@ body.nav-open .nav-toggle span:nth-child(3) {
 
   /* Hamburger replaces inline nav */
   .nav-toggle { display: flex; }
+
+  /* prompt: on mobile view, remove Ilian Simeonow from burger header (home stays in sedcard bar) */
+  .nav--top .nav-logo { display: none; }
+  .nav--top { justify-content: flex-end; }
+
+  /* prompt: on mobile hide sedcard gray hint; keep Ilian Simeonow link + PDF button */
+  .sedcard-bar-text { display: none; }
 
   /* Mobile drawer — nav lives below carousel but opens as fixed panel */
   .nav-sub {
