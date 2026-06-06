@@ -37,7 +37,11 @@ export const ui = {
 
     // Sedcard bar
     "sedcard.text": "Sedcard & Vita als PDF herunterladen",
+    // legacy combined button (still used in Layout footer nav as a single entry)
     "sedcard.btn": "↓ Sedcard & Vita PDF",
+    // separate buttons for Sedcard / Vita (split download)
+    "sedcard.btn.sed": "↓ Sedcard PDF",
+    "sedcard.btn.vita": "↓ Vita PDF",
 
     // Section labels
     "label.about": "// Über mich",
@@ -152,7 +156,11 @@ export const ui = {
 
     // Sedcard bar
     "sedcard.text": "Download Sedcard & CV as PDF",
+    // legacy combined button (still used in Layout footer nav as a single entry)
     "sedcard.btn": "↓ Sedcard & CV PDF",
+    // separate buttons for Sedcard / CV (split download)
+    "sedcard.btn.sed": "↓ Sedcard PDF",
+    "sedcard.btn.vita": "↓ CV PDF",
 
     // Section labels
     "label.about": "// About",

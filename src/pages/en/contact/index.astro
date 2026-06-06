@@ -113,7 +113,13 @@ import ContactDetails from '../../../components/ContactDetails.astro';
           <p class="body-text" style="font-size: 14px; margin-bottom: 20px;">
             Download Ilian's sedcard and CV as PDF — with photos, physical data, skills and full production history.
           </p>
-          <a href="/pdfs/setcard-en.pdf" download class="btn-outline-orange" style="display: block; text-align: center; padding: 14px 24px;">↓ Download Sedcard &amp; CV PDF</a>
+          {/* prompt: split combined "↓ Sedcard & CV PDF" into two separate download buttons */}
+          <div class="sedcard-download-actions">
+            {/* Sedcard PDF (English variant) */}
+            <a href="/pdfs/setcard-en.pdf" download class="btn-outline-orange sedcard-download-btn">↓ Sedcard PDF</a>
+            {/* CV / Vita PDF (single file shared across languages) */}
+            <a href="/pdfs/Ilian-Vita.pdf" download class="btn-outline-orange sedcard-download-btn">↓ CV PDF</a>
+          </div>
         </div>
       </div>
     </div>
@@ -139,6 +145,10 @@ import ContactDetails from '../../../components/ContactDetails.astro';
 .contact-detail-value { font-family: var(--font-sans); font-size: 16px; color: var(--white); line-height: 1.5; }
 a.contact-detail-value:hover { color: var(--orange); }
 .sedcard-download-block { margin-top: 40px; padding: 28px; background: var(--card); border: 1px solid var(--border); }
+/* two-column layout for separate Sedcard / CV download buttons; collapses to stacked on narrow screens */
+.sedcard-download-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sedcard-download-btn { display: block; text-align: center; padding: 14px 24px; }
+@media (max-width: 480px) { .sedcard-download-actions { grid-template-columns: 1fr; } }
 .form-status { display: none; padding: 14px 16px; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; }
 .form-status--success { display: block; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; }
 .form-status--error { display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }

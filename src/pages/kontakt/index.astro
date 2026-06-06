@@ -113,7 +113,13 @@ import ContactDetails from '../../components/ContactDetails.astro';
           <p class="body-text" style="font-size: 14px; margin-bottom: 20px;">
             Laden Sie Ilians Sedcard und Vita als PDF herunter — mit Fotos, Körperdaten, Skills und vollständiger Produktionshistorie.
           </p>
-          <a href="/pdfs/setcard.pdf" download class="btn-outline-orange" style="display: block; text-align: center; padding: 14px 24px;">↓ Sedcard &amp; Vita PDF herunterladen</a>
+          {/* prompt: split combined "↓ Sedcard & Vita PDF" into two separate download buttons */}
+          <div class="sedcard-download-actions">
+            {/* Sedcard PDF (existing localised file) */}
+            <a href="/pdfs/setcard.pdf" download class="btn-outline-orange sedcard-download-btn">↓ Sedcard PDF</a>
+            {/* Vita PDF (new file added under /public/pdfs/Ilian-Vita.pdf) */}
+            <a href="/pdfs/Ilian-Vita.pdf" download class="btn-outline-orange sedcard-download-btn">↓ Vita PDF</a>
+          </div>
         </div>
       </div>
     </div>
@@ -195,6 +201,20 @@ a.contact-detail-value:hover { color: var(--orange); }
   padding: 28px;
   background: var(--card);
   border: 1px solid var(--border);
+}
+/* two-column layout for separate Sedcard / Vita download buttons; collapses to stacked on narrow screens */
+.sedcard-download-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.sedcard-download-btn {
+  display: block;
+  text-align: center;
+  padding: 14px 24px;
+}
+@media (max-width: 480px) {
+  .sedcard-download-actions { grid-template-columns: 1fr; }
 }
 .form-status {
   display: none;

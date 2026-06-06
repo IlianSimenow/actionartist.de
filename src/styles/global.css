@@ -75,7 +75,10 @@ ul {
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  /* prompt: improve scrolling behaviour & feeling — keep native smooth scroll for anchor jumps */
   scroll-behavior: smooth;
+  /* Anchor targets land below the sticky nav instead of vanishing underneath it */
+  scroll-padding-top: 80px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -87,7 +90,12 @@ html {
 }
 
 html {
-  overflow-x: hidden;
+  /* `clip` (not `hidden`) prevents the browser from promoting overflow-y
+     to `auto`, which would create a second scroll container on top of
+     body — the source of the duplicate scrollbar that blocked scrolling */
+  overflow-x: clip;
+  /* Kill rubber-band / overscroll chaining so the page feels grounded, not bouncy */
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -95,7 +103,8 @@ body {
   color: var(--white);
   font-family: var(--font-serif);
   line-height: 1;
-  overflow-x: hidden;
+  /* Same reason as html: clip, not hidden — only one scrollbar in the whole document */
+  overflow-x: clip;
 }
 
 
@@ -2035,4 +2044,91 @@ body.nav-open .nav-toggle span:nth-child(3) {
   .nav-link:hover { color: var(--gray); }
   .gallery-thumb:hover .thumb-overlay { background: rgba(0,0,0,0); }
   .gallery-thumb:hover img { transform: none; }
+}
+
+
+/* ============================================================
+   22. SCROLL POLISH
+   prompt: improve scrolling behaviour & feeling — currently feels plump
+   Strategy: zero-dependency. Soften section appearances, add subtle
+   hero parallax on capable browsers, hint the compositor on heavy
+   layers, and respect prefers-reduced-motion everywhere.
+   ============================================================ */
+
+/* Promote scroll-heavy layers to their own GPU layer — keeps the
+   60fps thread free of paint work while the user scrolls */
+.page-hero::before,
+.hero-video,
+.nav,
+.nav-sub {
+  will-change: transform;
+}
+
+/* Calmer easing on the sticky nav so the resize feels less abrupt */
+.nav,
+.nav-sub {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade-rise reveal: applied by the IntersectionObserver in Layout.astro.
+   Sections start slightly offset; once in view they settle into place. */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion: kill all of the above motion immediately */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Native scroll-driven hero parallax — progressive enhancement.
+   Only browsers that support animation-timeline: view() participate.
+   The hero backdrop drifts gently as the page is scrolled past. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .page-hero::before {
+      animation: heroParallax linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    @keyframes heroParallax {
+      from { transform: translate3d(0, -3%, 0) scale(1.08); }
+      to   { transform: translate3d(0, 9%,  0) scale(1.12); }
+    }
+  }
+}
+
+/* Slimmer custom scrollbar on desktop — removes the clunky default
+   Windows bar that exaggerates the "plump" feeling.
+   IMPORTANT: scope strictly to the document root (html) so we don't
+   resurrect hidden scrollbars on inner scroll containers such as the
+   .skills-strip ticker or the mobile nav drawer. */
+@media (pointer: fine) {
+  /* Firefox — only the page scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  /* WebKit / Chromium / Edge — only the page scrollbar */
+  html::-webkit-scrollbar { width: 10px; }
+  html::-webkit-scrollbar-track { background: transparent; }
+  html::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 8px;
+    border: 2px solid var(--black);
+  }
+  html::-webkit-scrollbar-thumb:hover { background: var(--orange); }
 }

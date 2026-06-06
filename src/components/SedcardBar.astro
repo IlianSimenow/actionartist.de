@@ -1,6 +1,8 @@
 ---
 /**
  * prompt: place download vita section on top on all routes; Ilian Simeonow home button on the left
+ * prompt: ↓ Sedcard & Vita PDF — implement Sedcard and Vita as separate buttons,
+ *          and wire the newly added Vita PDF (public/pdfs/Ilian-Vita.pdf) as downloadable
  */
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
@@ -14,13 +16,18 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const { given, family } = getContactNameParts();
 const homeHref = lang === 'de' ? '/' : '/en/';
-const pdfHref = lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf';
+// localised Sedcard PDF (DE/EN variants exist in /public/pdfs)
+const sedcardHref = lang === 'de' ? '/pdfs/setcard.pdf' : '/pdfs/setcard-en.pdf';
+// single Vita/CV PDF (no language variant — same file for DE & EN)
+const vitaHref = '/pdfs/Ilian-Vita.pdf';
 ---
 
 <div class="sedcard-bar">
   <a href={homeHref} class="sedcard-bar-home">{given} <span class="sedcard-bar-home-accent">{family}</span></a>
   <div class="sedcard-bar-actions">
     <span class="sedcard-bar-text">{t('sedcard.text')}</span>
-    <a href={pdfHref} download class="btn-outline-orange">{t('sedcard.btn')}</a>
+    {/* split into two distinct download buttons: Sedcard + Vita */}
+    <a href={sedcardHref} download class="btn-outline-orange">{t('sedcard.btn.sed')}</a>
+    <a href={vitaHref} download class="btn-outline-orange">{t('sedcard.btn.vita')}</a>
   </div>
 </div>

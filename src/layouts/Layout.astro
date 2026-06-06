@@ -1,6 +1,8 @@
 ---
 /**
  * prompt: place download vita section on top on all routes; full nav below hero
+ * prompt: improve scrolling behaviour & feeling — add IntersectionObserver-driven
+ *         section reveals (CSS handles the actual animation in global.css §22)
  */
 import '../styles/global.css';
 import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
@@ -216,6 +218,40 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
+
+      /* ──────────────────────────────────────────────────────────────
+         Scroll-reveal: fade & rise content sections as they enter view.
+         Skip the hero/page-hero (above the fold, must render instantly)
+         and respect the user's prefers-reduced-motion setting.
+         The visual transition itself lives in global.css §22.
+         ────────────────────────────────────────────────────────────── */
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        // Tag every section except the hero(s) — they're already visible on load
+        var revealTargets = document.querySelectorAll(
+          'main section, body > section, .about-section, .productions-section, ' +
+          '.credits-section, .skills-section, .gallery-section, .video-section, ' +
+          '.partners-section, .wissen-section, .contact-section, .footer'
+        );
+        revealTargets.forEach(function (el) {
+          if (el.classList.contains('hero') || el.classList.contains('page-hero')) return;
+          el.classList.add('reveal-on-scroll');
+        });
+
+        // Trigger slightly before the section is fully on screen — feels organic
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        revealTargets.forEach(function (el) {
+          if (el.classList.contains('reveal-on-scroll')) revealObserver.observe(el);
+        });
+      }
     })();
   </script>
 
