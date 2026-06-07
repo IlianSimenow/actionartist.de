@@ -3,6 +3,10 @@
  * prompt: place download vita section on top on all routes; full nav below hero
  * prompt: improve scrolling behaviour & feeling — add IntersectionObserver-driven
  *         section reveals (CSS handles the actual animation in global.css §22)
+ * prompt: im footer der website adde eine kleine unauffällige aber moderne und
+ *         irgendwie doch auffällige line "made with heart (cyber heart icon) by
+ *         Benedikt Sterra (ref botworld.cloud) and Prateek Rohilla
+ *         (ref: https://ptkr.eu/)"
  */
 import '../styles/global.css';
 import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
@@ -144,6 +148,37 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
         <a href={`${impHref}#datenschutz`}>{t('footer.datenschutz')}</a>
         <a href="/sitemap-index.xml">{t('footer.sitemap')}</a>
       </div>
+    </div>
+    {/* Made-with credit line — subtle yet modern, with a pulsing cyber heart */}
+    <div class="footer-credits">
+      <span class="footer-credits-text">made with</span>
+      {/* Inline cyber-heart SVG: gradient stroke + glow, animated pulse via CSS */}
+      <svg class="footer-credits-heart" viewBox="0 0 24 24" aria-label="cyber heart" role="img" focusable="false">
+        <defs>
+          <linearGradient id="cyberHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#00e5ff" />
+            <stop offset="55%"  stop-color="#b14bff" />
+            <stop offset="100%" stop-color="#ff2bd6" />
+          </linearGradient>
+        </defs>
+        {/* Heart path with circuit-node accents to evoke a "cyber" feel */}
+        <path d="M12 21s-7.5-4.6-9.5-9.2C1 8 3.5 4.5 7 4.5c2 0 3.6 1 5 2.7 1.4-1.7 3-2.7 5-2.7 3.5 0 6 3.5 4.5 7.3C19.5 16.4 12 21 12 21z"
+              fill="none" stroke="url(#cyberHeartGrad)" stroke-width="1.6" stroke-linejoin="round" />
+        {/* Tiny "circuit" dots — quietly reinforce the cyber motif */}
+        <circle cx="7"  cy="9"  r="0.9" fill="#00e5ff" />
+        <circle cx="17" cy="9"  r="0.9" fill="#ff2bd6" />
+        <circle cx="12" cy="14" r="0.9" fill="#b14bff" />
+      </svg>
+      <span class="footer-credits-text">by</span>
+      {/* Author 1 — Benedikt Sterra → botworld.cloud */}
+      <a class="footer-credits-link" href="https://botworld.cloud" target="_blank" rel="noopener noreferrer" title="botworld.cloud">
+        Benedikt Sterra
+      </a>
+      <span class="footer-credits-text">and</span>
+      {/* Author 2 — Prateek Rohilla → ptkr.eu */}
+      <a class="footer-credits-link" href="https://ptkr.eu/" target="_blank" rel="noopener noreferrer" title="ptkr.eu">
+        Prateek Rohilla
+      </a>
     </div>
   </footer>
 

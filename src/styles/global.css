@@ -1463,6 +1463,77 @@ a.partner-card:hover {
   color: var(--white);
 }
 
+/* ------------------------------------------------------------
+   Made-with credit line — quiet, modern, with a cyber heart.
+   Sits below .footer-bottom, full-width and centered. The heart
+   carries a soft neon glow and a slow pulse, so the row feels
+   alive without competing with the rest of the footer.
+   ------------------------------------------------------------ */
+/* Container: centered single-line row with comfortable spacing */
+.footer-credits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: lowercase;
+  color: #6a6a6a;
+}
+
+/* Plain text fragments — kept muted to let the heart + links pop */
+.footer-credits-text {
+  opacity: 0.75;
+}
+
+/* Author links — subtle by default, gradient shimmer on hover */
+.footer-credits-link {
+  position: relative;
+  color: #b8b8b8;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  padding-bottom: 1px;
+  background-image: linear-gradient(90deg, #00e5ff, #b14bff, #ff2bd6);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: color 0.25s ease, background-size 0.35s ease;
+}
+
+.footer-credits-link:hover,
+.footer-credits-link:focus-visible {
+  color: var(--white);
+  background-size: 100% 1px;
+}
+
+/* Cyber heart icon — small, glowing, gently pulsing */
+.footer-credits-heart {
+  width: 14px;
+  height: 14px;
+  /* Soft neon glow; cheap to render and barely visible at rest */
+  filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.55))
+          drop-shadow(0 0 4px rgba(255, 43, 214, 0.35));
+  animation: footerHeartPulse 2.4s ease-in-out infinite;
+  transform-origin: 50% 55%;
+}
+
+/* Slow scale + glow pulse — kept tiny so it stays "unauffällig" */
+@keyframes footerHeartPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.92; }
+  50%      { transform: scale(1.12); opacity: 1;    }
+}
+
+/* Respect users who prefer no motion — hold a steady state */
+@media (prefers-reduced-motion: reduce) {
+  .footer-credits-heart { animation: none; }
+}
+
 
 /* ============================================================
    19b. PAGE HERO — image backdrop layer
@@ -2000,6 +2071,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
     gap: 16px;
   }
   .footer-legal { flex-wrap: wrap; gap: 14px 20px; }
+  /* Credit line on mobile: left-align to match the rest of the bottom bar */
+  .footer-credits { justify-content: flex-start; font-size: 10.5px; letter-spacing: 1.2px; }
 
   /* Page hero (sub-pages) — respects per-route --hero-min-height */
   .page-hero { min-height: var(--hero-min-height, 38vh) !important; padding: 56px var(--page-pad) 10px !important; }
