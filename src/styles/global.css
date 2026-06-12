@@ -1701,7 +1701,6 @@ a.partner-card:hover {
   align-items: center;
   gap: 5px;
   padding: 0;
-  z-index: 240;
   position: relative;
 }
 
@@ -1714,14 +1713,9 @@ a.partner-card:hover {
   transform-origin: center;
 }
 
-body.nav-open .nav-toggle span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-  background: var(--orange);
-}
-body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
-body.nav-open .nav-toggle span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-  background: var(--orange);
+/* Close button inside mobile drawer — hidden on desktop */
+.nav-drawer-close {
+  display: none;
 }
 
 /* prompt: burger menu — full-screen dim layer; click/tap outside drawer closes menu */
@@ -1761,40 +1755,18 @@ body.nav-open .nav-toggle span:nth-child(3) {
   /* prompt: on mobile hide sedcard gray hint; keep Ilian Simeonow link + PDF button */
   .sedcard-bar-text { display: none; }
 
-  /* prompt: fixed burger button on mobile — stays visible while scrolling; no header strip */
-  :root {
-    --mobile-burger-top: calc(env(safe-area-inset-top, 0px) + 56px);
-    --mobile-burger-top-scrolled: calc(env(safe-area-inset-top, 0px) + 8px);
-  }
-
+  /* prompt: compact burger row — no tall background strip; only the icon/button */
   .nav--top {
-    height: 0;
+    height: auto;
     min-height: 0;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    padding: 8px var(--page-pad);
+    background: rgba(14, 14, 14, 0.96);
     overflow: visible;
-    pointer-events: none;
   }
 
   .nav-toggle {
-    position: fixed;
-    top: var(--mobile-burger-top);
-    right: var(--page-pad);
-    z-index: 240;
     overflow: hidden;
-    pointer-events: auto;
-  }
-
-  body.nav-top--scrolled .nav-toggle {
-    top: var(--mobile-burger-top-scrolled);
-  }
-
-  body.nav-open .nav-toggle {
-    z-index: 241;
+    flex-shrink: 0;
   }
 
   /* Mobile drawer — nav lives below hero but opens as fixed panel */
@@ -1834,6 +1806,40 @@ body.nav-open .nav-toggle span:nth-child(3) {
     z-index: 220;
     will-change: transform;
     box-sizing: border-box;
+  }
+
+  /* prompt: in-slider close button — replaces header burger as close control */
+  .nav-drawer-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    overflow: hidden;
+  }
+
+  .nav-drawer-close span {
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    background: var(--orange);
+    transition: background 0.2s ease;
+  }
+
+  .nav-drawer-close span:first-child { transform: rotate(45deg); }
+  .nav-drawer-close span:last-child  { transform: rotate(-45deg); }
+
+  .nav-drawer-close:hover span,
+  .nav-drawer-close:focus-visible span {
+    background: var(--white);
   }
   body.nav-open .nav-sub .nav-links {
     transform: translateX(0);
@@ -2154,8 +2160,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
     --section-pad: 44px;
   }
 
-  .nav:not(.nav--top) { height: auto; min-height: 0; padding: 8px var(--page-pad); }
-  .nav:not(.nav--top).nav--scrolled { height: auto; min-height: 0; padding: 6px var(--page-pad); }
+  .nav { height: auto; min-height: 0; padding: 8px var(--page-pad); }
+  .nav--scrolled { height: auto; min-height: 0; padding: 6px var(--page-pad); }
   .nav-logo { font-size: 16px; }
 
   .hero-stats { gap: 20px 28px; }

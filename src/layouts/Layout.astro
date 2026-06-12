@@ -187,6 +187,7 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
     (function () {
       const nav = document.getElementById('siteNav');
       const toggle = document.getElementById('navToggle');
+      const drawerClose = document.getElementById('navDrawerClose');
       const links = document.getElementById('navLinks');
       const backdrop = document.getElementById('navBackdrop');
       const navSub = document.getElementById('navSub');
@@ -236,22 +237,24 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       }, { passive: true });
       onScroll();
 
-      // prompt: burger menu — close on outer press; toggle stays above drawer (z-index in CSS)
+      // prompt: burger opens drawer; in-slider close button + backdrop close it
       const closeMenu = () => {
         document.body.classList.remove('nav-open');
         toggle && toggle.setAttribute('aria-expanded', 'false');
-        toggle && toggle.setAttribute('aria-label', 'Menu');
         backdrop && (backdrop.hidden = true);
       };
       const openMenu = () => {
         document.body.classList.add('nav-open');
         toggle && toggle.setAttribute('aria-expanded', 'true');
-        toggle && toggle.setAttribute('aria-label', 'Close menu');
         backdrop && (backdrop.hidden = false);
       };
       toggle && toggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        document.body.classList.contains('nav-open') ? closeMenu() : openMenu();
+        if (!document.body.classList.contains('nav-open')) openMenu();
+      });
+      drawerClose && drawerClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeMenu();
       });
       if (backdrop) {
         backdrop.addEventListener('click', closeMenu);
@@ -263,6 +266,7 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       document.addEventListener('click', (e) => {
         if (!document.body.classList.contains('nav-open')) return;
         if (toggle && toggle.contains(e.target)) return;
+        if (drawerClose && drawerClose.contains(e.target)) return;
         if (links && links.contains(e.target)) return;
         closeMenu();
       });

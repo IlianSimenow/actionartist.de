@@ -2,6 +2,7 @@
 /**
  * prompt: on web view, render header with all nav options (Biographie, Skills, Credits, … DE/EN)
  *         below sedcard section on all routes
+ * prompt: close button inside mobile slider — burger opens only, drawer closes itself
  */
 import type { Lang } from '../i18n/ui';
 import { useTranslations, getAlternateLangUrl } from '../i18n/utils';
@@ -23,6 +24,10 @@ const contactHref = lang === 'de' ? `${base}/kontakt/`    : `${base}/contact/`;
 ---
 
 <div class="nav-links" id="navLinks">
+  {/* prompt: close control lives inside slider — not on header burger icon */}
+  <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label={lang === 'de' ? 'Menü schließen' : 'Close menu'}>
+    <span></span><span></span>
+  </button>
   <a href={bioHref} class="nav-link">{t('nav.bio')}</a>
   <a href={`${base}/skills/`} class="nav-link">{t('nav.skills')}</a>
   <a href={`${base}/credits/`} class="nav-link">{t('nav.credits')}</a>
