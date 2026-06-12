@@ -1786,10 +1786,13 @@ body.nav-open .nav-toggle span:nth-child(3) {
     background: var(--deep);
     border-left: 1px solid var(--border);
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    /* prompt: center nav buttons in slider — no overlap with header or each other */
+    justify-content: center;
+    align-items: center;
     gap: 0;
-    padding: 96px 28px 32px;
+    padding: calc(68px + env(safe-area-inset-top, 0px)) 24px calc(24px + env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     transform: translateX(100%);
     visibility: hidden;
@@ -1798,6 +1801,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
                 visibility 0s 0.36s;
     z-index: 220;
     will-change: transform;
+    box-sizing: border-box;
   }
   body.nav-open .nav-sub .nav-links {
     transform: translateX(0);
@@ -1811,27 +1815,41 @@ body.nav-open .nav-toggle span:nth-child(3) {
   .nav-sub .nav-link,
   .nav-sub .nav-cta,
   .nav-sub .nav-sedcard {
-    padding: 16px 4px;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 260px;
+    padding: 14px 12px;
     margin: 0;
     font-size: 13px;
     letter-spacing: 2.5px;
+    line-height: 1.35;
+    white-space: normal;
     border-bottom: 1px solid var(--border);
-    text-align: left;
-    width: 100%;
+    text-align: center;
     display: block;
+    box-sizing: border-box;
   }
-  .nav-cta {
+  /* Keep drawer link spacing when sticky header is in scrolled state */
+  body.nav-open .nav-sub .nav-link,
+  body.nav-open .nav-sub .nav-cta,
+  body.nav-open .nav-sub .nav-sedcard {
+    padding: 14px 12px;
+  }
+  .nav-sub .nav-cta {
     background: transparent;
     color: var(--orange);
+    margin-left: 0;
   }
-  .nav-sedcard {
+  .nav-sub .nav-sedcard {
     border: 0;
     border-bottom: 1px solid var(--border);
     color: var(--orange);
+    margin-left: 0;
   }
-  .lang-switcher {
-    margin: 24px 0 0;
-    align-self: flex-start;
+  .nav-sub .lang-switcher {
+    flex: 0 0 auto;
+    margin: 20px 0 0;
+    align-self: center;
   }
 
   /* Hero */
