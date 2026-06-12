@@ -1464,40 +1464,40 @@ a.partner-card:hover {
 }
 
 /* ------------------------------------------------------------
-   Made-with credit line — quiet, modern, with a cyber heart.
-   Sits below .footer-bottom, full-width and centered. The heart
+   Made-with credit line — quiet, modern, with a cyber flash.
+   Sits below .footer-bottom, full-width and centered. The flash
    carries a soft neon glow and a slow pulse, so the row feels
    alive without competing with the rest of the footer.
    ------------------------------------------------------------ */
-/* Container: centered single-line row with comfortable spacing */
+/* prompt: Made with Brain — readable author names, no forced lowercase */
 .footer-credits {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin-top: 22px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 1.4px;
-  text-transform: lowercase;
-  color: #6a6a6a;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  color: #8a8a8a;
 }
 
-/* Plain text fragments — kept muted to let the heart + links pop */
+/* Plain text fragments — kept muted to let the flash + links pop */
 .footer-credits-text {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
-/* Author links — subtle by default, gradient shimmer on hover */
+/* Author links — readable, normal weight (not bold) */
 .footer-credits-link {
   position: relative;
-  color: #b8b8b8;
+  color: #d0d0d0;
   text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 1.4px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
   padding-bottom: 1px;
   background-image: linear-gradient(90deg, #00e5ff, #b14bff, #ff2bd6);
   background-size: 0% 1px;
@@ -1512,26 +1512,24 @@ a.partner-card:hover {
   background-size: 100% 1px;
 }
 
-/* Cyber heart icon — small, glowing, gently pulsing */
-.footer-credits-heart {
-  width: 14px;
-  height: 14px;
-  /* Soft neon glow; cheap to render and barely visible at rest */
+/* Cyber flash icon — glowing, gently pulsing */
+.footer-credits-flash {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
   filter: drop-shadow(0 0 2px rgba(0, 229, 255, 0.55))
-          drop-shadow(0 0 4px rgba(255, 43, 214, 0.35));
-  animation: footerHeartPulse 2.4s ease-in-out infinite;
-  transform-origin: 50% 55%;
+          drop-shadow(0 0 5px rgba(255, 43, 214, 0.35));
+  animation: footerFlashPulse 2.4s ease-in-out infinite;
+  transform-origin: 50% 50%;
 }
 
-/* Slow scale + glow pulse — kept tiny so it stays "unauffällig" */
-@keyframes footerHeartPulse {
+@keyframes footerFlashPulse {
   0%, 100% { transform: scale(1);    opacity: 0.92; }
-  50%      { transform: scale(1.12); opacity: 1;    }
+  50%      { transform: scale(1.1); opacity: 1;    }
 }
 
-/* Respect users who prefer no motion — hold a steady state */
 @media (prefers-reduced-motion: reduce) {
-  .footer-credits-heart { animation: none; }
+  .footer-credits-flash { animation: none; }
 }
 
 
@@ -1703,7 +1701,7 @@ a.partner-card:hover {
   align-items: center;
   gap: 5px;
   padding: 0;
-  z-index: 210;
+  z-index: 240;
   position: relative;
 }
 
@@ -1726,17 +1724,19 @@ body.nav-open .nav-toggle span:nth-child(3) {
   background: var(--orange);
 }
 
+/* prompt: burger menu — full-screen dim layer; click/tap outside drawer closes menu */
 .nav-backdrop {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(2px);
-  z-index: 190;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  z-index: 210;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.nav-backdrop[hidden] {
+  display: none !important;
 }
 
 
@@ -1761,13 +1761,19 @@ body.nav-open .nav-toggle span:nth-child(3) {
   /* prompt: on mobile hide sedcard gray hint; keep Ilian Simeonow link + PDF button */
   .sedcard-bar-text { display: none; }
 
-  /* Mobile drawer — nav lives below carousel but opens as fixed panel */
+  /* prompt: burger menu — header + close toggle above drawer panel */
+  body.nav-open .nav--top { z-index: 230; }
+  body.nav-open .nav-toggle { z-index: 240; }
+
+  /* Mobile drawer — nav lives below hero but opens as fixed panel */
+  /* prompt: burger menu — must not trap fixed drawer in zero-height shell (will-change/containing block) */
   .nav-sub {
     height: 0;
     padding: 0;
     border: none;
     overflow: visible;
     background: transparent;
+    will-change: auto;
   }
 
   .nav-sub .nav-links {
@@ -1775,6 +1781,7 @@ body.nav-open .nav-toggle span:nth-child(3) {
     top: 0;
     right: 0;
     height: 100vh;
+    height: 100dvh;
     width: min(340px, 86vw);
     background: var(--deep);
     border-left: 1px solid var(--border);
@@ -1789,7 +1796,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
     /* slide out → wait for animation → then hide */
     transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
                 visibility 0s 0.36s;
-    z-index: 200;
+    z-index: 220;
+    will-change: transform;
   }
   body.nav-open .nav-sub .nav-links {
     transform: translateX(0);
@@ -1799,7 +1807,6 @@ body.nav-open .nav-toggle span:nth-child(3) {
                 visibility 0s 0s;
   }
   body.nav-open { overflow: hidden; }
-  body.nav-open .nav-backdrop { display: block; opacity: 1; }
 
   .nav-sub .nav-link,
   .nav-sub .nav-cta,
@@ -1832,7 +1839,9 @@ body.nav-open .nav-toggle span:nth-child(3) {
   .stat-num { font-size: 36px; }
   .hero-side-text { display: none; }
 
+  /* prompt: reduce hero height on mobile — shrink background to match content, no empty black space */
   .hero {
+    min-height: auto;
     justify-content: flex-start;
     padding-top: 32px;
   }
@@ -1943,8 +1952,9 @@ body.nav-open .nav-toggle span:nth-child(3) {
   }
 
   /* Hero — content from top so eyebrow is never clipped by overflow:hidden */
+  /* prompt: reduce hero height on mobile — background div matches content, no huge black gap below */
   .hero {
-    min-height: 88dvh;
+    min-height: auto;
     justify-content: flex-start;
     padding: 28px var(--page-pad) 10px;
   }
@@ -2072,10 +2082,12 @@ body.nav-open .nav-toggle span:nth-child(3) {
   }
   .footer-legal { flex-wrap: wrap; gap: 14px 20px; }
   /* Credit line on mobile: left-align to match the rest of the bottom bar */
-  .footer-credits { justify-content: flex-start; font-size: 10.5px; letter-spacing: 1.2px; }
+  /* Made with Brain credit line — keep names readable on mobile */
+  .footer-credits { justify-content: flex-start; font-size: 12.5px; letter-spacing: 0.5px; }
+  .footer-credits-link { font-size: 12.5px; }
 
-  /* Page hero (sub-pages) — respects per-route --hero-min-height */
-  .page-hero { min-height: var(--hero-min-height, 38vh) !important; padding: 56px var(--page-pad) 10px !important; }
+  /* Page hero (sub-pages) — content-sized on mobile; no vh min-height black gap below title */
+  .page-hero { min-height: auto !important; padding: 40px var(--page-pad) 10px !important; }
 
   /* Section headings scale */
   .section-heading { font-size: clamp(32px, 8vw, 44px); }
@@ -2130,10 +2142,10 @@ body.nav-open .nav-toggle span:nth-child(3) {
 
 /* Promote scroll-heavy layers to their own GPU layer — keeps the
    60fps thread free of paint work while the user scrolls */
+/* prompt: exclude .nav-sub — will-change traps position:fixed mobile drawer inside zero-height shell */
 .page-hero::before,
 .hero-video,
-.nav,
-.nav-sub {
+.nav {
   will-change: transform;
 }
 

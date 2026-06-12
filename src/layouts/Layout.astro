@@ -4,7 +4,7 @@
  * prompt: improve scrolling behaviour & feeling — add IntersectionObserver-driven
  *         section reveals (CSS handles the actual animation in global.css §22)
  * prompt: im footer der website adde eine kleine unauffällige aber moderne und
- *         irgendwie doch auffällige line "made with heart (cyber heart icon) by
+ *         irgendwie doch auffällige line "Made with Brain (electric brain icon) by
  *         Benedikt Sterra (ref botworld.cloud) and Prateek Rohilla
  *         (ref: https://ptkr.eu/)"
  */
@@ -71,13 +71,15 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
   {/* Sedcard bar — download vita, top of every route */}
   <SedcardBar lang={lang} />
 
+  {/* prompt: burger menu — backdrop at body level so outer press closes drawer below toggle */}
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+
   <!-- Mobile only: logo + hamburger; hidden on desktop web view -->
   <nav class="nav nav--top" id="siteNav">
     <a href={lang === 'de' ? '/' : '/en/'} class="nav-logo">{contactGiven} <span class="nav-logo-accent">{contactFamily}</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-backdrop" id="navBackdrop"></div>
   </nav>
 
   <slot />
@@ -149,25 +151,24 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
         <a href="/sitemap-index.xml">{t('footer.sitemap')}</a>
       </div>
     </div>
-    {/* Made-with credit line — subtle yet modern, with a pulsing cyber heart */}
+    {/* prompt: Made with Brain — flash icon; author names normal weight */}
     <div class="footer-credits">
-      <span class="footer-credits-text">made with</span>
-      {/* Inline cyber-heart SVG: gradient stroke + glow, animated pulse via CSS */}
-      <svg class="footer-credits-heart" viewBox="0 0 24 24" aria-label="cyber heart" role="img" focusable="false">
+      <span class="footer-credits-text">Made with Brain</span>
+      {/* Inline cyber-flash SVG: gradient fill + glow, animated pulse via CSS */}
+      <svg class="footer-credits-flash" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <defs>
-          <linearGradient id="cyberHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="cyberFlashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%"   stop-color="#00e5ff" />
             <stop offset="55%"  stop-color="#b14bff" />
             <stop offset="100%" stop-color="#ff2bd6" />
           </linearGradient>
         </defs>
-        {/* Heart path with circuit-node accents to evoke a "cyber" feel */}
-        <path d="M12 21s-7.5-4.6-9.5-9.2C1 8 3.5 4.5 7 4.5c2 0 3.6 1 5 2.7 1.4-1.7 3-2.7 5-2.7 3.5 0 6 3.5 4.5 7.3C19.5 16.4 12 21 12 21z"
-              fill="none" stroke="url(#cyberHeartGrad)" stroke-width="1.6" stroke-linejoin="round" />
-        {/* Tiny "circuit" dots — quietly reinforce the cyber motif */}
-        <circle cx="7"  cy="9"  r="0.9" fill="#00e5ff" />
-        <circle cx="17" cy="9"  r="0.9" fill="#ff2bd6" />
-        <circle cx="12" cy="14" r="0.9" fill="#b14bff" />
+        {/* Lightning bolt — electric flash motif */}
+        <path d="M13.5 2.5L5.5 13.5H11l-1.5 8.5 9.5-11.5H13l1.5-7.5z"
+              fill="url(#cyberFlashGrad)" stroke="#00e5ff" stroke-width="0.4" stroke-linejoin="round" />
+        {/* Spark accents at bolt tips */}
+        <circle cx="13.5" cy="3"  r="0.8" fill="#00e5ff" />
+        <circle cx="10"   cy="21" r="0.8" fill="#ff2bd6" />
       </svg>
       <span class="footer-credits-text">by</span>
       {/* Author 1 — Benedikt Sterra → botworld.cloud */}
@@ -195,11 +196,12 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
         return document.querySelector('.hero') || document.querySelector('.page-hero');
       }
 
+      /* prompt: burger menu — always reveal nav shell; placement below hero is optional */
       function placeNav() {
-        var anchor = getNavAnchor();
-        if (!anchor || !navSub) return;
+        if (!navSub) return;
 
-        if (navSub.previousElementSibling !== anchor) {
+        var anchor = getNavAnchor();
+        if (anchor && navSub.previousElementSibling !== anchor) {
           anchor.parentNode.insertBefore(navSub, anchor.nextSibling);
         }
         navSub.hidden = false;
@@ -234,22 +236,36 @@ const w4 = lang === 'de' ? `${wissenBase}wie-werde-ich-artist/` : `${wissenBase}
       }, { passive: true });
       onScroll();
 
-      // Hamburger drawer (mobile)
+      // prompt: burger menu — close on outer press; toggle stays above drawer (z-index in CSS)
       const closeMenu = () => {
         document.body.classList.remove('nav-open');
         toggle && toggle.setAttribute('aria-expanded', 'false');
+        toggle && toggle.setAttribute('aria-label', 'Menu');
+        backdrop && (backdrop.hidden = true);
       };
       const openMenu = () => {
         document.body.classList.add('nav-open');
         toggle && toggle.setAttribute('aria-expanded', 'true');
+        toggle && toggle.setAttribute('aria-label', 'Close menu');
+        backdrop && (backdrop.hidden = false);
       };
-      toggle && toggle.addEventListener('click', () => {
+      toggle && toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         document.body.classList.contains('nav-open') ? closeMenu() : openMenu();
       });
       if (backdrop) {
         backdrop.addEventListener('click', closeMenu);
-        backdrop.addEventListener('touchstart', closeMenu, { passive: true });
+        backdrop.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          closeMenu();
+        });
       }
+      document.addEventListener('click', (e) => {
+        if (!document.body.classList.contains('nav-open')) return;
+        if (toggle && toggle.contains(e.target)) return;
+        if (links && links.contains(e.target)) return;
+        closeMenu();
+      });
       links && links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
       window.addEventListener('resize', () => { if (window.innerWidth > 1100) closeMenu(); });
