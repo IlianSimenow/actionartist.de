@@ -1761,9 +1761,41 @@ body.nav-open .nav-toggle span:nth-child(3) {
   /* prompt: on mobile hide sedcard gray hint; keep Ilian Simeonow link + PDF button */
   .sedcard-bar-text { display: none; }
 
-  /* prompt: burger menu — header + close toggle above drawer panel */
-  body.nav-open .nav--top { z-index: 230; }
-  body.nav-open .nav-toggle { z-index: 240; }
+  /* prompt: fixed burger button on mobile — stays visible while scrolling; no header strip */
+  :root {
+    --mobile-burger-top: calc(env(safe-area-inset-top, 0px) + 56px);
+    --mobile-burger-top-scrolled: calc(env(safe-area-inset-top, 0px) + 8px);
+  }
+
+  .nav--top {
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .nav-toggle {
+    position: fixed;
+    top: var(--mobile-burger-top);
+    right: var(--page-pad);
+    z-index: 240;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  body.nav-top--scrolled .nav-toggle {
+    top: var(--mobile-burger-top-scrolled);
+  }
+
+  body.nav-open .nav-toggle {
+    z-index: 241;
+  }
 
   /* Mobile drawer — nav lives below hero but opens as fixed panel */
   /* prompt: burger menu — must not trap fixed drawer in zero-height shell (will-change/containing block) */
@@ -1788,11 +1820,11 @@ body.nav-open .nav-toggle span:nth-child(3) {
     box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    /* prompt: center nav buttons in slider — no overlap with header or each other */
+    /* prompt: center nav buttons — drawer bg full height; no extra top pad for burger row */
     justify-content: center;
     align-items: center;
     gap: 0;
-    padding: calc(68px + env(safe-area-inset-top, 0px)) 24px calc(24px + env(safe-area-inset-bottom, 0px));
+    padding: 24px 24px calc(24px + env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     transform: translateX(100%);
     visibility: hidden;
@@ -2122,8 +2154,8 @@ body.nav-open .nav-toggle span:nth-child(3) {
     --section-pad: 44px;
   }
 
-  .nav { height: 60px; }
-  .nav--scrolled { height: 50px; }
+  .nav:not(.nav--top) { height: auto; min-height: 0; padding: 8px var(--page-pad); }
+  .nav:not(.nav--top).nav--scrolled { height: auto; min-height: 0; padding: 6px var(--page-pad); }
   .nav-logo { font-size: 16px; }
 
   .hero-stats { gap: 20px 28px; }
