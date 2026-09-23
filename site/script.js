@@ -3,3 +3,16 @@ const toggle=document.querySelector('.menu-toggle');const links=document.querySe
 document.querySelectorAll('details').forEach(details=>{const summary=details.querySelector('summary');if(summary&&/mehr anzeigen/i.test(summary.textContent)){summary.textContent=english?'Read more':'Mehr lesen'}if(!details.querySelector('.details-back')){const back=document.createElement('button');back.type='button';back.className='button primary details-back';back.textContent=english?'Back':'Zurück';back.style.marginTop='26px';back.addEventListener('click',()=>{details.open=false;summary?.focus({preventScroll:true});summary?.scrollIntoView({behavior:'smooth',block:'center'})});details.append(back)}});
 
 document.querySelectorAll('.video-consent').forEach(consent=>{const frame=consent.closest('.video-frame');const load=consent.querySelector('.video-load');load.addEventListener('click',()=>{const iframe=document.createElement('iframe');iframe.src=consent.dataset.videoSrc;iframe.title=consent.dataset.videoTitle;iframe.allowFullscreen=true;iframe.referrerPolicy='strict-origin-when-cross-origin';consent.hidden=true;frame.append(iframe);const revoke=document.createElement('button');revoke.type='button';revoke.className='button video-revoke';revoke.textContent=english?'Disable video':'Video deaktivieren';frame.after(revoke);revoke.addEventListener('click',()=>{iframe.remove();revoke.remove();consent.hidden=false;load.focus()})})});
+// Expanded reading sections occupy the complete layout width below the introduction.
+document.querySelectorAll('details').forEach(details => {
+  const layout = details.closest('.workshop-row, .history-summary, main > .content.split');
+  if (!layout) return;
+  const action = details.nextElementSibling;
+  layout.classList.add('wide-reading');
+  details.classList.add('wide-reading-details');
+  layout.append(details);
+  if (action?.matches('a.button')) {
+    action.classList.add('wide-reading-action');
+    layout.append(action);
+  }
+});
