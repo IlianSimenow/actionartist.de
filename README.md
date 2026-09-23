@@ -17,3 +17,6 @@ Der Inhalt von `dist/` kann auf einem statischen Webserver veröffentlicht werde
 Die Website benötigt keine Serverfunktionen oder Umgebungsvariablen.
 
 Der vorherige Repository-Stand ist im Branch `backup/vor-website-austausch-2026-09-23` gesichert.
+
+## SEO
+Metadaten in config/seo.json pflegen oder seo-editor.html lokal öffnen. Anleitung: SEO-ANLEITUNG.md. Der Build erzeugt SEO-Tags, Sitemap und robots.txt in dist/. Vercel-Konfiguration liegt in vercel.json.

@@ -1,0 +1,171 @@
+{
+  "baseUrl": "https://www.actionartist.de",
+  "pages": {
+    "index.html": {
+      "title": "Stuntkoordination & Kampfchoreografie | Ilian Simeonow",
+      "description": "Ilian Simeonow: Stuntkoordination, Kampfchoreografie und Action für Film, Theater und Live-Events. Projekte ansehen und Zusammenarbeit anfragen.",
+      "keywords": [
+        "Stuntkoordination",
+        "Kampfchoreografie",
+        "Stuntman"
+      ],
+      "alternate": "en/index.html"
+    },
+    "en/index.html": {
+      "title": "Stunt Coordination & Fight Choreography | Ilian Simeonow",
+      "description": "Ilian Simeonow provides stunt coordination, fight choreography and action for film, theatre and live events. Explore projects and get in touch.",
+      "keywords": [
+        "stunt coordinator",
+        "fight choreography",
+        "stunt performer"
+      ],
+      "alternate": "index.html"
+    },
+    "profil.html": {
+      "title": "Ilian Simeonow – Stuntman und Artist | Biographie",
+      "description": "Biographie von Ilian Simeonow: Einblicke in seinen Weg als Stuntman, Schauspieler und diplomierter Artist für Film, Theater und Live-Produktionen.",
+      "keywords": [
+        "Ilian Simeonow",
+        "Stuntman Biographie"
+      ],
+      "alternate": "en/profile.html"
+    },
+    "en/profile.html": {
+      "title": "Ilian Simeonow – Stunt Performer & Artist | Biography",
+      "description": "Discover Ilian Simeonow’s background as a stunt performer, actor and trained circus artist working in film, theatre and live productions.",
+      "keywords": [
+        "Ilian Simeonow biography",
+        "stunt performer"
+      ],
+      "alternate": "profil.html"
+    },
+    "leistungen.html": {
+      "title": "Stuntkoordination, Kampfchoreografie & Artistik | Leistungen",
+      "description": "Stuntkoordination, Kampfchoreografie, Stunts, Artistik und Action Acting für Kamera und Bühne. Leistungen von Ilian Simeonow entdecken.",
+      "keywords": [
+        "Stuntkoordination buchen",
+        "Kampfchoreografie",
+        "Bühnenfechten"
+      ],
+      "alternate": "en/services.html"
+    },
+    "en/services.html": {
+      "title": "Stunt Coordination, Stage Combat & Circus Arts | Services",
+      "description": "Explore stunt coordination, fight choreography, stunts, circus arts and action acting for camera and stage with Ilian Simeonow.",
+      "keywords": [
+        "stunt coordination",
+        "stage combat",
+        "fight choreography"
+      ],
+      "alternate": "leistungen.html"
+    },
+    "projekte.html": {
+      "title": "Stunt- und Theaterprojekte | Ilian Simeonow",
+      "description": "Projekte und Referenzen von Ilian Simeonow: Stuntkoordination, Kampfchoreografie, Schauspiel und Artistik für Film, Theater und Shows.",
+      "keywords": [
+        "Stuntkoordinator Referenzen",
+        "Theater Stunts"
+      ],
+      "alternate": "en/projects.html"
+    },
+    "en/projects.html": {
+      "title": "Stunt & Theatre Projects | Ilian Simeonow",
+      "description": "Projects and credits by Ilian Simeonow in stunt coordination, fight choreography, acting and circus performance for film, theatre and shows.",
+      "keywords": [
+        "stunt coordinator credits",
+        "theatre stunts"
+      ],
+      "alternate": "projekte.html"
+    },
+    "galerie.html": {
+      "title": "Stunt, Schauspiel & Artistik in Bildern | Galerie",
+      "description": "Bilder aus Stunt, Schauspiel und Artistik: Entdecke Ilian Simeonow in Action und gewinne einen Eindruck seiner Arbeit für Bühne und Kamera.",
+      "keywords": [
+        "Stunt Bilder",
+        "Artistik Galerie"
+      ],
+      "alternate": "en/gallery.html"
+    },
+    "en/gallery.html": {
+      "title": "Stunts, Acting & Circus Arts in Pictures | Gallery",
+      "description": "See Ilian Simeonow in action through photographs of stunts, acting and circus arts for stage and camera. Browse the gallery.",
+      "keywords": [
+        "stunt photos",
+        "circus arts gallery"
+      ],
+      "alternate": "galerie.html"
+    },
+    "workshops.html": {
+      "title": "Stunt-, Fecht- & Kinderzirkus-Workshops | Action Artist",
+      "description": "Workshops für Stunt, Bühnenfechten und Kinderzirkus mit Ilian Simeonow. Formate für Gruppen und Schulen entdecken und individuell anfragen.",
+      "keywords": [
+        "Stunt Workshop",
+        "Bühnenfechten Workshop",
+        "Kinderzirkus"
+      ],
+      "alternate": "en/workshops.html"
+    },
+    "en/workshops.html": {
+      "title": "Stunt, Fencing & Children’s Circus Workshops | Action Artist",
+      "description": "Stunt, stage fencing and children’s circus workshops with Ilian Simeonow. Explore formats for groups and schools and enquire about a workshop.",
+      "keywords": [
+        "stunt workshop",
+        "stage fencing workshop",
+        "children circus"
+      ],
+      "alternate": "workshops.html"
+    },
+    "kontakt.html": {
+      "title": "Kontakt – Stuntkoordination anfragen | Ilian Simeonow",
+      "description": "Ilian Simeonow für Film, Theater, Shows und Workshops kontaktieren. Fragen zu Stuntkoordination, Kampfchoreografie und Zusammenarbeit stellen.",
+      "keywords": [
+        "Stuntkoordinator Kontakt",
+        "Ilian Simeonow Anfrage"
+      ],
+      "alternate": "en/contact.html"
+    },
+    "en/contact.html": {
+      "title": "Contact – Enquire About Stunt Coordination | Ilian Simeonow",
+      "description": "Contact Ilian Simeonow for film, theatre, shows and workshops. Enquire about stunt coordination, fight choreography and collaboration.",
+      "keywords": [
+        "stunt coordinator contact",
+        "Ilian Simeonow enquiry"
+      ],
+      "alternate": "kontakt.html"
+    },
+    "geschichte.html": {
+      "title": "Geschichte von Stunts und Artistik | Action Artist",
+      "description": "Einblicke in die Geschichte von Stunts und Artistik: Hintergründe und Persönlichkeiten aus der Welt von Film, Bewegung und Unterhaltung.",
+      "keywords": [
+        "Geschichte Stuntman",
+        "Geschichte Artistik"
+      ],
+      "alternate": "en/history.html"
+    },
+    "en/history.html": {
+      "title": "History of Stunts & Circus Arts | Action Artist",
+      "description": "Explore the history of stunts and circus arts, with background stories and personalities from film, movement and entertainment.",
+      "keywords": [
+        "stunt history",
+        "circus arts history"
+      ],
+      "alternate": "geschichte.html"
+    },
+    "impressum.html": {
+      "title": "Impressum & Datenschutz | Action Artist",
+      "description": "Impressum, Kontaktdaten, Bildnachweise und Datenschutzhinweise der Website Action Artist von Ilian Simeonow.",
+      "keywords": [
+        "Action Artist Impressum"
+      ],
+      "alternate": "en/legal.html"
+    },
+    "en/legal.html": {
+      "title": "Legal Notice & Privacy | Action Artist",
+      "description": "Legal notice, contact details, image credits and privacy information for Ilian Simeonow’s Action Artist website.",
+      "keywords": [
+        "Action Artist legal notice"
+      ],
+      "alternate": "impressum.html"
+    }
+  }
+}

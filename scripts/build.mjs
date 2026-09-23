@@ -33,3 +33,6 @@ await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(source, output, { recursive: true });
 console.log(`Build successful: ${inputs.length} files, ${references} local references checked -> dist/`);
+
+const { applySeo } = await import('./seo.mjs');
+await applySeo(root, output);
