@@ -1,0 +1,12 @@
+/* Project page only: clear reading order, with coordination first. */
+.projects-page .page-title h1{font-size:clamp(32px,6.3vw,88px);line-height:1.02;max-width:1150px;overflow-wrap:anywhere}
+.project-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.project-nav a{padding:10px 16px;border:1px solid var(--gold);font-size:13px}
+.project-nav a:hover,.project-nav a:focus-visible{background:var(--gold);color:var(--ink)}
+.projects-page .credit-groups{grid-template-columns:minmax(0,1fr);gap:32px}
+.projects-page .credit-group{scroll-margin-top:24px;min-width:0}
+.projects-page .credit-group h2{font-size:clamp(26px,4vw,42px);line-height:1.12;overflow-wrap:anywhere}
+.projects-page .credit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px}
+.projects-page .credit-list li{padding:18px 0;break-inside:avoid}
+.projects-page .credit-list span{display:block;margin-top:7px;line-height:1.65}
+@media(max-width:800px){.projects-page .credit-list{grid-template-columns:1fr}.projects-page .credit-group{padding:20px}.project-nav a{font-size:12px}.projects-page .page-title{padding-top:48px}}

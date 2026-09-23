@@ -1,0 +1,10 @@
+#produktionen{padding-top:48px;padding-bottom:24px}
+#produktionen + .section{padding-top:28px}
+#produktionen .section-title{font-size:clamp(36px,4vw,52px);margin-bottom:24px}
+#produktionen .content-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+#produktionen .card{padding:18px;min-height:0;border-top:1px solid var(--line)}
+#produktionen .card h3{font-size:25px;line-height:1.08;margin:14px 0 8px}
+#produktionen .card p{font-size:13px;line-height:1.5;margin:0}
+#produktionen .card .number{font-size:16px}
+@media(max-width:1000px){#produktionen .content-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#produktionen .content-grid{grid-template-columns:1fr}#produktionen .card{padding:16px}#produktionen .card h3{font-size:24px}}
