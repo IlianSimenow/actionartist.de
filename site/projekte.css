@@ -10,3 +10,10 @@
 .projects-page .credit-list li{padding:18px 0;break-inside:avoid}
 .projects-page .credit-list span{display:block;margin-top:7px;line-height:1.65}
 @media(max-width:800px){.projects-page .credit-list{grid-template-columns:1fr}.projects-page .credit-group{padding:20px}.project-nav a{font-size:12px}.projects-page .page-title{padding-top:48px}}
+
+@media(max-width:800px){
+ .projects-page .page-title h1{font-size:clamp(24px,6.8vw,50px);line-height:1.08}
+ .projects-page .credit-group h2{font-size:clamp(23px,6.3vw,32px);line-height:1.15}
+}
+
+@media(max-width:800px){.projects-page .credit-list{grid-template-columns:minmax(0,1fr)}.projects-page .credit-list li{min-width:0;overflow-wrap:anywhere}}
