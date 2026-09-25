@@ -27,6 +27,6 @@
 .services-title>span+span{margin-top:6px}
 .services-title em{color:var(--gold);font-style:normal}
 @media(max-width:480px){.page-title .services-title{font-size:clamp(20px,5.7vw,28px)}}
-.page-title h1 .gallery-title-orange{color:#f5a623}
+.page-title h1 .gallery-title-orange{color:var(--gold)}
 
-.page-title h1 .profile-title-orange{color:#f5a623}
+.page-title h1 .profile-title-orange{color:var(--gold)}

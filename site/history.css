@@ -7,4 +7,4 @@
 
 @media(max-width:600px){.wide-reading-details .history-images{grid-template-columns:1fr}}
 
-.page-title h1 .history-title-orange{color:#f5a623}
+.page-title h1 .history-title-orange{color:var(--gold)}
