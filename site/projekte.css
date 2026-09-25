@@ -17,3 +17,5 @@
 }
 
 @media(max-width:800px){.projects-page .credit-list{grid-template-columns:minmax(0,1fr)}.projects-page .credit-list li{min-width:0;overflow-wrap:anywhere}}
+
+.projects-page .page-title .title-orange{color:#f5a623}

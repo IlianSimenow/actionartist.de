@@ -11,3 +11,5 @@
 .workshop-row>details:not([open])+.wide-reading-action{display:none}
 .workshop-row .original-content{text-align:left}
 @media(max-width:800px){.workshop-row,.workshop-row:nth-child(even){grid-template-columns:1fr;padding:36px 20px;row-gap:24px}.workshop-heading,.workshop-intro,.workshop-row:nth-child(even) .workshop-heading,.workshop-row:nth-child(even) .workshop-intro{grid-column:1;grid-row:auto}.workshop-row:nth-child(even) .workshop-heading{text-align:left}.workshop-row .workshop h2{font-size:42px}.workshop-intro .copy-large{font-size:18px}}
+
+.page-title h1 .workshop-title-orange{color:#f5a623}
