@@ -30,3 +30,17 @@
 .page-title h1 .gallery-title-orange{color:var(--gold)}
 
 .page-title h1 .profile-title-orange{color:var(--gold)}
+
+/* Flip only the hero photograph horizontally; keep the content and shading upright. */
+.hero{background:none;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(270deg,rgba(6,7,7,.94),rgba(6,7,7,.57) 48%,rgba(6,7,7,.2)),url('assets/hero-stunt.webp') center/cover;transform:scaleX(-1);pointer-events:none}
+.hero::after{pointer-events:none}
+@media(max-width:800px){.hero::before{background-position:43% center}}
+
+/* Share heading and copy rows so adjacent service titles align. */
+@media(min-width:801px){
+ .services>.service{display:grid;grid-template-rows:subgrid;grid-row:span 3}
+ .services>.service>div{display:contents}
+ .services>.service h3{align-self:end}
+ .services>.service p{margin-top:6px}
+}

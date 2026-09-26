@@ -2,10 +2,10 @@
 .workshop-grid{display:grid;grid-template-columns:1fr;gap:0}
 .workshop-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);align-items:start;column-gap:80px;row-gap:24px;width:100%;padding:52px max(32px,calc((100% - 1176px)/2));border-top:1px solid var(--line);background:var(--panel)}
 .workshop-row:last-child{border-bottom:1px solid var(--line)}
-.workshop-row:nth-child(even){background:var(--ink);grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+.workshop-row:nth-child(even){background:var(--ink)}
 .workshop-row .workshop{display:contents}
 .workshop-heading{grid-column:1;grid-row:1;min-width:0}.workshop-intro{grid-column:2;grid-row:1;min-width:0}
-.workshop-row:nth-child(even) .workshop-heading{grid-column:2;text-align:right}.workshop-row:nth-child(even) .workshop-intro{grid-column:1}
+
 .workshop-row .workshop h2{font-size:clamp(38px,5vw,64px);line-height:.95;margin:18px 0 0;overflow-wrap:normal;hyphens:auto}
 .workshop-intro p{font-size:15px;color:var(--muted)}.workshop-intro .copy-large{font-size:20px;color:var(--paper);margin-top:0}.workshop-intro strong{color:var(--gold)}
 .workshop-row>details:not([open])+.wide-reading-action{display:none}
