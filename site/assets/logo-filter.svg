@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="gold-cutout" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
+    <!-- Keep the warm gold artwork; neutral dark pixels reveal the page background. -->
+    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  3 0 -3 0 -0.25"/>
+  </filter>
+</svg>
