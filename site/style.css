@@ -77,7 +77,3 @@
 /* Seamless transition below the history and workshops headers. */
 .page-title+.history-section{border-top:0}
 .page-title+.content>.workshop-grid>.workshop-row:first-child{border-top:0}
-
-/* Fade into the panel background used by the first workshop/history section. */
-.header-6::after,.header-7::after{background:linear-gradient(0deg,var(--panel),transparent 34%)}
-
