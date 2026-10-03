@@ -77,3 +77,8 @@
 /* Seamless transition below the history and workshops headers. */
 .page-title+.history-section{border-top:0}
 .page-title+.content>.workshop-grid>.workshop-row:first-child{border-top:0}
+/* Match the homepage fade and its dark continuation below the image. */
+.header-6::after,.header-7::after{z-index:0;background:linear-gradient(0deg,var(--ink),transparent 34%)}
+.header-6>.inside,.header-7>.inside{position:relative;z-index:1}
+.header-6+.content>.workshop-grid>.workshop-row:first-child,
+.header-7+.history-section{background:var(--ink)}
