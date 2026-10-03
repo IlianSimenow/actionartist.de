@@ -71,3 +71,9 @@
 .hero,.page-title{min-height:650px}
 .page-title{display:flex;align-items:center}
 .page-title>.inside{width:min(var(--max),100%)}
+/* Keep page headers at the same outer height, independent of text and buttons. */
+.hero,.page-title{height:650px;min-height:650px}
+.page-title{padding-top:32px;padding-bottom:32px}
+/* Seamless transition below the history and workshops headers. */
+.page-title+.history-section{border-top:0}
+.page-title+.content>.workshop-grid>.workshop-row:first-child{border-top:0}
